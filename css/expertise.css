@@ -44,7 +44,9 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
-  background: transparent; /* let section background show through */
+  max-width: 900px;       /* optional, keeps cards narrow */
+  margin: 0 auto;         /* center the grid */
+  background: transparent; /* show section background */
 }
 
 /* Skill cards */
