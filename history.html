@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="palette1">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>History — Tian yi Tong</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/history.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand"><span class="dot"></span> <span>Tian yi Tong</span></a>
+      <div class="spacer"></div>
+      <div class="menu" role="navigation" aria-label="Main">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="about.html">Expertise</a>
+        <a class="nav-link" href="projects.html">Projects</a>
+        <a class="nav-link active" href="history.html">History</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+      </div>
+
+      <div class="actions">
+        <div class="theme-control">
+          <button class="ghost-btn" id="themeToggle" aria-label="Toggle theme">Theme</button>
+          <div class="theme-indicator" aria-hidden="true">
+            <span class="dot-indicator" data-index="0"></span>
+            <span class="dot-indicator" data-index="1"></span>
+            <span class="dot-indicator" data-index="2"></span>
+          </div>
+          <div id="themeLabel" class="theme-label">Light</div>
+        </div>
+
+        <button class="hamburger" id="menuToggle" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="transition-overlay"><div class="veil"></div></div>
+
+  <main>
+    <section class="view" data-view>
+      <div class="history-header">
+        <div class="kicker">Professional Journey</div>
+        <h1 class="history-title">A timeline of work, growth, and milestones</h1>
+        <p class="history-sub">
+          Highlights from my career, major achievements, and roles that shaped my expertise.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <article class="milestone editable" id="editableJob">
+          <div class="year">?</div>
+          <div class="details">
+            <h3>Your Company</h3>
+            <p>Click to edit this entry with your job details</p>
+            <span class="tag">You </span>
+          </div>
+        </article>
+
+        <article class="milestone" data-title="Lead Developer, NextGen Systems"
+                 data-details="Architected large-scale web platforms with real-time features. Mentored a cross-functional team. Drove SSR & CI/CD adoption."
+                 data-more="Responsible for roadmap, technical hiring, and design reviews. Improved performance budgets across product.">
+          <div class="year">2025 — Present</div>
+          <div class="details">
+            <h3>QuantPredict Engine</h3>
+            <p>Developed ML forecasting models with feature engineering and hyperparameter optimization. Built data pipelines for market analysis using Python, TensorFlow, and scikit-learn. Achieved 15% improved prediction accuracy through rigorous model tuning and validation techniques.</p>
+            <span class="tag">Leadership</span>
+          </div>
+        </article>
+
+        <article class="milestone" data-title="Senior Engineer, CloudOps"
+                 data-details="Delivered scalable cloud-native apps for enterprise clients. Introduced automated monitoring and self-healing infra."
+                 data-more="Led incident response improvements and built internal platform tools for reliability engineering.">
+          <div class="year">2024</div>
+          <div class="details">
+            <h3>Portfolio Architecture</h3>
+            <p>Designed and implemented a performant portfolio website with smooth animations and theme switching. Optimized for core web vitals and accessibility standards using HTML, CSS, and JavaScript.</p>
+            <span class="tag">Website</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Tian yi Tong · Crafted with care.</footer>
+
+  <!-- Job Edit Modal -->
+  <div class="modal" id="jobEditModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-inner">
+      <button class="modal-close" id="jobEditClose" aria-label="Close">✕</button>
+      <div class="modal-body">
+        <h3>Edit Job Experience</h3>
+        <div class="form-group">
+          <label for="jobTitle">Job Title & Company</label>
+          <input type="text" id="jobTitle" placeholder="e.g., Senior Developer, TechCorp">
+        </div>
+        <div class="form-group">
+          <label for="jobDate">Date Range</label>
+          <input type="text" id="jobDate" placeholder="e.g., 2022 — 2023">
+        </div>
+        <div class="form-group">
+          <label for="jobDescription">Description</label>
+          <textarea id="jobDescription" placeholder="Describe your responsibilities and achievements..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="jobTag">Tag/Category</label>
+          <input type="text" id="jobTag" placeholder="e.g., Development, Leadership">
+        </div>
+        <div class="form-actions">
+          <button class="ghost-btn" id="jobEditCancel">Cancel</button>
+          <button class="btn btn-primary" id="jobEditSave">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- History modal -->
+  <div class="modal" id="historyModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-inner">
+      <button class="modal-close" id="histClose" aria-label="Close">✕</button>
+      <div class="modal-body modal-history-body">
+        <h3 id="histTitle"></h3>
+        <p id="histDetails"></p>
+        <p id="histMore" class="meta"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script src="js/history.js"></script>
+</body>
+</html>
