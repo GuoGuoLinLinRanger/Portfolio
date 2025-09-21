@@ -29,14 +29,15 @@ main {
   flex-direction: column; /* make children flow naturally */
 }
 
-/* Main container inside section should NOT constrain width or add background */
+/* Main container inside expertise section */
 .view.expertise > main {
-  max-width: none;       /* remove width constraint */
-  margin: 0;             /* remove margins */
-  padding: 0;            /* no extra padding */
-  background: transparent; /* transparent so gradient shows through */
-  width: 100%;           /* full width of section */
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background: inherit;   /* <- key change */
 }
+
 
 
 /* Skills grid */
