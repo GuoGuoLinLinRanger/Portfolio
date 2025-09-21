@@ -3,12 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>History — Tian yi Tong</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/history.css">
+  <title>Expertise — Tian yi Tong</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/expertise.css" />
 </head>
 <body>
   <nav class="nav">
@@ -17,9 +20,9 @@
       <div class="spacer"></div>
       <div class="menu" role="navigation" aria-label="Main">
         <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link" href="about.html">Expertise</a>
+        <a class="nav-link active" href="expertise.html">Expertise</a>
         <a class="nav-link" href="projects.html">Projects</a>
-        <a class="nav-link active" href="history.html">History</a>
+        <a class="nav-link" href="history.html">History</a>
         <a class="nav-link" href="contact.html">Contact</a>
       </div>
 
@@ -43,33 +46,52 @@
 
   <main>
     <section class="view" data-view>
-      <div class="history-header">
-        <div class="kicker">Professional Journey</div>
-        <h1 class="history-title">A timeline of work, growth, and milestones</h1>
-        <p class="history-sub">
-          Highlights from my career, major achievements, and roles that shaped my expertise.
+      <div class="expertise-header">
+        <div class="kicker">Skills & Competencies</div>
+        <h1 class="expertise-title">My technical & soft skills overview</h1>
+        <p class="expertise-sub">
+          A summary of the tools, technologies, and soft skills I've developed over the years.
         </p>
       </div>
 
-      <div class="timeline">
-        <article class="milestone editable" id="editableJob">
-          <div class="year">Future</div>
-          <div class="details">
-            <h3>Your Company</h3>
-            <p>Click to edit this entry with your job details</p>
-            <span class="tag">Click to edit</span>
-          </div>
+      <div class="skills-list">
+        <article class="skill-entry">
+          <h3>Python</h3>
+          <p><strong>2 years</strong> | Used for data analysis, machine learning, and backend scripting</p>
+          <p class="projects">Projects: stock prediction, data processing</p>
         </article>
 
-        <article class="milestone" data-title="Portfolio Architecture"
-                 data-details="Designed and implemented a performant portfolio website with smooth animations and theme switching."
-                 data-more="Optimized for core web vitals and accessibility standards using HTML, CSS, and JavaScript.">
-          <div class="year">2024</div>
-          <div class="details">
-            <h3>Portfolio Architecture</h3>
-            <p>Designed and implemented a performant portfolio website with smooth animations and theme switching. Optimized for core web vitals and accessibility standards using HTML, CSS, and JavaScript.</p>
-            <span class="tag">Website</span>
-          </div>
+        <article class="skill-entry">
+          <h3>JavaScript / TypeScript / React.js / Node.js</h3>
+          <p><strong>1.5 years</strong> | Frontend and backend web development</p>
+          <p class="projects">Projects: task manager, chat app; Built responsive UI in multiple web apps</p>
+        </article>
+
+        <article class="skill-entry">
+          <h3>Firebase / MongoDB</h3>
+          <p><strong>1 year</strong> | Real-time data storage and user authentication</p>
+          <p class="projects">Used in chat app and NoSQL integration in task app</p>
+        </article>
+
+        <article class="skill-entry">
+          <h3>SQL (PostgreSQL / MySQL)</h3>
+          <p><strong>1 year</strong> | Structured data storage and querying</p>
+          <p class="projects">Academic and personal projects</p>
+        </article>
+
+        <article class="skill-entry">
+          <h3>scikit-learn / PyTorch / TensorFlow / Pandas / NumPy / Matplotlib / Seaborn</h3>
+          <p><strong>1 year</strong> | Developed ML models, data preprocessing, and visualization</p>
+        </article>
+
+        <article class="skill-entry">
+          <h3>Teamwork / Communication</h3>
+          <p><strong>5 years</strong> | Sharpened skills in fast-paced environments such as fast food</p>
+        </article>
+
+        <article class="skill-entry">
+          <h3>Problem-Solving</h3>
+          <p><strong>5 years</strong> | Quickly resolving issues, calming difficult customers in pharmacy setting</p>
         </article>
       </div>
     </section>
@@ -77,49 +99,6 @@
 
   <footer>© <span id="year"></span> Tian yi Tong · Crafted with care.</footer>
 
-  <!-- Job Edit Modal -->
-  <div class="modal" id="jobEditModal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal-inner">
-      <button class="modal-close" id="jobEditClose" aria-label="Close">✕</button>
-      <div class="modal-body">
-        <h3>Edit Job Experience</h3>
-        <div class="form-group">
-          <label for="jobTitle">Job Title & Company</label>
-          <input type="text" id="jobTitle" placeholder="e.g., Senior Developer, TechCorp">
-        </div>
-        <div class="form-group">
-          <label for="jobDate">Date Range</label>
-          <input type="text" id="jobDate" placeholder="e.g., 2022 — 2023">
-        </div>
-        <div class="form-group">
-          <label for="jobDescription">Description</label>
-          <textarea id="jobDescription" placeholder="Describe your responsibilities and achievements..."></textarea>
-        </div>
-        <div class="form-group">
-          <label for="jobTag">Tag/Category</label>
-          <input type="text" id="jobTag" placeholder="e.g., Development, Leadership">
-        </div>
-        <div class="form-actions">
-          <button class="ghost-btn" id="jobEditCancel">Cancel</button>
-          <button class="btn btn-primary" id="jobEditSave">Save Changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- History modal -->
-  <div class="modal" id="historyModal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal-inner">
-      <button class="modal-close" id="histClose" aria-label="Close">✕</button>
-      <div class="modal-body modal-history-body">
-        <h3 id="histTitle"></h3>
-        <p id="histDetails"></p>
-        <p id="histMore" class="meta"></p>
-      </div>
-    </div>
-  </div>
-
   <script src="js/script.js"></script>
-  <script src="js/history.js"></script>
 </body>
 </html>
