@@ -1,26 +1,21 @@
 /* expertise.css */
 
-/* Typography & base */
+/* Base typography */
 body {
   font-family: 'Inter', sans-serif;
-  background:
-    radial-gradient(2000px 1600px at 50% -60%, color-mix(in oklab, var(--brand-1) 70%, transparent) 18%, transparent 60%),
-    radial-gradient(1800px 1400px at 52% 52%, color-mix(in oklab, var(--brand-2) 65%, transparent) 14%, transparent 70%),
-    var(--bg);
-  background-attachment: fixed;
-  transition: background 600ms cubic-bezier(.4,0,.2,1), color 300ms ease;
-  color: var(--text, #222);
   margin: 0;
   padding: 0;
+  color: var(--text, #222);
 }
 
+/* Main container */
 main {
   max-width: 900px;
   margin: 3rem auto 6rem;
   padding: 0 1.5rem;
 }
 
-/* Expertise section full background with gradients matching theme */
+/* Expertise section with gradient background that responds to theme */
 .view.expertise {
   background:
     radial-gradient(2000px 1600px at 50% -60%, color-mix(in oklab, var(--brand-1) 70%, transparent) 18%, transparent 60%),
@@ -29,6 +24,37 @@ main {
   background-attachment: fixed;
   transition: background 600ms cubic-bezier(.4,0,.2,1);
   padding: 3rem 1.5rem;
+}
+
+/* Skills grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  background: transparent; /* let section background show through */
+}
+
+/* Skill cards */
+.skill-card {
+  background: color-mix(in oklab, var(--panel) 80%, var(--bg) 20%);
+  border-radius: var(--radius, 12px);
+  padding: 1.8rem 1.6rem;
+  box-shadow: var(--shadow-2, 0 2px 15px rgba(0,0,0,0.05));
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  border: 2px solid transparent;
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    background 0.3s ease;
+  cursor: default;
+}
+.skill-card:hover {
+  box-shadow: var(--shadow-1, 0 4px 20px rgba(0,0,0,0.1));
+  border-color: var(--brand-1, #2f8fff);
+  transform: translateY(-4px);
 }
 
 
@@ -64,36 +90,7 @@ main {
   user-select: text;
 }
 
-/* Skills grid */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-}
 
-/* Skill card styled like your buttons but card */
-/* Changed background to blend with theme instead of plain white */
-.skill-card {
-  background: color-mix(in oklab, var(--panel) 80%, var(--bg) 20%);
-  border-radius: var(--radius, 12px);
-  padding: 1.8rem 1.6rem;
-  box-shadow: var(--shadow-2, 0 2px 15px rgba(0,0,0,0.05));
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  border: 2px solid transparent;
-  transition:
-    box-shadow 0.3s ease,
-    border-color 0.3s ease,
-    transform 0.3s ease,
-    background 0.3s ease;
-  cursor: default;
-}
-.skill-card:hover {
-  box-shadow: var(--shadow-1, 0 4px 20px rgba(0,0,0,0.1));
-  border-color: var(--brand-1, #2f8fff);
-  transform: translateY(-4px);
-}
 
 /* Skill title line with dot + text + years */
 .skill-header {
