@@ -1,67 +1,173 @@
-.expertise-header {
-  max-width: 700px;
-  margin: 0 auto 40px auto;
-  text-align: center;
+/* expertise.css */
+
+/* Typography & base */
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--background, #f5f5f7);
+  color: var(--text, #222);
+  margin: 0;
+  padding: 0;
 }
 
-.kicker {
-  color: var(--muted);
+main {
+  max-width: 900px;
+  margin: 3rem auto 6rem;
+  padding: 0 1.5rem;
+}
+
+/* Header inspired by your hero kicker + title + sub */
+.expertise-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+.expertise-header .kicker {
   font-weight: 700;
+  color: var(--muted, #888);
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  font-size: 0.8rem;
-  margin-bottom: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+  user-select: none;
 }
-
-.expertise-title {
-  font-size: clamp(32px, 5vw, 44px);
+.expertise-header h1 {
   font-weight: 900;
-  margin-bottom: 12px;
-  color: var(--text);
+  font-size: clamp(2.5rem, 5vw, 3.25rem);
+  margin: 0;
+  line-height: 1.1;
+  user-select: none;
 }
-
-.expertise-sub {
+.expertise-header p {
+  margin-top: 0.8rem;
+  color: var(--muted, #666);
   font-size: 1.1rem;
-  color: var(--muted);
-  max-width: 480px;
-  margin: 0 auto;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  user-select: text;
 }
 
-.skills-list {
-  max-width: 800px;
-  margin: 0 auto;
+/* Skills grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* Skill card styled like your buttons but card */
+.skill-card {
+  background: var(--panel, #fff);
+  border-radius: var(--radius, 12px);
+  padding: 1.8rem 1.6rem;
+  box-shadow: var(--shadow-2, 0 2px 15px rgba(0,0,0,0.05));
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 0.7rem;
+  border: 2px solid transparent;
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+  cursor: default;
+}
+.skill-card:hover {
+  box-shadow: var(--shadow-1, 0 4px 20px rgba(0,0,0,0.1));
+  border-color: var(--brand-1, #2f8fff);
+  transform: translateY(-4px);
 }
 
-.skill-entry {
-  background: var(--panel);
-  padding: 24px 28px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-2);
-  border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
-  transition: box-shadow 0.3s ease;
-}
-
-.skill-entry:hover {
-  box-shadow: var(--shadow-1);
-}
-
-.skill-entry h3 {
-  margin: 0 0 8px 0;
+/* Skill title line with dot + text + years */
+.skill-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
   font-weight: 700;
-  color: var(--brand-2);
+  font-size: 1.25rem;
+  color: var(--brand-2, #1c62d1);
+  user-select: none;
+}
+.skill-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--brand-1, #2f8fff);
+  box-shadow: 0 0 10px var(--brand-1, #2f8fff);
+  flex-shrink: 0;
+}
+.skill-years {
+  margin-left: auto;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--accent, #f07);
+  user-select: none;
 }
 
-.skill-entry p {
-  margin: 4px 0;
+/* Skill description */
+.skill-desc {
+  color: var(--text, #333);
+  font-size: 1rem;
   line-height: 1.4;
+  user-select: text;
+  white-space: pre-line;
 }
 
-.skill-entry .projects {
-  font-style: italic;
-  color: var(--muted);
-  font-size: 0.9rem;
-  margin-top: 4px;
+/* Skill tags with subtle glowing brand color */
+.skill-tags {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.skill-tag {
+  background: var(--brand-2, #1c62d1);
+  color: white;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.25em 0.7em;
+  border-radius: 999px;
+  box-shadow: 0 0 10px var(--brand-2, #1c62d1);
+  user-select: none;
+  transition: background 0.3s ease;
+}
+.skill-tag:hover {
+  background: var(--brand-1, #2f8fff);
+  box-shadow: 0 0 15px var(--brand-1, #2f8fff);
+}
+
+/* Bottom wave - inspired from your hero */
+.expertise-wave {
+  margin-top: 5rem;
+  pointer-events: none;
+  user-select: none;
+}
+.wave-line {
+  fill: none;
+  stroke: var(--brand-1, #2f8fff);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  opacity: 0.6;
+  animation: waveShift 6s ease-in-out infinite alternate;
+}
+.wave-line.w1 {
+  stroke-width: 4;
+  animation-delay: 0s;
+}
+.wave-line.w2 {
+  stroke-width: 2.5;
+  animation-delay: 2s;
+  opacity: 0.4;
+}
+.wave-line.w3 {
+  stroke-width: 2;
+  animation-delay: 4s;
+  opacity: 0.3;
+}
+
+@keyframes waveShift {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(10px);
+  }
 }
