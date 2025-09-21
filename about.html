@@ -14,18 +14,60 @@
     rel="stylesheet"
   />
 
-  <!-- Your main style variables -->
+  <!-- Shared styles -->
   <link rel="stylesheet" href="css/style.css" />
   <!-- Expertise page styles -->
   <link rel="stylesheet" href="css/expertise.css" />
 </head>
 <body>
+  <!-- Navigation (same as home) -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand"><span class="dot"></span> <span>Tian yi Tong</span></a>
+      <div class="spacer"></div>
+      <div class="menu" role="navigation" aria-label="Main">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link active" href="about.html">Expertise</a>
+        <a class="nav-link" href="projects.html">Projects</a>
+        <a class="nav-link" href="history.html">History</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+      </div>
+
+      <div class="actions">
+        <div class="theme-control">
+          <button class="ghost-btn" id="themeToggle" aria-label="Toggle theme">Theme</button>
+          <div class="theme-indicator" aria-hidden="true">
+            <span class="dot-indicator" data-index="0"></span>
+            <span class="dot-indicator" data-index="1"></span>
+            <span class="dot-indicator" data-index="2"></span>
+          </div>
+          <div id="themeLabel" class="theme-label">Light Space</div>
+        </div>
+
+        <button class="hamburger" id="menuToggle" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+
+    <!-- mobile dropdown -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <a href="index.html">Home</a>
+      <a href="about.html">Expertise</a>
+      <a href="projects.html">Projects</a>
+      <a href="history.html">History</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="transition-overlay"><div class="veil"></div></div>
+
   <main>
     <section class="view expertise" data-view>
       <header class="expertise-header">
         <div class="kicker">Technical Expertise</div>
         <h1>My Toolbox & Skillset</h1>
-        <p>Deeply passionate about building scalable, efficient, and user-friendly applications. Below are the technologies and frameworks I frequently work with.</p>
+        <p>
+          Deeply passionate about building scalable, efficient, and user-friendly applications. Below are the technologies and frameworks I frequently work with.
+        </p>
       </header>
 
       <div class="skills-grid">
@@ -107,6 +149,7 @@
         </article>
       </div>
 
+      <!-- Decorative wave -->
       <div class="expertise-wave" aria-hidden="true">
         <svg viewBox="0 0 1440 180" preserveAspectRatio="none">
           <path class="wave-line w1" d="M0,120 C180,50 360,160 540,110 C720,60 900,180 1080,120 C1260,60 1440,120 1440,120"></path>
@@ -117,14 +160,8 @@
     </section>
   </main>
 
-  <!-- Auto-animate script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll("[data-view]").forEach(el => {
-        // Trigger animation with a short delay for smoother effect
-        setTimeout(() => el.classList.add("active"), 100);
-      });
-    });
-  </script>
+  <footer>© <span id="year"></span> Tian yi Tong · Crafted with care.</footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
