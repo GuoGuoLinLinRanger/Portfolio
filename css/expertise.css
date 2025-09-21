@@ -22,16 +22,8 @@ main {
 
 /* Expertise section full background */
 .view.expertise {
-  background:
-    radial-gradient(2000px 1600px at 50% -60%, color-mix(in oklab, var(--brand-1) 70%, transparent) 18%, transparent 60%),
-    radial-gradient(1800px 1400px at 52% 52%, color-mix(in oklab, var(--brand-2) 65%, transparent) 14%, transparent 70%),
-    var(--bg);
-  background-attachment: fixed;
-  background-size: cover;
-  min-height: 100vh; /* ensures section fills viewport */
-  width: 100%;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  background: var(--bg);
+  transition: background 600ms cubic-bezier(.4,0,.2,1);
 }
 
 
