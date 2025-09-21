@@ -4,101 +4,93 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Expertise — Tian yi Tong</title>
+  <meta name="description" content="My skills and technical proficiencies, inspired by my portfolio design." />
+  
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet"
   />
+
+  <!-- Your main style variables -->
   <link rel="stylesheet" href="css/style.css" />
+  <!-- Expertise page styles -->
   <link rel="stylesheet" href="css/expertise.css" />
 </head>
 <body>
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="index.html" class="brand"><span class="dot"></span> <span>Tian yi Tong</span></a>
-      <div class="spacer"></div>
-      <div class="menu" role="navigation" aria-label="Main">
-        <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link active" href="expertise.html">Expertise</a>
-        <a class="nav-link" href="projects.html">Projects</a>
-        <a class="nav-link" href="history.html">History</a>
-        <a class="nav-link" href="contact.html">Contact</a>
-      </div>
-
-      <div class="actions">
-        <div class="theme-control">
-          <button class="ghost-btn" id="themeToggle" aria-label="Toggle theme">Theme</button>
-          <div class="theme-indicator" aria-hidden="true">
-            <span class="dot-indicator" data-index="0"></span>
-            <span class="dot-indicator" data-index="1"></span>
-            <span class="dot-indicator" data-index="2"></span>
-          </div>
-          <div id="themeLabel" class="theme-label">Light</div>
-        </div>
-
-        <button class="hamburger" id="menuToggle" aria-label="Open menu">☰</button>
-      </div>
-    </div>
-  </nav>
-
-  <div class="transition-overlay"><div class="veil"></div></div>
-
   <main>
-    <section class="view" data-view>
-      <div class="expertise-header">
-        <div class="kicker">Skills & Competencies</div>
-        <h1 class="expertise-title">My technical & soft skills overview</h1>
-        <p class="expertise-sub">
-          A summary of the tools, technologies, and soft skills I've developed over the years.
-        </p>
+    <section class="view expertise" data-view>
+      <header class="expertise-header">
+        <div class="kicker">Technical Expertise</div>
+        <h1>My Toolbox & Skillset</h1>
+        <p>Deeply passionate about building scalable, efficient, and user-friendly applications. Below are the technologies and frameworks I frequently work with.</p>
+      </header>
+
+      <div class="skills-grid">
+        <article class="skill-card">
+          <div class="skill-header">
+            <div class="skill-dot"></div>
+            <div>JavaScript</div>
+            <div class="skill-years">5 years</div>
+          </div>
+          <p class="skill-desc">
+            Proficient in ES6+, asynchronous programming, and modern frameworks like React and Node.js.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">Redux</span>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-header">
+            <div class="skill-dot"></div>
+            <div>Python</div>
+            <div class="skill-years">4 years</div>
+          </div>
+          <p class="skill-desc">
+            Experienced in backend development, automation, and machine learning with libraries like Flask and TensorFlow.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-tag">Flask</span>
+            <span class="skill-tag">Django</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">TensorFlow</span>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-header">
+            <div class="skill-dot"></div>
+            <div>DevOps & Cloud</div>
+            <div class="skill-years">3 years</div>
+          </div>
+          <p class="skill-desc">
+            Skilled in containerization, CI/CD pipelines, and cloud services to streamline deployment and ensure reliability.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Kubernetes</span>
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">GitHub Actions</span>
+          </div>
+        </article>
       </div>
 
-      <div class="skills-list">
-        <article class="skill-entry">
-          <h3>Python</h3>
-          <p><strong>2 years</strong> | Used for data analysis, machine learning, and backend scripting</p>
-          <p class="projects">Projects: stock prediction, data processing</p>
-        </article>
-
-        <article class="skill-entry">
-          <h3>JavaScript / TypeScript / React.js / Node.js</h3>
-          <p><strong>1.5 years</strong> | Frontend and backend web development</p>
-          <p class="projects">Projects: task manager, chat app; Built responsive UI in multiple web apps</p>
-        </article>
-
-        <article class="skill-entry">
-          <h3>Firebase / MongoDB</h3>
-          <p><strong>1 year</strong> | Real-time data storage and user authentication</p>
-          <p class="projects">Used in chat app and NoSQL integration in task app</p>
-        </article>
-
-        <article class="skill-entry">
-          <h3>SQL (PostgreSQL / MySQL)</h3>
-          <p><strong>1 year</strong> | Structured data storage and querying</p>
-          <p class="projects">Academic and personal projects</p>
-        </article>
-
-        <article class="skill-entry">
-          <h3>scikit-learn / PyTorch / TensorFlow / Pandas / NumPy / Matplotlib / Seaborn</h3>
-          <p><strong>1 year</strong> | Developed ML models, data preprocessing, and visualization</p>
-        </article>
-
-        <article class="skill-entry">
-          <h3>Teamwork / Communication</h3>
-          <p><strong>5 years</strong> | Sharpened skills in fast-paced environments such as fast food</p>
-        </article>
-
-        <article class="skill-entry">
-          <h3>Problem-Solving</h3>
-          <p><strong>5 years</strong> | Quickly resolving issues, calming difficult customers in pharmacy setting</p>
-        </article>
+      <div class="expertise-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 180" preserveAspectRatio="none">
+          <path class="wave-line w1" d="M0,120 C180,50 360,160 540,110 C720,60 900,180 1080,120 C1260,60 1440,120 1440,120"></path>
+          <path class="wave-line w2" d="M0,140 C180,70 360,170 540,120 C720,70 900,190 1080,130 C1260,70 1440,140 1440,140"></path>
+          <path class="wave-line w3" d="M0,100 C180,30 360,140 540,90 C720,40 900,160 1080,100 C1260,40 1440,100 1440,100"></path>
+        </svg>
       </div>
     </section>
   </main>
 
-  <footer>© <span id="year"></span> Tian yi Tong · Crafted with care.</footer>
-
-  <script src="js/script.js"></script>
+  <script src="js/expertise.js"></script>
 </body>
 </html>
