@@ -57,16 +57,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Intersection reveal - with null check
-  const viewElements = qsa('.view');
-  if (viewElements.length > 0) {
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { 
-        if (e.isIntersecting) e.target.classList.add('active'); 
-      });
-    }, { threshold: 0.12 });
-    
-    viewElements.forEach(v => io.observe(v));
-  }
+const viewElements = qsa('.view');
+if (viewElements.length > 0) {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { 
+      if (e.isIntersecting) e.target.classList.add('active'); 
+    });
+  }, { threshold: 0.12 });
+  
+  viewElements.forEach(v => io.observe(v));
+
+  // Force trigger in case element is already in viewport on load
+  window.addEventListener('load', () => {
+    viewElements.forEach(v => {
+      const rect = v.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        v.classList.add('active');
+      }
+    });
+  });
+}
+
 
   // Page transition (click links ending with .html)
   const veil = qs('.veil');
