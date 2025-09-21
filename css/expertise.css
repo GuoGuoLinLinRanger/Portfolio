@@ -20,6 +20,13 @@ main {
   padding: 0 1.5rem;
 }
 
+/* Expertise section background to match page theme */
+.view.expertise {
+  background: inherit; /* matches body's background */
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
 /* Header inspired by your hero kicker + title + sub */
 .expertise-header {
   text-align: center;
@@ -59,8 +66,9 @@ main {
 }
 
 /* Skill card styled like your buttons but card */
+/* Changed background to blend with theme instead of plain white */
 .skill-card {
-  background: var(--panel, #fff);
+  background: color-mix(in oklab, var(--panel) 80%, var(--bg) 20%);
   border-radius: var(--radius, 12px);
   padding: 1.8rem 1.6rem;
   box-shadow: var(--shadow-2, 0 2px 15px rgba(0,0,0,0.05));
@@ -71,7 +79,8 @@ main {
   transition:
     box-shadow 0.3s ease,
     border-color 0.3s ease,
-    transform 0.3s ease;
+    transform 0.3s ease,
+    background 0.3s ease;
   cursor: default;
 }
 .skill-card:hover {
