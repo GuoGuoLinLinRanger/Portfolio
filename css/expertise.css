@@ -1,0 +1,67 @@
+.expertise-header {
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+  text-align: center;
+}
+
+.kicker {
+  color: var(--muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+
+.expertise-title {
+  font-size: clamp(32px, 5vw, 44px);
+  font-weight: 900;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.expertise-sub {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.skills-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.skill-entry {
+  background: var(--panel);
+  padding: 24px 28px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-2);
+  border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
+  transition: box-shadow 0.3s ease;
+}
+
+.skill-entry:hover {
+  box-shadow: var(--shadow-1);
+}
+
+.skill-entry h3 {
+  margin: 0 0 8px 0;
+  font-weight: 700;
+  color: var(--brand-2);
+}
+
+.skill-entry p {
+  margin: 4px 0;
+  line-height: 1.4;
+}
+
+.skill-entry .projects {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
