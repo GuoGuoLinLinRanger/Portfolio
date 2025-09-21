@@ -16,7 +16,7 @@ main {
   background: transparent; /* explicitly transparent */
 }
 
-/* Expertise section with gradient background that responds to theme */
+/* Expertise section wrapper */
 .view.expertise {
   background:
     radial-gradient(2000px 1600px at 50% -60%, color-mix(in oklab, var(--brand-1) 70%, transparent) 18%, transparent 60%),
@@ -24,8 +24,20 @@ main {
     var(--bg);
   background-attachment: fixed;
   transition: background 600ms cubic-bezier(.4,0,.2,1);
-  padding: 3rem 1.5rem; /* move spacing here instead of main */
+  padding: 3rem 1.5rem; /* spacing for content */
+  display: flex;
+  flex-direction: column; /* make children flow naturally */
 }
+
+/* Main container inside section should NOT constrain width or add background */
+.view.expertise > main {
+  max-width: none;       /* remove width constraint */
+  margin: 0;             /* remove margins */
+  padding: 0;            /* no extra padding */
+  background: transparent; /* transparent so gradient shows through */
+  width: 100%;           /* full width of section */
+}
+
 
 /* Skills grid */
 .skills-grid {
