@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="palette1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>History — Tian yi Tong</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/history.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="index.html" class="brand"
+          ><span class="dot"></span> <span>Tian yi Tong</span></a
+        >
+        <div class="spacer"></div>
+        <div class="menu" role="navigation" aria-label="Main">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="about.html">Expertise</a>
+          <a class="nav-link" href="projects.html">Projects</a>
+          <a class="nav-link active" href="history.html">History</a>
+          <a class="nav-link" href="contact.html">Contact</a>
+        </div>
+
+        <div class="actions">
+          <div class="theme-control">
+            <button
+              class="ghost-btn"
+              id="themeToggle"
+              aria-label="Toggle theme"
+            >
+              Theme
+            </button>
+            <div class="theme-indicator" aria-hidden="true">
+              <span class="dot-indicator" data-index="0"></span>
+              <span class="dot-indicator" data-index="1"></span>
+              <span class="dot-indicator" data-index="2"></span>
+            </div>
+            <div id="themeLabel" class="theme-label">Light</div>
+          </div>
+
+          <button class="hamburger" id="menuToggle" aria-label="Open menu">
+            ☰
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="transition-overlay"><div class="veil"></div></div>
+
+    <main>
+      <section class="view" data-view>
+        <div class="history-header">
+          <div class="kicker">Professional Journey</div>
+          <h1 class="history-title">
+            A timeline of work, growth, and milestones
+          </h1>
+          <p class="history-sub">
+            Highlights from my career, major achievements, and roles that shaped
+            my expertise.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <article class="milestone editable" id="editableJob">
+            <div class="year">?</div>
+            <div class="details">
+              <h3>Your Company</h3>
+              <p>Click to edit this entry with your job details</p>
+              <span class="tag">You </span>
+            </div>
+          </article>
+
+          <article
+            class="milestone"
+            data-title="Software Develope"
+            data-details="Implemented 10+ dynamic content components (events, announcements, resources) that reduced manual
+content updates by 30% for club organizers."
+            data-more="Improved frontend performance and reliability by restructuring HTML/CSS layouts, reducing reflows, and
+validating compatibility across 5+ browsers and device breakpoints; designed UI mockups in Figma and deployed
+updates using Git/GitHub and Google Cloud Platform."
+          >
+            <div class="year">2025 — Present</div>
+            <div class="details">
+              <h3>Software Developer at UWCS</h3>
+              <p>
+                Designed and maintained a production React-based website used by
+                3,000+ Computer Science students, handling hundreds of daily
+                page views during peak academic weeks.
+              </p>
+              <span class="tag">Leadership</span>
+            </div>
+          </article>
+
+          <article
+            class="milestone"
+            data-title="Software developer at Midnight Sun"
+            data-details="Implemented and tested 5+ firmware modules contributing directly to embedded control logic, supporting
+reliable behavior across dozens of simulated and real test runs."
+            data-more="Collaborated across multiple hardware and software subteams, integrating firmware changes that met strict timing
+and stability constraints using Git/GitHub"
+          >
+            <div class="year">2025-Present</div>
+            <div class="details">
+              <h3>Software developer at Midnight Sun</h3>
+              <p>
+                Developed and deployed embedded firmware for battery monitoring,
+                sampling voltage, current, and temperature at 100 Hz, detecting
+                anomalies within 50 ms.
+              </p>
+              <span class="tag">Embed</span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>© <span id="year"></span> Tian yi Tong · Crafted with care.</footer>
+
+    <!-- Job Edit Modal -->
+    <div
+      class="modal"
+      id="jobEditModal"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <div class="modal-inner">
+        <button class="modal-close" id="jobEditClose" aria-label="Close">
+          ✕
+        </button>
+        <div class="modal-body">
+          <h3>Edit Job Experience</h3>
+          <div class="form-group">
+            <label for="jobTitle">Job Title & Company</label>
+            <input
+              type="text"
+              id="jobTitle"
+              placeholder="e.g., Senior Developer, TechCorp"
+            />
+          </div>
+          <div class="form-group">
+            <label for="jobDate">Date Range</label>
+            <input type="text" id="jobDate" placeholder="e.g., 2026 and more" />
+          </div>
+          <div class="form-group">
+            <label for="jobDescription">Description</label>
+            <textarea
+              id="jobDescription"
+              placeholder="Describe your responsibilities and requirements..."
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="jobTag">Tag/Category</label>
+            <input
+              type="text"
+              id="jobTag"
+              placeholder="e.g., Development, Leadership"
+            />
+          </div>
+          <div class="form-actions">
+            <button class="ghost-btn" id="jobEditCancel">Cancel</button>
+            <button class="btn btn-primary" id="jobEditSave">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- History modal -->
+    <div
+      class="modal"
+      id="historyModal"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <div class="modal-inner">
+        <button class="modal-close" id="histClose" aria-label="Close">✕</button>
+        <div class="modal-body modal-history-body">
+          <h3 id="histTitle"></h3>
+          <p id="histDetails"></p>
+          <p id="histMore" class="meta"></p>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/history.js"></script>
+  </body>
+</html>

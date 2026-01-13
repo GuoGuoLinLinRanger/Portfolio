@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="palette1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects — Tian yi Tong</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/projects.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="index.html" class="brand"
+          ><span class="dot"></span> <span>Tian yi Tong</span></a
+        >
+        <div class="spacer"></div>
+        <div class="menu" role="navigation" aria-label="Main">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="about.html">Expertise</a>
+          <a class="nav-link active" href="projects.html">Projects</a>
+          <a class="nav-link" href="history.html">History</a>
+          <a class="nav-link" href="contact.html">Contact</a>
+        </div>
+
+        <div class="actions">
+          <div class="theme-control">
+            <button
+              class="ghost-btn"
+              id="themeToggle"
+              aria-label="Toggle theme"
+            >
+              Theme
+            </button>
+            <div class="theme-indicator" aria-hidden="true">
+              <span class="dot-indicator" data-index="0"></span>
+              <span class="dot-indicator" data-index="1"></span>
+              <span class="dot-indicator" data-index="2"></span>
+            </div>
+            <div id="themeLabel" class="theme-label">Light</div>
+          </div>
+
+          <button class="hamburger" id="menuToggle" aria-label="Open menu">
+            ☰
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="transition-overlay"><div class="veil"></div></div>
+
+    <main>
+      <section class="view" data-view>
+        <header style="margin-bottom: 18px">
+          <div class="kicker">Selected Work</div>
+          <h2 class="title" style="font-size: clamp(28px, 4vw, 48px)">
+            Each more functional than the last
+          </h2>
+          <p class="sub">Click on some of my work!</p>
+        </header>
+
+        <div class="grid projects-grid">
+          <!-- Example project item: add more like this. gallery URLs comma-separated -->
+          <article
+            class="project"
+            data-title="Cloud 9 | 3D renderer"
+            data-desc="Cloud9 is a custom-built 3D rendering system that visualizes datasets containing 1,000–3,000 points and dynamically generates 2,000–5,000 mesh triangles per scene. The rendering pipeline was implemented from the ground up using WebGL, enabling smooth 60 FPS interaction with real-time camera controls and transformations. \n\n
+
+A Flask backend processes real-world CSV datasets, performing coordinate normalization, surface triangulation, and geometric transformations before streaming the data to the frontend. The platform was deployed as an educational tool during a hackathon and used by over 200 participants to explore point cloud visualization, numerical methods, and 3D graphics concepts."
+            data-link="https://devpost.com/software/cloud9"
+            data-gallery="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/835/841/datas/original.png, https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/835/843/datas/gallery.jpg, https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/835/842/datas/gallery.jpg"
+          >
+            <div class="thumb">
+              <img
+                alt="Project 1"
+                src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/835/841/datas/original.png"
+              />
+            </div>
+            <div class="info">
+              <div>
+                <h3>Cloud 9 | 3D renderer</h3>
+                <div class="meta">
+                  An interactive 3D point cloud renderer that transforms raw
+                  datasets into real-time, explorable visualizations using a
+                  custom WebGL pipeline.
+                </div>
+              </div>
+              <span class="tag">React</span>
+            </div>
+          </article>
+
+          <article
+            class="project"
+            data-title="Real-Time Collaborative Whiteboard"
+            data-desc="This project is a low-latency collaborative whiteboard that enables 20+ users to draw simultaneously in shared rooms with sub-100ms synchronization. Using Socket.io over WebSockets, the system processes over 1,000 drawing events per session while maintaining smooth, real-time updates across all connected clients. \n\n
+
+The backend is built with Node.js, Express, and PostgreSQL, persisting more than 10,000 stroke events across sessions using Prisma as the ORM. Secure, room-based access is enforced through JWT authentication, ensuring only authorized users can view and interact with each board. The architecture is designed for scalability, reliability, and consistent real-time performance."
+            data-gallery="img\Socket.png"
+          >
+            <div class="thumb">
+              <img alt="Project 2" src="img\Socket.png" />
+            </div>
+            <div class="info">
+              <div>
+                <h3>Real-Time Collaborative Whiteboard</h3>
+                <div class="meta">
+                  A real-time, multi-user whiteboard designed for fast, fluid
+                  collaboration. Built with WebSockets and a scalable backend to
+                  support synchronized drawing across users with minimal
+                  latency.
+                </div>
+              </div>
+              <span class="tag">Socket.io</span>
+            </div>
+          </article>
+
+          <article
+            class="project"
+            data-title="Handwriting Recognition Neural Network"
+            data-desc="This project implements a fully connected neural network from first principles, without relying on high-level machine learning libraries. The system includes custom implementations of forward propagation, backpropagation, gradient descent, and loss computation, providing full control and transparency over the learning process. \n\n
+
+A complete training pipeline was developed, featuring data normalization, batching, accuracy evaluation, and hyperparameter tuning. Through systematic experimentation with learning rates and batch sizes, the model consistently achieved 95% classification accuracy on the MNIST dataset, converging reliably within 20 epochs with stable loss behavior."
+            data-gallery="img\FunctionNN.png, img\MNIST.png"
+          >
+            <div class="thumb">
+              <img alt="Project 1" src="img\FunctionNN.png" />
+            </div>
+            <div class="info">
+              <div>
+                <h3>Handwriting Recognition Neural Network</h3>
+                <div class="meta">
+                  A neural network built entirely from scratch to recognize
+                  handwritten digits, focusing on core ML fundamentals rather
+                  than high-level frameworks.
+                </div>
+              </div>
+              <span class="tag">MNIST</span>
+            </div>
+          </article>
+
+          <article
+            class="project"
+            data-title="UW Computer Science Club Website"
+            data-desc="As a Software Developer for the University of Waterloo Computer Science Club, I designed and maintained a production-level React website used by over 3,000 Computer Science students, with hundreds of daily page views during peak academic periods. The site serves as a central hub for events, announcements, and student resources.
+            \n\n
+
+I implemented more than 10 dynamic content components that streamlined how organizers publish and manage updates, reducing manual content work by approximately 30%. Significant frontend performance improvements were achieved by restructuring HTML and CSS layouts, minimizing reflows, and validating compatibility across five or more major browsers and device breakpoints.
+\n\n
+
+UI designs and component layouts were prototyped in Figma and iterated collaboratively before deployment. All changes were version-controlled with Git and GitHub, and deployed using Google Cloud Platform, ensuring a stable, maintainable, and scalable frontend for ongoing club operations.
+https://csclub.uwaterloo.ca/"
+            data-link="https://csclub.uwaterloo.ca/"
+            data-gallery="img\home_UWCS.png, img\Screenshot 2026-01-13 150631.png,img\Screenshot 2026-01-13 150641.png "
+          >
+            <div class="thumb">
+              <img alt="Project 1" src="img\home_UWCS.png" />
+            </div>
+            <div class="info">
+              <div>
+                <h3>UW Computer Science Club Website</h3>
+                <div class="meta">
+                  A production React website built for the University of
+                  Waterloo Computer Science Club, serving thousands of students
+                  with dynamic content and reliable performance.
+                </div>
+              </div>
+              <span class="tag">React</span>
+            </div>
+          </article>
+
+          <!-- Add more projects similarly -->
+        </div>
+      </section>
+    </main>
+
+    <footer>© <span id="year"></span> Tian yi Tong · Crafted with care.</footer>
+
+    <!-- Project modal -->
+    <div
+      class="modal"
+      id="projectModal"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <div class="modal-inner">
+        <button class="modal-close" id="projClose" aria-label="Close">✕</button>
+        <div class="modal-body">
+          <div class="modal-gallery">
+            <button
+              class="gallery-nav left"
+              id="galleryPrev"
+              aria-label="Previous image"
+            >
+              ‹
+            </button>
+            <img id="galleryImage" alt="Project image" />
+            <button
+              class="gallery-nav right"
+              id="galleryNext"
+              aria-label="Next image"
+            >
+              ›
+            </button>
+          </div>
+          <div class="modal-info">
+            <h3 id="projTitle"></h3>
+            <div id="projDesc"></div>
+            <a
+              id="projLink"
+              target="_blank"
+              rel="noopener"
+              style="display: none"
+              >View Project</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/projects.js"></script>
+  </body>
+</html>
