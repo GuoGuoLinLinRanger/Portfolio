@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let gallery = [];
   let index = 0;
 
-<<<<<<< HEAD
   function openModal(g, i, t, d, linkUrl) {
   gallery = g.slice();
   index = i;
@@ -42,18 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => modal.focus(), 120);
 }
 
-=======
-  function openModal(g, i, t, d) {
-    gallery = g.slice();
-    index = i;
-    galleryImg.src = gallery[index] || '';
-    titleEl.textContent = t || '';
-    descEl.textContent = d || '';
-    modal.setAttribute('aria-hidden', 'false');
-    modal.style.display = 'grid';
-    setTimeout(() => modal.focus(), 120);
-  }
->>>>>>> 1fe183fe96366765ea937364414299a07b9aa318
   function closeModal() {
     modal.setAttribute('aria-hidden', 'true');
     setTimeout(() => { modal.style.display = 'none'; }, 200);
@@ -64,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   projects.forEach(proj => {
-<<<<<<< HEAD
   proj.addEventListener('click', () => {
     const title = proj.dataset.title || proj.querySelector('h3')?.textContent;
     const desc = proj.dataset.desc || proj.querySelector('.meta')?.textContent;
@@ -75,16 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-=======
-    proj.addEventListener('click', () => {
-      const title = proj.dataset.title || proj.querySelector('h3')?.textContent;
-      const desc = proj.dataset.desc || proj.querySelector('.meta')?.textContent;
-      const raw = proj.dataset.gallery || '';
-      const g = raw.split(',').map(s => s.trim()).filter(Boolean);
-      openModal(g, 0, title, desc);
-    });
-  });
->>>>>>> 1fe183fe96366765ea937364414299a07b9aa318
 
   // controls
   closeBtn.addEventListener('click', closeModal);

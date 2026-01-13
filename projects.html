@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="palette1">
-<<<<<<< HEAD
+  <<<<<<< HEAD
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -227,145 +227,218 @@ https://csclub.uwaterloo.ca/"
     <script src="js/script.js"></script>
     <script src="js/projects.js"></script>
   </body>
-=======
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Projects — Tian yi Tong</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/projects.css">
-</head>
-<body>
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="index.html" class="brand"><span class="dot"></span> <span>Tian yi Tong</span></a>
-      <div class="spacer"></div>
-      <div class="menu" role="navigation" aria-label="Main">
-        <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link" href="about.html">Expertise</a>
-        <a class="nav-link active" href="projects.html">Projects</a>
-        <a class="nav-link" href="history.html">History</a>
-        <a class="nav-link" href="contact.html">Contact</a>
-      </div>
-
-      <div class="actions">
-        <div class="theme-control">
-          <button class="ghost-btn" id="themeToggle" aria-label="Toggle theme">Theme</button>
-          <div class="theme-indicator" aria-hidden="true">
-            <span class="dot-indicator" data-index="0"></span>
-            <span class="dot-indicator" data-index="1"></span>
-            <span class="dot-indicator" data-index="2"></span>
-          </div>
-          <div id="themeLabel" class="theme-label">Light</div>
+  =======
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects — Tian yi Tong</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/projects.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="index.html" class="brand"
+          ><span class="dot"></span> <span>Tian yi Tong</span></a
+        >
+        <div class="spacer"></div>
+        <div class="menu" role="navigation" aria-label="Main">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="about.html">Expertise</a>
+          <a class="nav-link active" href="projects.html">Projects</a>
+          <a class="nav-link" href="history.html">History</a>
+          <a class="nav-link" href="contact.html">Contact</a>
         </div>
 
-        <button class="hamburger" id="menuToggle" aria-label="Open menu">☰</button>
+        <div class="actions">
+          <div class="theme-control">
+            <button
+              class="ghost-btn"
+              id="themeToggle"
+              aria-label="Toggle theme"
+            >
+              Theme
+            </button>
+            <div class="theme-indicator" aria-hidden="true">
+              <span class="dot-indicator" data-index="0"></span>
+              <span class="dot-indicator" data-index="1"></span>
+              <span class="dot-indicator" data-index="2"></span>
+            </div>
+            <div id="themeLabel" class="theme-label">Light</div>
+          </div>
+
+          <button class="hamburger" id="menuToggle" aria-label="Open menu">
+            ☰
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="transition-overlay"><div class="veil"></div></div>
+
+    <main>
+      <section class="view" data-view>
+        <header style="margin-bottom: 18px">
+          <div class="kicker">Selected Work</div>
+          <h2 class="title" style="font-size: clamp(28px, 4vw, 48px)">
+            Each more functional than the last
+          </h2>
+          <p class="sub">Click on some of my work!</p>
+        </header>
+
+        <div class="grid projects-grid">
+          <!-- Example project item: add more like this. gallery URLs comma-separated -->
+
+          <article
+            class="project"
+            data-title="Realtime Analytics Dash"
+            data-desc="Streaming charts, sub-second interactions, resilient fallbacks. Built with TypeScript and high-performance backends."
+            data-gallery="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1600&auto=format&fit=crop,https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1600&auto=format&fit=crop"
+          >
+            <div class="thumb">
+              <img
+                alt="Project 1"
+                src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1200&auto=format&fit=crop"
+              />
+            </div>
+            <div class="info">
+              <div>
+                <h3>Firmware Architect – Midnight Sun Solar Car Team</h3>
+                <div class="meta">
+                  Crafting efficient C firmware with Git version control,
+                  leveraging electrical hardware knowledge to optimize sensors
+                  and motors for peak solar-powered performance.
+                </div>
+              </div>
+              <span class="tag">C</span>
+            </div>
+          </article>
+
+          <article
+            class="project"
+            data-title="Realtime Analytics Dash"
+            data-desc="Streaming charts, sub-second interactions, resilient fallbacks. Built with TypeScript and high-performance backends."
+            data-gallery="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1600&auto=format&fit=crop,https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1600&auto=format&fit=crop"
+          >
+            <div class="thumb">
+              <img
+                alt="Project 1"
+                src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1200&auto=format&fit=crop"
+              />
+            </div>
+            <div class="info">
+              <div>
+                <h3>QuantFlow Predict</h3>
+                <div class="meta">
+                  ML-powered forecasting engine with live data ingestion,
+                  backtesting suite, and volatility analysis. Built with Python
+                  and TensorFlow.
+                </div>
+              </div>
+              <span class="tag">Tensorflow</span>
+            </div>
+          </article>
+          <article
+            class="project"
+            data-title="Realtime Analytics Dash"
+            data-desc="Streaming charts, sub-second interactions, resilient fallbacks. Built with TypeScript and high-performance backends."
+            data-gallery="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1600&auto=format&fit=crop,https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1600&auto=format&fit=crop"
+          >
+            <div class="thumb">
+              <img
+                alt="Project 1"
+                src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1200&auto=format&fit=crop"
+              />
+            </div>
+            <div class="info">
+              <div>
+                <h3>TeamFlow Task Manager</h3>
+                <div class="meta">
+                  Full-stack productivity platform with real-time sync,
+                  role-based permissions, and automated deadline tracking. Built
+                  with React, Node.js, and MongoDB.
+                </div>
+              </div>
+              <span class="tag">React</span>
+            </div>
+          </article>
+
+          <article
+            class="project"
+            data-title="Design System Prism"
+            data-desc="Tokens, stories, composable primitives, WCAG AAA contrast — a practical design system."
+            data-gallery="https://images.unsplash.com/photo-1551281044-8b63dbdc92ec?q=80&w=1600&auto=format&fit=crop,https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=1600&auto=format&fit=crop"
+          >
+            <div class="thumb">
+              <img
+                alt="Project 2"
+                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop"
+              />
+            </div>
+            <div class="info">
+              <div>
+                <h3>SyncSpace Messenger</h3>
+                <div class="meta">
+                  Instant messaging with presence detection, encrypted channels,
+                  and seamless file sharing. Built with React and Firebase for
+                  sub-second delivery.
+                </div>
+              </div>
+              <span class="tag">Firebase</span>
+            </div>
+          </article>
+
+          <!-- Add more projects similarly -->
+        </div>
+      </section>
+    </main>
+
+    <footer>© <span id="year"></span> Tian yi Tong · Crafted with care.</footer>
+
+    <!-- Project modal -->
+    <div
+      class="modal"
+      id="projectModal"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <div class="modal-inner">
+        <button class="modal-close" id="projClose" aria-label="Close">✕</button>
+        <div class="modal-body">
+          <div class="modal-gallery">
+            <button
+              class="gallery-nav left"
+              id="galleryPrev"
+              aria-label="Previous image"
+            >
+              ‹
+            </button>
+            <img id="galleryImage" alt="Project image" />
+            <button
+              class="gallery-nav right"
+              id="galleryNext"
+              aria-label="Next image"
+            >
+              ›
+            </button>
+          </div>
+          <div class="modal-info">
+            <h3 id="projTitle"></h3>
+            <p id="projDesc"></p>
+          </div>
+        </div>
       </div>
     </div>
-  </nav>
 
-  <div class="transition-overlay"><div class="veil"></div></div>
-
-  <main>
-    <section class="view" data-view>
-      <header style="margin-bottom: 18px">
-        <div class="kicker">Selected Work</div>
-        <h2 class="title" style="font-size: clamp(28px, 4vw, 48px)">Each more functional than the last</h2>
-        <p class="sub">Click on some of my work!</p>
-      </header>
-
-      <div class="grid projects-grid">
-        <!-- Example project item: add more like this. gallery URLs comma-separated -->
-        
-
-        <article class="project" data-title="Realtime Analytics Dash"
-                 data-desc="Streaming charts, sub-second interactions, resilient fallbacks. Built with TypeScript and high-performance backends."
-                 data-gallery="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1600&auto=format&fit=crop,https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1600&auto=format&fit=crop">
-          <div class="thumb"><img alt="Project 1" src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1200&auto=format&fit=crop"></div>
-          <div class="info">
-            <div>
-              <h3>Firmware Architect – Midnight Sun Solar Car Team</h3>
-              <div class="meta">
-                Crafting efficient C firmware with Git version control, leveraging electrical hardware knowledge to optimize sensors and motors for peak solar-powered performance.
-              </div>
-            </div>
-            <span class="tag">C</span>
-          </div>
-        </article>
-
-        <article class="project" data-title="Realtime Analytics Dash"
-                 data-desc="Streaming charts, sub-second interactions, resilient fallbacks. Built with TypeScript and high-performance backends."
-                 data-gallery="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1600&auto=format&fit=crop,https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1600&auto=format&fit=crop">
-          <div class="thumb"><img alt="Project 1" src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1200&auto=format&fit=crop"></div>
-          <div class="info">
-            <div>
-              <h3>QuantFlow Predict</h3>
-              <div class="meta">
-                ML-powered forecasting engine with live data ingestion, backtesting suite, and volatility analysis. Built with Python and TensorFlow.
-              </div>
-            </div>
-            <span class="tag">Tensorflow</span>
-          </div>
-        </article>
-        <article class="project" data-title="Realtime Analytics Dash"
-                 data-desc="Streaming charts, sub-second interactions, resilient fallbacks. Built with TypeScript and high-performance backends."
-                 data-gallery="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1600&auto=format&fit=crop,https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1600&auto=format&fit=crop">
-          <div class="thumb"><img alt="Project 1" src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1200&auto=format&fit=crop"></div>
-          <div class="info">
-            <div>
-              <h3>TeamFlow Task Manager</h3>
-              <div class="meta">
-                Full-stack productivity platform with real-time sync, role-based permissions, and automated deadline tracking. Built with React, Node.js, and MongoDB.
-              </div>
-            </div>
-            <span class="tag">React</span>
-          </div>
-        </article>
-
-        <article class="project" data-title="Design System Prism"
-                 data-desc="Tokens, stories, composable primitives, WCAG AAA contrast — a practical design system."
-                 data-gallery="https://images.unsplash.com/photo-1551281044-8b63dbdc92ec?q=80&w=1600&auto=format&fit=crop,https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=1600&auto=format&fit=crop">
-          <div class="thumb"><img alt="Project 2" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop"></div>
-          <div class="info">
-            <div>
-              <h3>SyncSpace Messenger</h3>
-              <div class="meta">Instant messaging with presence detection, encrypted channels, and seamless file sharing. Built with React and Firebase for sub-second delivery.</div>
-            </div>
-            <span class="tag">Firebase</span>
-          </div>
-        </article>
-
-
-        <!-- Add more projects similarly -->
-      </div>
-    </section>
-  </main>
-
-  <footer>© <span id="year"></span> Tian yi Tong · Crafted with care.</footer>
-
-  <!-- Project modal -->
-  <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal-inner">
-      <button class="modal-close" id="projClose" aria-label="Close">✕</button>
-      <div class="modal-body">
-        <div class="modal-gallery">
-          <button class="gallery-nav left" id="galleryPrev" aria-label="Previous image">‹</button>
-          <img id="galleryImage" alt="Project image"/>
-          <button class="gallery-nav right" id="galleryNext" aria-label="Next image">›</button>
-        </div>
-        <div class="modal-info">
-          <h3 id="projTitle"></h3>
-          <p id="projDesc"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="js/script.js"></script>
-  <script src="js/projects.js"></script>
-</body>
->>>>>>> 1fe183fe96366765ea937364414299a07b9aa318
+    <script src="js/script.js"></script>
+    <script src="js/projects.js"></script>
+  </body>
+  >>>>>>> 1fe183fe96366765ea937364414299a07b9aa318
 </html>
