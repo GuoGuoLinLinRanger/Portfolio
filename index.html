@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="palette1">
+<<<<<<< HEAD
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -132,4 +133,94 @@
 
     <script src="js/script.js"></script>
   </body>
+=======
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home — Tian yi Tong</title>
+  <meta name="description" content="A modern, animated, responsive portfolio with buttery page transitions and a showcase gallery." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand"><span class="dot"></span> <span>Tian yi Tong</span></a>
+      <div class="spacer"></div>
+      <div class="menu" role="navigation" aria-label="Main">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="about.html">Expertise</a>
+        <a class="nav-link" href="projects.html">Projects</a>
+        <a class="nav-link" href="history.html">History</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+      </div>
+
+      <div class="actions">
+        <div class="theme-control">
+          <button class="ghost-btn" id="themeToggle" aria-label="Toggle theme">Theme</button>
+          <div class="theme-indicator" aria-hidden="true">
+            <span class="dot-indicator" data-index="0"></span>
+            <span class="dot-indicator" data-index="1"></span>
+            <span class="dot-indicator" data-index="2"></span>
+          </div>
+          <div id="themeLabel" class="theme-label">Light Space</div>
+        </div>
+
+        <button class="hamburger" id="menuToggle" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+
+    <!-- mobile dropdown -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <a href="index.html">Home</a>
+      <a href="about.html">Expertise</a>
+      <a href="projects.html">Projects</a>
+      <a href="history.html">History</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="transition-overlay"><div class="veil"></div></div>
+
+  <main>
+    <!-- Home / Hero -->
+    <section class="view hero active" data-view>
+      <div class="hero-grid">
+        <div>
+          <div class="kicker">Data Analyst & Full-Stack Engineer</div>
+          <h1 class="title">Building intelligent features from prototype to production.</h1>
+          <p class="sub">From real-time chat apps to predictive ML models, I build full-stack systems that are intuitive, resilient, and data-informed. Currently deepening my expertise in scalable APIs and neural networks.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="projects.html">View Projects</a>
+            <a class="btn btn-secondary" href="contact.html">Contact Me</a>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap; justify-content:center;">
+          <div class="pfp"><img alt="Portrait" src="img/IMG_2197.jpg"/></div>
+          <div class="entry" style="max-width: 440px;">
+            <div class="when">Performance • Reliability • Craft</div>
+            <p style="margin:8px 0 0; color:var(--muted)">Engineered full-stack solutions with an emphasis on responsive design, efficient API integration, and intuitive interactions that enhance user engagement.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thin animated line waves (SVG) -->
+      <div class="hero-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 180" preserveAspectRatio="none">
+          <path class="wave-line w1" d="M0,120 C180,50 360,160 540,110 C720,60 900,180 1080,120 C1260,60 1440,120 1440,120"></path>
+          <path class="wave-line w2" d="M0,140 C180,70 360,170 540,120 C720,70 900,190 1080,130 C1260,70 1440,140 1440,140"></path>
+          <path class="wave-line w3" d="M0,100 C180,30 360,140 540,90 C720,40 900,160 1080,100 C1260,40 1440,100 1440,100"></path>
+        </svg>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Tian yi Tong · Crafted with care.</footer>
+
+  <script src="js/script.js"></script>
+</body>
+>>>>>>> 1fe183fe96366765ea937364414299a07b9aa318
 </html>

@@ -1,0 +1,206 @@
+/* expertise.css */
+
+/* Base typography */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: var(--text, #222);
+}
+
+/* Main container */
+main {
+  max-width: 900px;
+  margin: 0 auto; /* no extra vertical margin */
+  padding: 0; /* remove padding so background shows through */
+  background: transparent; /* explicitly transparent */
+}
+
+/* Expertise section wrapper */
+.view.expertise {
+  background:
+    radial-gradient(2000px 1600px at 50% -60%, color-mix(in oklab, var(--brand-1) 70%, transparent) 18%, transparent 60%),
+    radial-gradient(1800px 1400px at 52% 52%, color-mix(in oklab, var(--brand-2) 65%, transparent) 14%, transparent 70%),
+    var(--bg);
+  background-attachment: fixed;
+  transition: background 600ms cubic-bezier(.4,0,.2,1);
+  padding: 3rem 1.5rem; /* spacing for content */
+  display: flex;
+  flex-direction: column; /* make children flow naturally */
+}
+
+/* Main container inside expertise section */
+.view.expertise > main {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background: inherit;   /* <- key change */
+}
+
+
+
+/* Skills grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 900px;       /* optional, keeps cards narrow */
+  margin: 0 auto;         /* center the grid */
+  background: transparent; /* show section background */
+}
+
+/* Skill cards */
+.skill-card {
+  background: color-mix(in oklab, var(--panel) 80%, var(--bg) 20%);
+  border-radius: var(--radius, 12px);
+  padding: 1.8rem 1.6rem;
+  box-shadow: var(--shadow-2, 0 2px 15px rgba(0,0,0,0.05));
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  border: 2px solid transparent;
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    background 0.3s ease;
+  cursor: default;
+}
+.skill-card:hover {
+  box-shadow: var(--shadow-1, 0 4px 20px rgba(0,0,0,0.1));
+  border-color: var(--brand-1, #2f8fff);
+  transform: translateY(-4px);
+}
+
+
+
+/* Header inspired by your hero kicker + title + sub */
+.expertise-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+.expertise-header .kicker {
+  font-weight: 700;
+  color: var(--muted, #888);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+  user-select: none;
+}
+.expertise-header h1 {
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 3.25rem);
+  margin: 0;
+  line-height: 1.1;
+  user-select: none;
+}
+.expertise-header p {
+  margin-top: 0.8rem;
+  color: var(--muted, #666);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  user-select: text;
+}
+
+
+
+/* Skill title line with dot + text + years */
+.skill-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--brand-2, #1c62d1);
+  user-select: none;
+}
+.skill-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--brand-1, #2f8fff);
+  box-shadow: 0 0 10px var(--brand-1, #2f8fff);
+  flex-shrink: 0;
+}
+.skill-years {
+  margin-left: auto;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--accent, #f07);
+  user-select: none;
+}
+
+/* Skill description */
+.skill-desc {
+  color: var(--text, #333);
+  font-size: 1rem;
+  line-height: 1.4;
+  user-select: text;
+  white-space: pre-line;
+}
+
+/* Skill tags with subtle glowing brand color */
+.skill-tags {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.skill-tag {
+  background: var(--brand-2, #1c62d1);
+  color: white;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.25em 0.7em;
+  border-radius: 999px;
+  box-shadow: 0 0 10px var(--brand-2, #1c62d1);
+  user-select: none;
+  transition: background 0.3s ease;
+}
+.skill-tag:hover {
+  background: var(--brand-1, #2f8fff);
+  box-shadow: 0 0 15px var(--brand-1, #2f8fff);
+}
+
+/* Bottom wave - inspired from your hero */
+.expertise-wave {
+  margin-top: 5rem;
+  pointer-events: none;
+  user-select: none;
+}
+.wave-line {
+  fill: none;
+  stroke: var(--brand-1, #2f8fff);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  opacity: 0.6;
+  animation: waveShift 6s ease-in-out infinite alternate;
+}
+.wave-line.w1 {
+  stroke-width: 4;
+  animation-delay: 0s;
+}
+.wave-line.w2 {
+  stroke-width: 2.5;
+  animation-delay: 2s;
+  opacity: 0.4;
+}
+.wave-line.w3 {
+  stroke-width: 2;
+  animation-delay: 4s;
+  opacity: 0.3;
+}
+
+@keyframes waveShift {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
