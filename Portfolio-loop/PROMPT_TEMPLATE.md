@@ -1,6 +1,12 @@
 # Portfolio Build — Iteration {{ITERATION}} of 10
 
-You are a senior UI/UX engineer and visual designer building a world-class developer portfolio. Your output this iteration is a complete, self-contained HTML file.
+You are a senior UI/UX engineer and visual designer refining a world-class developer portfolio. Your output this iteration is a complete HTML file.
+
+**You are IMPROVING the CURRENT VERSION of the site, which is provided near the end of this prompt under "CURRENT VERSION OF THE SITE".** Do not rebuild from scratch and do not throw away what already works. Preserve the strong parts, apply this iteration's focus, and above all act on the hiring manager's critique under "Memory from previous iterations" — that critique is your priority punch-list.
+
+**North star:** a strict, skeptical hiring manager at Citadel / Jane Street / a top tech firm lands on this page and, within seconds, wants to reach out to Tian. Every change must serve that: more hooks, more interesting, sharper, more efficient to scan, cleaner. Cut anything that doesn't earn its place.
+
+**Emphasis & hierarchy (UPDATED DIRECTION — important):** Lead with Tian's EXPERIENCE and PROJECTS — his shipped, hands-on work is the primary substance and should own the hero and the most real estate. The awards (Citadel 1st, Jane Street 2nd, Putnam) are strong SUPPORTING credibility: keep them present and credible, but do NOT build a giant hero around them and do NOT oversize them. Awards support the story; experience and projects ARE the story.
 
 ---
 
@@ -33,12 +39,24 @@ Specific requirements:
 - Full-viewport hero section with bold display type
 - Smooth scroll-snapping or parallax between sections
 - Typography that feels intentional: pair a display face (from Google Fonts CDN) with a clean body face
-- Sections: Hero → About/Awards → Experience → Projects → Contact
-- Projects are the core — Osmia and OpenBy get the most real estate
+- **Color flow:** evolve the accent color section-to-section as the user scrolls — a cohesive "cool color flow" through the palette (a moving hue progression), not one static accent. Keep the dark base, preserve contrast/readability in every state, and stay sophisticated — never garish.
+- Sections: Hero (who he is + what he builds) → Experience → Projects → Awards (a compact supporting strip, NOT oversized) → Skills → Contact
+- Projects and Experience are the core and get the most real estate — Osmia and OpenBy lead the projects
 - No stock photo placeholders. Use CSS geometry, gradients, or SVG as abstract visuals if needed
 - No generic "here are my skills" badge clouds. Integrate tech stack contextually into project descriptions.
 
 ---
+
+## Non-negotiable requirements (must hold in EVERY iteration's output)
+
+- **Photo:** include Tian's real photo using exactly `<img src="Linkedn.png" alt="Tian Yi Tong">`. The image file sits next to the HTML — reference it by that exact filename, do NOT inline or invent a different path. Style it tastefully (e.g. a clean circular headshot in the hero or a portrait band near the contact section) so it builds trust, not as a generic stock block.
+- **Skills / tech section:** include a scannable skills overview (languages, frameworks, domains) a recruiter can grep in seconds. Make it sharp and grouped — NOT a generic badge cloud.
+- **No Fraser:** there is NO Fraser Institute essay award. Do not include it. Awards are Citadel 1st, Jane Street 2nd, Putnam top 10%.
+- **Working nav, including mobile:** the in-page nav must work on phones (a hamburger or equivalent) — never just hide the links with no replacement.
+- **Smooth, non-janky scrolling:** no animation that fights the scroll or causes layout shift; respect `prefers-reduced-motion`.
+- **Purposeful micro-interactions ("hooks"):** e.g. count-ups on the big stat numbers, hover-lift on cards/buttons, the award numerals animating in. Memorable, not gratuitous.
+- **Light + dark mode:** a toggle that defaults to dark (the current look) and remembers the choice via `localStorage`. Secondary to the above, but include it.
+- **Everything works:** real links (LinkedIn, GitHub, email), no dead/placeholder content visible to a recruiter, clean layout at 375px.
 
 ## This iteration's focus
 
@@ -46,7 +64,9 @@ Specific requirements:
 
 ---
 
-## Memory from previous iterations
+## Memory from previous iterations — the hiring manager's critique (ACT ON THIS FIRST)
+
+The following is the strict hiring manager's verdict on the previous version. Treat it as your top-priority punch-list and address each point before anything else:
 
 {{PREVIOUS_NOTES}}
 
@@ -57,10 +77,10 @@ Specific requirements:
 Score yourself on each criterion. Only output when you hit 5/6 or better. If you score lower, revise silently.
 
 **Recruiter test:**
-[ ] A Citadel or Jane Street recruiter sees something exceptional in the first 3 seconds — not just "another portfolio"
-[ ] The Citadel 1st place and Jane Street 2nd place awards are impossible to miss
-[ ] Osmia's 64% accuracy and 4-month unattended runtime are featured prominently
-[ ] The visual design is genuinely distinctive — if you saw this design on a different person's portfolio, you'd recognize it
+[ ] A hiring manager sees something exceptional in the first 3 seconds — not just "another portfolio"
+[ ] Experience and Projects are clearly the PRIMARY emphasis; awards are present as supporting credibility, NOT an oversized hero
+[ ] Osmia's 64% live accuracy and 4-month unattended runtime are featured prominently
+[ ] The visual design is genuinely distinctive — the cool section-to-section color flow makes it recognizable
 
 **Technical test:**
 [ ] Every section is immediately scannable on a 375px mobile viewport
@@ -73,21 +93,12 @@ Score yourself on each criterion. Only output when you hit 5/6 or better. If you
 - Output ONLY the complete HTML file. No preamble, no explanation, no markdown fences.
 - Start with `<!DOCTYPE html>` on line 1.
 - All CSS and JS inline in the single file.
-- Google Fonts loaded via CDN link tag. No other external dependencies except fonts.
+- Google Fonts loaded via CDN link tag. The only other external file allowed is the photo `Linkedn.png` (referenced by that exact relative path); all CSS/JS stays inline.
 - Deploy-ready on Vercel as a static file (just drop into /public or root).
 - Aim for ~600–900 lines. Tight, intentional code — not bloated.
 
 ---
 
-## Iteration focuses reference (do not output this section)
+## Note (do not output this section)
 
-1. Skeleton — structure, sections, dark theme, scroll behavior, nav, hero placeholder
-2. Visual system — typography scale, spacing rhythm, color tokens, section transitions
-3. Hero — cinematic. Animated text reveal or scroll-driven effect. This is the first impression.
-4. Projects — interactive cards, hover states, tech stack tags. Osmia and OpenBy lead.
-5. Awards section — make Citadel 1st and Jane Street 2nd impossible to miss. Numbers as art.
-6. Experience timeline — BusPlanner, CS Club, Solar Car. Impact numbers front and center.
-7. Mobile + performance — every breakpoint, smooth scroll, no jank, reduced motion respected
-8. Micro-interactions — cursor, scroll progress indicator, section fade-ins, hover states
-9. Recruiter UX — CTAs, contact section, resume download placeholder, links all work
-10. Final pass — remove anything that feels AI-generated or template-like. Every word sounds like a real human wrote it about a real person. Tighten, sharpen, ship.
+The focus for THIS iteration is injected above under "This iteration's focus". The full set of 10 refinement passes lives in run_loop.sh. This prompt REFINES the existing site provided below — it never builds from scratch.

@@ -18,7 +18,6 @@
 - Citadel Trading Challenge — 1st Place Overall, ~120 competing teams
 - Jane Street Trading Competition — 2nd Place Overall, ~80 competing teams
 - Putnam Mathematical Competition — Top 500 nationally (~top 10% of ~4,000 participants)
-- Fraser Institute Essay Competition — Top finalist
 
 ## Experience
 

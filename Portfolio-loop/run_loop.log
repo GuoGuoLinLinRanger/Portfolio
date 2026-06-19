@@ -5,8 +5,8 @@
 Sending to Claude Code (generation)...
 Saved to output/portfolio_v1.html
 Running evaluator...
-Score: 11/12 — Pass: True
-Top fix: The 'live' verdict ledger and Monte Carlo fan are seeded RNG (mulberry32 hardcoded to ~64% hits) but labeled 'the system's own track record, rendered live' — any quant who opens devtools sees fabricated data dressed as real, which poisons the credibility of every metric on the page. Wire the viz to a real exported JSON of Osmia's actual verdicts (or relabel it honestly as an illustration); a verifiable artifact would push this from impressive to undeniable.
+Score: 10/12 — Pass: False
+Top fix: 1. REWRITE THE HERO H1 TO LEAD WITH WHAT HE BUILDS, NOT THE AWARD. Right now the biggest text on the page is 'I placed 1st of 120 at Citadel, 2nd of 80 at Jane Street' — that makes the trophy the headline. Flip it: make Osmia / the autonomous-systems identity the H1 (e.g. 'I build autonomous systems that keep running when no one's watching' or a sharp Osmia-led line), and demote Citadel/Jane Street to the supporting eyebrow or the stat-tape as credibility, not the headline. The sub and tape already do this well — the H1 just needs to match. This is the #1 lever on my decision; it's the difference between 'award-chaser' and 'builder.' 2. IMPLEMENT THE SECTION-TO-SECTION COLOR FLOW. The whole site is one static solar-amber accent. There's no evolving palette as I scroll — it reads as a single-accent dark template, which is exactly the forgettable category. Introduce a cohesive flow that shifts hue section-by-section (e.g. cool indigo/teal through Record→Experience warming toward amber at Projects→Contact), driven by the scroll, executed subtly so it never hurts contrast or readability. This is what would make the craft memorable instead of merely competent. 3. FIX THE GITHUB PROJECT LINKS. Every project 'GitHub ↗' points at a search query (?tab=repositories&q=quadcopter), not the actual repo. A reviewer clicking through lands on a search page — that reads as 'no real link.' Point each at the direct repo URL. If a repo genuinely doesn't exist or is private, drop the link rather than faking it with a search. 4. GUARANTEE THE PORTRAIT SHIPS. The contact photo is a relative 'Linkedn.png' (also a misspelled filename) and the og:image depends on it too — if it 404s, the trust-building section and the social card both break. Verify it deploys alongside the HTML and consider correcting the filename. 5. AFTER #1, RE-BALANCE THE STAT TAPE. Once the H1 leads with the build, make sure the tape's Osmia cells stay first and the Putnam/awards cell reads as supporting, so the entire first screen reinforces 'builder first, credentials second.'
 state.md updated.
 Waiting 3 seconds before next iteration...
 
@@ -14,3 +14,92 @@ Waiting 3 seconds before next iteration...
   ITERATION 2 / 10
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Sending to Claude Code (generation)...
+Saved to output/portfolio_v2.html
+Running evaluator...
+Score: 0/12 — Pass: False
+Top fix: See evaluator output
+state.md updated.
+Waiting 3 seconds before next iteration...
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ITERATION 3 / 10
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Sending to Claude Code (generation)...
+Saved to output/portfolio_v3.html
+Running evaluator...
+Score: 11/12 — Pass: True
+Top fix: 1. Close the verifiability gap — the only thing keeping this from a clean sweep. Expose ONE independently checkable Osmia artifact: a public read-only repo or gist with the REAL exported accuracy CSV + the 13-version changelog + the 15-table schema DDL (strategy redacted), linked directly from the card and methodology overlay. Right now both the verdict-log table and the accuracy curve are self-labeled synthetic, so a skeptic literally cannot confirm the 64%. One real, downloadable proof point converts faith into evidence and would push proof to a 2. 2. Wire the project cards to their ACTUAL repos. All six cards (Quadcopter, Remy, Whiteboard, Cloud9, Loan Model, plus the 'Code & proof' tile) point to the generic github.com/GuoGuoLinLinRanger?tab=repositories — link each to its specific repo so I can click straight into the public code instead of hunting through a profile. 3. Minor polish: the Citadel 1st / Jane Street 2nd chips are the single strongest signal for a quant desk — keep them as chips (do NOT oversize), but add a half-line of context (e.g., format/what was optimized) so the result lands with weight rather than reading as a bare number a reader can't situate.
+state.md updated.
+Waiting 3 seconds before next iteration...
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ITERATION 4 / 10
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Sending to Claude Code (generation)...
+Saved to output/portfolio_v4.html
+Running evaluator...
+Score: 12/12 — Pass: True
+Top fix: 1. Replace the 'representative reconstruction' accuracy curve and the 'representative sanitized sample' verdict table with the REAL exported data — plot the actual 380 verdicts and show 11 real rows. The page's whole thesis is 'shown, not claimed,' and it's quietly undercut by every on-page chart being synthetic-but-disclaimed. To a quant, a real plot of real verdicts beats a pretty illustrative curve with a caveat every time. Biggest single credibility upgrade. 2. Fix the hero stat-tape cell 'Shipped · 500K-line C++ codebase' — as juxtaposed it reads like he shipped 500K lines. Relabel to 'Contributed' or '~40 defects closed · 500K-line codebase' to match the (accurate) experience bullet. Strict readers hunt for overclaims in the hero first. 3. Guarantee every external link resolves to real, populated content — above all github.com/GuoGuoLinLinRanger/osmia-proof. The entire 'verifiable, not on faith' pitch dies if that repo 404s or is empty; confirm the CSV, changelog, and schema DDL are actually there. 4. The OpenBy 87% sits in the hero tape beside live figures; in-sample backtest accuracy is near-meaningless to a quant. Pull it out of the hero or label it so it reads clearly secondary to Osmia's 64% live. 5. Minor: confirm Linkedn.png is a real professional photo (not a placeholder) and rename the typo'd file so it never silently 404s on a case-sensitive host.
+state.md updated.
+Waiting 3 seconds before next iteration...
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ITERATION 5 / 10
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Sending to Claude Code (generation)...
+Saved to output/portfolio_v5.html
+Running evaluator...
+Score: 10/12 — Pass: False
+Top fix: 1. Rewrite the hero H1 to lead with what Tian BUILDS, not the awards. Right now it's an award banner ('I placed 1st of 120 at Citadel, 2nd of 80 at Jane Street'). Make the H1 about the builder/Osmia ('I build autonomous systems that keep running when no one's watching' — the line you already use in the résumé and meta description), and demote Citadel-1st / Jane-Street-2nd to supporting chips in the stat tape. Biggest single lever on hook. 2. Add the section-to-section color flow. The rubric and the brief both require a cohesive palette that EVOLVES as you scroll (a cool flow), not one static amber accent (the CSS comment literally says 'a single solar amber'). Shift the accent hue per section — e.g. amber→teal→violet→cool-blue — driven by CSS variables you already have, kept tasteful and contrast-safe in both themes. This is currently a hard 1. 3. Replace the synthetic proof artifacts with REAL data. The verdict-log table ('representative sanitized sample') and the #verdictCanvas curve ('representative reconstruction', mulberry32 RNG → fake 380-point series) directly contradict the 'verifiable, shown not claimed' pitch. Plot the actual logged verdicts and show real rows — or, if the real export can't be published, cut the fake curve entirely rather than ship fabricated-but-disclaimed data to a quant. 4. Fix the hero stat-tape overclaim: 'Shipped · 500K-line C++ · 3,000 km firmware' reads like he shipped 500K lines. Relabel to match the accurate experience bullet ('Contributed' / '~40 defects in a 500K-line codebase'). Strict readers hunt the hero for exactly this. 5. Fix the photo filename typo. The only image is <img src="Linkedn.png"> and the OG tag points at /Linkedn.png; on a case-sensitive host this 404s silently. Rename the file and both references to 'linkedin.png' (or guarantee the asset ships with that exact spelling).
+state.md updated.
+Waiting 3 seconds before next iteration...
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ITERATION 6 / 10
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Sending to Claude Code (generation)...
+Saved to output/portfolio_v6.html
+Running evaluator...
+Score: 0/12 — Pass: False
+Top fix: See evaluator output
+state.md updated.
+Waiting 3 seconds before next iteration...
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ITERATION 7 / 10
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Sending to Claude Code (generation)...
+Saved to output/portfolio_v7.html
+Running evaluator...
+Score: 0/12 — Pass: False
+Top fix: See evaluator output
+state.md updated.
+Waiting 3 seconds before next iteration...
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ITERATION 8 / 10
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Sending to Claude Code (generation)...
+Saved to output/portfolio_v8.html
+Running evaluator...
+Score: 0/12 — Pass: False
+Top fix: See evaluator output
+state.md updated.
+Waiting 3 seconds before next iteration...
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ITERATION 9 / 10
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Sending to Claude Code (generation)...
+Saved to output/portfolio_v9.html
+Running evaluator...
+Score: 12/12 — Pass: True
+Top fix: 1. VERIFY THE LINKS BEFORE TRUSTING THE PAGE. The entire credibility argument rests on github.com/GuoGuoLinLinRanger/osmia-proof actually existing and being public (accuracy CSV + changelog + schema DDL). If it 404s, the 'verify it yourself' framing backfires and it's an instant no. Confirm every repo link (osmia-proof, autonomous-quadcopter, remy, collab-whiteboard, cloud9, loan-default-model) resolves. 2. Confirm Linkedn.png is deployed at the site ROOT — it's referenced as a relative path; if it doesn't load, the portrait/trust axis breaks. 3. Sanity-check 375px (verdict-log table is set to horizontal-scroll, mobile menu exists — looks handled, but eyeball it on a real phone). None of these are build changes; they protect the pass.
+state.md updated.
+
+✓ Evaluator passed on iteration 9 with score 12/12. Stopping early.
+Final output: output/portfolio_v9.html
+
+Loop complete. Final file: output/portfolio_v9.html
+Deploy to Vercel: copy that file into your project root as index.html
+EXIT_CODE=0

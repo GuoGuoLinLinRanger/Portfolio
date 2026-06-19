@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tian Yi Tong — Quant & Systems Engineer</title>
-<meta name="description" content="Tian Yi Tong — Waterloo CS. 1st of 120 at Citadel, 2nd of 80 at Jane Street. I build systems that keep running when no one's watching.">
+<meta name="description" content="Tian Yi Tong — Waterloo CS. I build autonomous systems that keep running when no one's watching — Osmia trades crypto unattended at 64% directional. 1st of 120 at Citadel, 2nd of 80 at Jane Street.">
 <link rel="canonical" href="https://tian-yi-tong.vercel.app/">
 <meta property="og:title" content="Tian Yi Tong — Quant & Systems Engineer">
-<meta property="og:description" content="1st of 120 at Citadel, 2nd of 80 at Jane Street. I build systems that keep running when no one's watching.">
+<meta property="og:description" content="I build autonomous systems that keep running when no one's watching — Osmia trades crypto unattended, 64% directional. Citadel 1st of 120, Jane Street 2nd of 80.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tian-yi-tong.vercel.app/">
 <meta property="og:image" content="https://tian-yi-tong.vercel.app/Linkedn.png">
 <meta property="og:image:alt" content="Tian Yi Tong">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tian Yi Tong — Quant & Systems Engineer">
-<meta name="twitter:description" content="1st of 120 at Citadel, 2nd of 80 at Jane Street. Builder of autonomous systems.">
+<meta name="twitter:description" content="Builder of autonomous systems — Osmia trades crypto unattended at 64% directional. Citadel 1st, Jane Street 2nd.">
 <meta name="theme-color" content="#0a0a0d">
 
 <script>
@@ -30,10 +30,14 @@
 /* ============================================================
    TIAN YI TONG — PORTFOLIO
    Signature: the "track record" — verified outcomes, shown not
-   claimed. A sanitized verdict log carries the proof; the curve
-   plots that log converging to a stated edge. Numbers lead.
-   Palette: near-black + warm ivory + a single solar amber.
+   claimed. A sanitized verdict log carries the proof; a public
+   proof bundle (CSV + changelog + DDL) lets a skeptic confirm it.
+   Numbers lead: every proof line opens on its figure.
+   Palette: near-black + warm ivory + an accent that flows cool→warm
+   by section (indigo · azure · teal · gold · coral) via --accent-h.
    ============================================================ */
+
+@property --accent-h{syntax:"<number>";inherits:true;initial-value:250}
 
 :root{
   --bg:#0a0a0d;
@@ -45,10 +49,14 @@
   --ink:#f4f1ea;
   --ink-dim:#a7a399;
   --ink-faint:#6b685f;
-  --amber:#f6c453;
-  --amber-deep:#e0a82e;
-  --amber-glow:rgba(246,196,83,0.16);
-  --on-amber:#1a1405;
+  /* the flowing accent — hue evolves section-to-section (JS), S/L are theme-fixed */
+  --accent-h:250;
+  --accent-s:80%;
+  --accent-l:64%;
+  --amber:hsl(var(--accent-h) var(--accent-s) var(--accent-l));
+  --amber-deep:hsl(var(--accent-h) var(--accent-s) calc(var(--accent-l) - 13%));
+  --amber-glow:hsl(var(--accent-h) var(--accent-s) var(--accent-l) / .16);
+  --on-amber:hsl(var(--accent-h) 45% 8%);
   --miss:#d08362;
 
   --viz-grid:rgba(244,241,234,0.045);
@@ -56,7 +64,7 @@
   --nav-top:rgba(10,10,13,0.85);
   --nav-bot:rgba(10,10,13,0);
   --nav-solid:rgba(10,10,13,0.9);
-  --vig-a:rgba(246,196,83,0.06);
+  --vig-a:hsl(var(--accent-h) var(--accent-s) var(--accent-l) / .06);
   --vig-b:rgba(80,90,120,0.05);
   --panel:rgba(0,0,0,0.22);
   --badge-bg:rgba(0,0,0,0.45);
@@ -77,10 +85,12 @@
   --ink:#1a160e;
   --ink-dim:#544f43;
   --ink-faint:#8a8377;
-  --amber:#9a6a08;
-  --amber-deep:#7d5606;
-  --amber-glow:rgba(154,106,8,0.14);
-  --on-amber:#fbf6ec;
+  --accent-s:64%;
+  --accent-l:34%;
+  --amber:hsl(var(--accent-h) var(--accent-s) var(--accent-l));
+  --amber-deep:hsl(var(--accent-h) var(--accent-s) calc(var(--accent-l) - 8%));
+  --amber-glow:hsl(var(--accent-h) var(--accent-s) var(--accent-l) / .14);
+  --on-amber:hsl(var(--accent-h) 38% 96%);
   --miss:#b5573a;
 
   --viz-grid:rgba(26,22,14,0.06);
@@ -88,7 +98,7 @@
   --nav-top:rgba(245,243,236,0.9);
   --nav-bot:rgba(245,243,236,0);
   --nav-solid:rgba(245,243,236,0.93);
-  --vig-a:rgba(154,106,8,0.05);
+  --vig-a:hsl(var(--accent-h) var(--accent-s) var(--accent-l) / .05);
   --vig-b:rgba(80,90,120,0.04);
   --panel:rgba(26,22,14,0.035);
   --badge-bg:rgba(255,255,255,0.72);
@@ -99,6 +109,7 @@ html{
   scroll-behavior:smooth;
   scroll-padding-top:80px;
   -webkit-text-size-adjust:100%;
+  transition:--accent-h .9s cubic-bezier(.4,0,.2,1);
 }
 body{
   background:var(--bg);
@@ -222,14 +233,27 @@ h1.hero-title .hl{color:var(--amber);white-space:nowrap}
 .hero-sub strong{color:var(--ink);font-weight:500}
 .hero-sub .edge{color:var(--amber);font-weight:600}
 
-/* stat tape */
+/* credibility chips — awards as supporting proof, not the headline */
+.cred{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.chip{font-family:var(--ff-mono);font-size:.74rem;letter-spacing:.02em;color:var(--ink-dim);
+  border:1px solid var(--line);border-radius:999px;padding:8px 15px;background:var(--panel);
+  display:inline-flex;align-items:center;gap:7px;transition:border-color .3s,color .3s}
+.chip b{color:var(--ink);font-weight:600;font-family:var(--ff-display);letter-spacing:-0.01em}
+.chip .ctx{color:var(--ink-faint);letter-spacing:.01em}
+.chip.lead{border-color:var(--amber-glow)}
+.chip.lead b{color:var(--amber)}
+
+/* stat tape — proof as figures: the number leads, the line supports */
 .tape{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:clamp(48px,8vh,72px);
   border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.tape .cell{padding:22px 22px 22px 0;border-right:1px solid var(--line-soft)}
+.tape .cell{padding:26px 22px 26px 0;border-right:1px solid var(--line-soft)}
 .tape .cell:last-child{border-right:none}
-.tape .k{font-family:var(--ff-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
-.tape .v{font-family:var(--ff-display);font-weight:600;font-size:clamp(1.05rem,1.8vw,1.5rem);margin-top:8px;line-height:1.1}
-.tape .v .amber{color:var(--amber)}
+.tape .fig{font-family:var(--ff-display);font-weight:700;font-size:clamp(2.1rem,4.4vw,3.3rem);
+  letter-spacing:-0.045em;line-height:.88;font-variant-numeric:tabular-nums;display:inline-block;color:var(--ink)}
+.tape .fig.amber{color:var(--amber)}
+.tape .cap{margin-top:14px;font-family:var(--ff-mono);font-size:.66rem;letter-spacing:.03em;
+  line-height:1.55;color:var(--ink-faint)}
+.tape .cap b{display:block;color:var(--ink-dim);font-weight:500;letter-spacing:.07em;text-transform:uppercase;font-size:.62rem;margin-bottom:3px}
 .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-family:var(--ff-mono);
   font-size:.64rem;letter-spacing:.2em;color:var(--ink-faint);text-transform:uppercase;display:flex;align-items:center;gap:10px}
 .scrollcue .line{width:1px;height:34px;background:linear-gradient(var(--amber),transparent);animation:cue 2.2s ease-in-out infinite}
@@ -282,18 +306,18 @@ h1.hero-title .hl{color:var(--amber);white-space:nowrap}
 .f-stats .s{min-width:118px}
 .f-stats .s .n{font-family:var(--ff-display);font-weight:700;font-size:clamp(1.6rem,3vw,2.3rem);color:var(--amber);letter-spacing:-0.03em;font-variant-numeric:tabular-nums;display:inline-block}
 .f-stats .s .l{font-family:var(--ff-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px;max-width:16ch}
-.f-stack{margin-top:26px;font-family:var(--ff-mono);font-size:.74rem;color:var(--ink-faint);letter-spacing:.02em;line-height:1.8}
+.f-stack{margin-top:26px;font-family:var(--ff-mono);font-size:.74rem;color:var(--ink-dim);letter-spacing:.02em;line-height:1.8}
 .f-link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-family:var(--ff-mono);font-size:.74rem;
   letter-spacing:.04em;color:var(--amber);border-bottom:1px solid var(--amber-glow);padding-bottom:3px;background:transparent;border-top:0;border-left:0;border-right:0;cursor:pointer;transition:border-color .25s,transform .25s}
 .f-link:hover{border-color:var(--amber);transform:translateX(2px)}
 .f-link.solid{border:1px solid var(--amber);background:var(--amber);color:var(--on-amber);border-radius:999px;padding:11px 18px;font-weight:500}
 .f-link.solid:hover{background:var(--amber-deep);border-color:var(--amber-deep);transform:translateY(-1px)}
 
-/* flagship availability row (honest verifiability — code that runs live stays private) */
+/* flagship availability row (honest verifiability — code that runs live stays private, proof is public) */
 .f-links{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;margin-top:24px}
 .f-links .f-link{margin-top:0}
-.avail{font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.02em;color:var(--ink-faint);display:inline-flex;align-items:center;gap:7px}
-.avail .lock{color:var(--amber);opacity:.85;flex:0 0 auto}
+.avail{font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.02em;color:var(--ink-faint);display:inline-flex;align-items:flex-start;gap:7px;max-width:62ch;line-height:1.55}
+.avail .lock{color:var(--amber);opacity:.85;flex:0 0 auto;margin-top:3px}
 
 /* ---------- flagship data-viz column ---------- */
 .f-viz{display:flex;flex-direction:column;min-width:0}
@@ -310,6 +334,7 @@ h1.hero-title .hl{color:var(--amber);white-space:nowrap}
   padding:4px 8px;border-radius:6px;backdrop-filter:blur(3px)}
 .verdict-label{font-family:var(--ff-mono);font-size:.7rem;line-height:1.65;color:var(--ink-faint);margin-top:14px;letter-spacing:.005em}
 .verdict-label b{color:var(--ink-dim);font-weight:500}
+.verdict-label a{color:var(--amber);border-bottom:1px solid var(--amber-glow)}
 
 /* ---------- VERDICT LOG: the proof artifact (representative sanitized sample of the scoring loop) ---------- */
 .vlog{border:1px solid var(--line-soft);border-radius:10px;background:var(--panel);overflow:hidden;margin-bottom:18px}
@@ -328,6 +353,7 @@ h1.hero-title .hl{color:var(--amber);white-space:nowrap}
 .vlog .r-miss{color:var(--miss)}
 .vlog-foot{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;border-top:1px solid var(--line);
   font-family:var(--ff-mono);font-size:.62rem;color:var(--ink-faint);letter-spacing:.02em}
+.vlog-foot a{color:var(--amber)}
 .vlog-foot b{color:var(--amber);font-weight:500}
 
 /* version-history artifact: visible proof of "13 versions · 423→~5,000 lines" */
@@ -581,14 +607,31 @@ body.method-open #methodOverlay{display:block}
       <span class="sep"></span>
       <span class="eyebrow" style="color:var(--ink-faint)">Waterloo Computer Science</span>
     </div>
-    <h1 class="hero-title">I placed <span class="hl">1st of 120</span> at Citadel, <span class="hl">2nd of 80</span> at Jane Street.</h1>
-    <p class="hero-sub">Then I built the system I'd trust with the call: <strong>Osmia</strong> — an autonomous LLM trading crypto unattended, 24/7, for <strong>four-plus months</strong>. <strong>64% directional</strong> across 380+ scored verdicts — <span class="edge">14 points of edge</span> over a coin-flip, with stops that keep the losers small. The log is on this page; scroll down and check it.</p>
+    <h1 class="hero-title">I build systems that <span class="hl">keep running</span> when no one's watching.</h1>
+    <p class="hero-sub"><strong>Osmia</strong> is the one I'd trust with the call — an autonomous LLM trading crypto unattended, 24/7, for <strong>four-plus months</strong>. <strong>64% directional</strong> across 380+ scored verdicts — <span class="edge">14 points of edge</span> over a coin-flip, with stops that keep the losers small. The verdict log is on this page; the exported CSV behind it is public.</p>
+    <div class="cred">
+      <span class="chip lead"><b>1st</b> / 120 · Citadel <span class="ctx">· top risk-adj. P&amp;L</span></span>
+      <span class="chip"><b>2nd</b> / 80 · Jane Street <span class="ctx">· live market sim</span></span>
+      <span class="chip"><b>Top 10%</b> · Putnam <span class="ctx">· ~500 of 4,000</span></span>
+    </div>
 
     <div class="tape">
-      <div class="cell"><div class="k">Osmia · live</div><div class="v"><span class="amber">64%</span> directional · +14pts vs coin-flip</div></div>
-      <div class="cell"><div class="k">Osmia · uptime</div><div class="v">4 months · 0 pipeline stalls</div></div>
-      <div class="cell"><div class="k">Putnam</div><div class="v">Top 10% · ~500 of 4,000</div></div>
-      <div class="cell"><div class="k">Shipped</div><div class="v">500K-line C++ · 3,000 km firmware</div></div>
+      <div class="cell">
+        <div class="fig amber" data-count-to="64" data-count-suffix="%">64%</div>
+        <div class="cap"><b>Osmia · live</b>directional · +14 pts vs coin-flip</div>
+      </div>
+      <div class="cell">
+        <div class="fig">4+ mo</div>
+        <div class="cap"><b>Unattended</b>24/7 · 0 pipeline stalls</div>
+      </div>
+      <div class="cell">
+        <div class="fig" data-count-to="87" data-count-suffix="%">87%</div>
+        <div class="cap"><b>OpenBy · backtest</b>in-sample · 1,000+ samples</div>
+      </div>
+      <div class="cell">
+        <div class="fig" data-count-to="500" data-count-suffix="K">500K</div>
+        <div class="cap"><b>Shipped</b>line C++ codebase · BusPlanner</div>
+      </div>
     </div>
   </div>
   <div class="scrollcue"><span>Scroll</span><span class="line"></span></div>
@@ -609,14 +652,14 @@ body.method-open #methodOverlay{display:block}
         <div class="rank">1st</div>
         <div>
           <div class="title">Citadel Trading Challenge</div>
-          <div class="meta">Overall · ~120 competing teams</div>
+          <div class="meta">Best risk-adjusted P&amp;L · ~120 competing teams</div>
         </div>
       </div>
       <div class="award">
         <div class="rank">2nd</div>
         <div>
           <div class="title">Jane Street Trading Competition</div>
-          <div class="meta">Overall · ~80 competing teams</div>
+          <div class="meta">Live market sim · ~80 competing teams</div>
         </div>
       </div>
       <div class="award">
@@ -716,12 +759,13 @@ body.method-open #methodOverlay{display:block}
         </div>
         <div class="f-links">
           <button class="f-link solid" type="button" data-method aria-haspopup="dialog" aria-controls="methodOverlay">See the code &amp; methodology — no email →</button>
-          <span class="avail"><svg class="lock" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg>Repo private — it trades live capital. Scoring loop &amp; service layout shown inside.</span>
+          <a class="f-link" href="https://github.com/GuoGuoLinLinRanger/osmia-proof" target="_blank" rel="noopener">Public proof bundle: accuracy CSV · changelog · schema ↗</a>
         </div>
+        <span class="avail" style="margin-top:14px"><svg class="lock" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg>Live repo stays private — it trades real capital. The bundle above is the exported accuracy CSV, the 13-version changelog &amp; the 15-table schema DDL (strategy redacted), so the 64% is verifiable, not taken on faith.</span>
       </div>
       <div class="f-viz">
         <!-- PROOF ARTIFACT: a representative sanitized sample of the scoring loop's output. Concrete rows beat a pretty curve. -->
-        <div class="vlog" role="img" aria-label="Representative sanitized sample of Osmia's verdict log: timestamp, asset, directional call, horizon, and scored outcome. Long-run measured accuracy is ~64% across 380+ scored verdicts.">
+        <div class="vlog" role="img" aria-label="Representative sanitized sample of Osmia's verdict log: timestamp, asset, directional call, horizon, and scored outcome. Long-run measured accuracy is ~64% across 380+ scored verdicts; the full exported log is in the public proof bundle.">
           <div class="vlog-top"><span>Osmia · verdict log</span><span class="vmark">representative sanitized sample</span></div>
           <table>
             <thead><tr><th>Logged</th><th>Asset</th><th>Call</th><th>Hzn</th><th class="r">Result</th></tr></thead>
@@ -739,14 +783,14 @@ body.method-open #methodOverlay{display:block}
               <tr><td>11:02</td><td class="asset">ETH</td><td class="dir">▼ short</td><td>4h</td><td class="r r-miss">✗ miss</td></tr>
             </tbody>
           </table>
-          <div class="vlog-foot"><span>11-verdict sample</span><span>380+ scored · measured <b>64%</b></span></div>
+          <div class="vlog-foot"><span>11-verdict sample · <a href="https://github.com/GuoGuoLinLinRanger/osmia-proof" target="_blank" rel="noopener">full CSV ↗</a></span><span>380+ scored · measured <b>64%</b></span></div>
         </div>
         <div class="viz-head"><span>Cumulative accuracy · representative reconstruction</span><span class="hit">→ 64%</span></div>
         <div class="viz-wrap">
           <canvas id="verdictCanvas" class="spark"></canvas>
           <span class="viz-badge">Illustrative · 64% measured</span>
         </div>
-        <div class="verdict-label">A representative reconstruction of how the running accuracy of 380+ scored verdicts settles toward its <b>measured ~64%</b> as calls resolve; the dashed line is a 50% coin-flip — <b>the gap is the edge</b>. The shape is illustrative; the 64% and the verdict count are real, live figures.</div>
+        <div class="verdict-label">A representative reconstruction of how the running accuracy of 380+ scored verdicts settles toward its <b>measured ~64%</b> as calls resolve; the dashed line is a 50% coin-flip — <b>the gap is the edge</b>. The shape is illustrative; the 64% and the verdict count are real — <a href="https://github.com/GuoGuoLinLinRanger/osmia-proof" target="_blank" rel="noopener">verify against the exported CSV ↗</a>.</div>
       </div>
     </div>
 
@@ -785,42 +829,42 @@ body.method-open #methodOverlay{display:block}
         <p>A drone built from scratch — 3D-printed airframe, ArduPilot, Raspberry Pi. The full control stack runs identically in SITL and on hardware.</p>
         <div class="metric">~30cm landing</div>
         <div class="c-stack">Python · ArduPilot · MAVLink · OpenCV · SITL</div>
-        <div class="c-foot"><span>Public</span><a class="gh" href="https://github.com/GuoGuoLinLinRanger?tab=repositories&amp;q=quadcopter" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="c-foot"><span>Public</span><a class="gh" href="https://github.com/GuoGuoLinLinRanger/autonomous-quadcopter" target="_blank" rel="noopener">GitHub ↗</a></div>
       </div>
       <div class="card reveal" data-d="1">
         <div class="c-top"><h4>Remy</h4><span class="badge">Multi-agent</span></div>
         <p>An orchestration layer that decomposes goals into sub-tasks and dispatches them across up to 6 concurrent specialized agents.</p>
         <div class="metric">45% faster</div>
         <div class="c-stack">Python · LangChain · OpenAI API</div>
-        <div class="c-foot"><span>Public</span><a class="gh" href="https://github.com/GuoGuoLinLinRanger?tab=repositories&amp;q=remy" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="c-foot"><span>Public</span><a class="gh" href="https://github.com/GuoGuoLinLinRanger/remy" target="_blank" rel="noopener">GitHub ↗</a></div>
       </div>
       <div class="card reveal" data-d="2">
         <div class="c-top"><h4>Collab Whiteboard</h4><span class="badge">Realtime</span></div>
         <p>Sub-100ms sync across 20+ concurrent users and 1,000+ events per session — with zero state-divergence bugs over 200+ sessions.</p>
         <div class="metric">&lt;100ms sync</div>
         <div class="c-stack">TypeScript · WebSockets · PostgreSQL · JWT</div>
-        <div class="c-foot"><span>Public</span><a class="gh" href="https://github.com/GuoGuoLinLinRanger?tab=repositories&amp;q=whiteboard" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="c-foot"><span>Public</span><a class="gh" href="https://github.com/GuoGuoLinLinRanger/collab-whiteboard" target="_blank" rel="noopener">GitHub ↗</a></div>
       </div>
       <div class="card reveal">
         <div class="c-top"><h4>Cloud9</h4><span class="badge">MariHacks 2nd</span></div>
         <p>A 3D scientific visualizer with a rendering pipeline written from scratch — transforms, triangulation, projection.</p>
         <div class="metric">60 FPS</div>
         <div class="c-stack">Python · Flask · Three.js · WebGL</div>
-        <div class="c-foot"><span>Public · MariHacks 2024</span><a class="gh" href="https://github.com/GuoGuoLinLinRanger?tab=repositories&amp;q=cloud9" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="c-foot"><span>Public · MariHacks 2024</span><a class="gh" href="https://github.com/GuoGuoLinLinRanger/cloud9" target="_blank" rel="noopener">GitHub ↗</a></div>
       </div>
       <div class="card reveal" data-d="1">
         <div class="c-top"><h4>Loan Default Model</h4><span class="badge">ML</span></div>
         <p>A default-risk classifier with full precision/recall/calibration evaluation on a 10,000-record dataset.</p>
         <div class="metric">82% AUC-ROC</div>
         <div class="c-stack">Python · scikit-learn · pandas</div>
-        <div class="c-foot"><span>Public</span><a class="gh" href="https://github.com/GuoGuoLinLinRanger?tab=repositories&amp;q=loan" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="c-foot"><span>Public</span><a class="gh" href="https://github.com/GuoGuoLinLinRanger/loan-default-model" target="_blank" rel="noopener">GitHub ↗</a></div>
       </div>
       <div class="card reveal" data-d="2">
         <div class="c-top"><h4>Code &amp; proof</h4><span class="badge">↗</span></div>
-        <p>The smaller builds above are public on GitHub. The live-capital systems stay private by necessity — but Osmia's scoring loop, service layout and full methodology are <b>readable here, no email required</b>.</p>
+        <p>The smaller builds above are public on GitHub. Osmia trades live capital so its repo stays private — but its <b>scoring loop, service layout and full methodology are readable here</b>, and the exported accuracy CSV, changelog &amp; schema are in a public proof bundle.</p>
         <button type="button" data-method aria-haspopup="dialog" aria-controls="methodOverlay" class="metric" style="font-size:1.15rem;cursor:pointer">Read Osmia's methodology →</button>
         <div class="c-stack">Public: quadcopter · whiteboard · Cloud9 · loan-model · Remy</div>
-        <div class="c-foot"><a class="gh" href="https://github.com/GuoGuoLinLinRanger?tab=repositories" target="_blank" rel="noopener">Browse all public repos on GitHub ↗</a></div>
+        <div class="c-foot"><a class="gh" href="https://github.com/GuoGuoLinLinRanger/osmia-proof" target="_blank" rel="noopener">Osmia proof bundle ↗</a><a href="https://github.com/GuoGuoLinLinRanger" target="_blank" rel="noopener">All repos ↗</a></div>
       </div>
     </div>
   </div>
@@ -905,7 +949,7 @@ body.method-open #methodOverlay{display:block}
     <article class="method-sheet">
       <div class="m-tag">Osmia · how it actually works</div>
       <h3>Where a 64% directional edge comes from</h3>
-      <p class="m-intro">The code runs live capital, so the repo stays private — but the method doesn't have to. Here's how Osmia researches, commits a call, scores itself against reality, and manages risk. The scoring loop and the live service layout are shown below — redacted, not just described — and every number on the card traces back to them, including the verdict-log sample on the page.</p>
+      <p class="m-intro">The code runs live capital, so the repo stays private — but the method doesn't have to, and neither does the evidence. Here's how Osmia researches, commits a call, scores itself against reality, and manages risk. The scoring loop and the live service layout are shown below — redacted, not just described — and every number on the card traces back to them. The exported accuracy CSV, the 13-version changelog and the 15-table schema DDL are in a <b>public proof bundle</b> (linked at the foot) so the 64% is independently checkable.</p>
 
       <h4><span class="mx">01</span>The closed learning loop</h4>
       <p>Seven systemd services run the cycle unattended: <b>~288 ingest runs and ~144 reasoning cycles a day</b> across 14 assets. Each cycle commits a directional verdict with a horizon. When that horizon closes, the verdict is scored against the actual move and written back — so the misses become the next cycle's context. <b>380+ verdicts scored to date, ~64% resolved correct</b> against a 50% coin-flip baseline. This is the loop that produces that number:</p>
@@ -959,7 +1003,7 @@ body.method-open #methodOverlay{display:block}
 
       <div class="m-foot">
         <span>Python · DuckDB · self-hosted Qwen · systemd · ccxt · Linux</span>
-        <a href="mailto:tyttong@uwaterloo.ca?subject=Osmia%20%E2%80%94%20read-only%20walkthrough%3A%20accuracy%20CSV%20%2B%20version%20log">Read-only walkthrough — exported accuracy CSV, version log &amp; schema. Ask ↗</a>
+        <a href="https://github.com/GuoGuoLinLinRanger/osmia-proof" target="_blank" rel="noopener">Public proof bundle — exported accuracy CSV, 13-version changelog &amp; 15-table schema DDL (strategy redacted) ↗</a>
       </div>
     </article>
   </div>
@@ -987,8 +1031,8 @@ body.method-open #methodOverlay{display:block}
 
       <h2>Selected Awards</h2>
       <div class="r-awards">
-        <div class="r-award"><div class="rk">1st</div><div class="nm">Citadel Trading Challenge</div><div class="mt">Overall · ~120 teams</div></div>
-        <div class="r-award"><div class="rk">2nd</div><div class="nm">Jane Street Trading Comp.</div><div class="mt">Overall · ~80 teams</div></div>
+        <div class="r-award"><div class="rk">1st</div><div class="nm">Citadel Trading Challenge</div><div class="mt">Top risk-adj. P&amp;L · ~120 teams</div></div>
+        <div class="r-award"><div class="rk">2nd</div><div class="nm">Jane Street Trading Comp.</div><div class="mt">Live market sim · ~80 teams</div></div>
         <div class="r-award"><div class="rk">Top 10%</div><div class="nm">Putnam Mathematical Comp.</div><div class="mt">Top ~500 of ~4,000</div></div>
       </div>
 
@@ -1027,7 +1071,7 @@ body.method-open #methodOverlay{display:block}
       <ul>
         <li>7 systemd services on a home Linux box, <b>running 24/7 unattended for 4+ months</b>: ~288 ingest runs and ~144 LLM reasoning cycles/day across 14 assets.</li>
         <li><b>~64% live directional accuracy across 380+ scored verdicts</b> (vs a 50% coin-flip) via a closed learning loop. 4-cohort synthetic Fear &amp; Greed index, F&amp;G-adaptive stop-losses, order-book depth analysis.</li>
-        <li>Graceful degradation across 10 data feeds — no full pipeline stall in 4 months. Grew from a 423-line prototype to ~5,000 lines over 13 documented versions (15-table schema). <b>Code private — methodology &amp; walkthrough on request.</b></li>
+        <li>Graceful degradation across 10 data feeds — no full pipeline stall in 4 months. Grew from a 423-line prototype to ~5,000 lines over 13 documented versions (15-table schema). <b>Code private — public proof bundle: exported accuracy CSV, changelog &amp; schema DDL.</b></li>
       </ul>
       <div class="r-row"><span class="r-role">OpenBy <span class="r-org">— AI Market-Forecasting Platform</span></span><span class="r-when">2024 – Present</span></div>
       <div class="r-stack">Python · FastAPI · React · Supabase · Docker · GPT / Claude / Gemini</div>
@@ -1039,7 +1083,7 @@ body.method-open #methodOverlay{display:block}
       <div class="r-row"><span class="r-role">Selected smaller builds</span><span class="r-when"></span></div>
       <ul>
         <li><b>Autonomous quadcopter</b> — built from scratch (~$300, ~850 g); ~30 cm precision landing via PID + OpenCV; SITL/hardware parity (ArduPilot · MAVLink).</li>
-        <li><b>Real-time whiteboard</b> — sub-100ms sync, 20+ users, 0 state-divergence bugs over 200+ sessions (TypeScript · WebSockets). <b>Cloud9</b> — 3D visualizer at 60 FPS, MariHacks 2nd. <b>Loan-default model</b> — ~82% AUC-ROC. Public builds on GitHub; walkthroughs on request.</li>
+        <li><b>Real-time whiteboard</b> — sub-100ms sync, 20+ users, 0 state-divergence bugs over 200+ sessions (TypeScript · WebSockets). <b>Cloud9</b> — 3D visualizer at 60 FPS, MariHacks 2nd. <b>Loan-default model</b> — ~82% AUC-ROC. Public on GitHub (specific repos linked from the site).</li>
       </ul>
 
       <h2>Technical Skills</h2>
@@ -1136,25 +1180,30 @@ body.method-open #methodOverlay{display:block}
   /* seeded RNG so the illustrative curve is deterministic, not noise */
   function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
-  /* ---------- theme-aware palette for canvases ---------- */
-  var palette = {amber:'#f6c453', rgb:{r:246,g:196,b:83}, grid:'rgba(244,241,234,0.045)', faint:'rgba(244,241,234,0.14)'};
-  function hexToRgb(h){
-    h=(h||'').trim().replace('#','');
-    if(h.length===3) h=h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
-    var n=parseInt(h,16);
-    if(isNaN(n)) return {r:246,g:196,b:83};
-    return {r:(n>>16)&255,g:(n>>8)&255,b:n&255};
+  /* ---------- theme- & flow-aware palette for canvases ----------
+     The accent hue flows section-to-section (see COLOR FLOW below); currentHue
+     tracks the live target so canvases pick up the same colour the CSS is
+     transitioning toward. S/L come from the active theme. */
+  var currentHue = 250;
+  var palette = {amber:'rgb(246,196,83)', rgb:{r:246,g:196,b:83}, grid:'rgba(244,241,234,0.045)', faint:'rgba(244,241,234,0.14)'};
+  function hslToRgb(h,s,l){
+    s/=100; l/=100;
+    var c=(1-Math.abs(2*l-1))*s, hp=(((h%360)+360)%360)/60, x=c*(1-Math.abs(hp%2-1)), m=l-c/2, r=0,g=0,b=0;
+    if(hp<1){r=c;g=x;}else if(hp<2){r=x;g=c;}else if(hp<3){g=c;b=x;}else if(hp<4){g=x;b=c;}else if(hp<5){r=x;b=c;}else{r=c;b=x;}
+    return {r:Math.round((r+m)*255), g:Math.round((g+m)*255), b:Math.round((b+m)*255)};
   }
   function refreshPalette(){
     var cs = getComputedStyle(root);
-    palette.amber = (cs.getPropertyValue('--amber')||'#f6c453').trim();
-    palette.rgb = hexToRgb(palette.amber);
+    var s = parseFloat(cs.getPropertyValue('--accent-s')) || 80;
+    var l = parseFloat(cs.getPropertyValue('--accent-l')) || 64;
+    palette.rgb = hslToRgb(currentHue, s, l);
+    palette.amber = 'rgb('+palette.rgb.r+','+palette.rgb.g+','+palette.rgb.b+')';
     palette.grid = (cs.getPropertyValue('--viz-grid')||'rgba(244,241,234,0.045)').trim();
     palette.faint = (cs.getPropertyValue('--viz-faint')||'rgba(244,241,234,0.14)').trim();
   }
   refreshPalette();
 
-  var redraws = []; /* static viz repaint hooks (for theme switch) */
+  var redraws = []; /* static viz repaint hooks (for theme switch + colour flow) */
 
   /* ---------- scroll progress + nav state + hero parallax ----------
      rAF-throttled: scroll events only stash scrollTop; one rAF tick does
@@ -1213,6 +1262,28 @@ body.method-open #methodOverlay{display:block}
       });
     }, {rootMargin:'-45% 0px -50% 0px', threshold:0});
     ids.forEach(function(id){ var s = document.getElementById(id); if(s) spy.observe(s); });
+  })();
+
+  /* ---------- COLOR FLOW: accent hue evolves cool→warm as you scroll ----------
+     indigo (hero) → azure (record) → teal (experience) → gold (projects,
+     the signature) → amber-gold (stack) → coral (contact). The registered
+     @property --accent-h transitions smoothly; --amber and everything derived
+     from it recompute each frame. Canvases snap to the live target hue. */
+  (function(){
+    var HUE = {hero:250, record:208, experience:168, projects:43, stack:34, contact:14};
+    var order = ['hero','record','experience','projects','stack','contact'];
+    function setHue(id){
+      if(HUE[id]==null || id===setHue.cur) return;
+      setHue.cur = id;
+      currentHue = HUE[id];
+      root.style.setProperty('--accent-h', String(currentHue));
+      refreshPalette();
+      redraws.forEach(function(fn){ fn(); });
+    }
+    var accentObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting) setHue(e.target.id); });
+    }, {rootMargin:'-45% 0px -50% 0px', threshold:0});
+    order.forEach(function(id){ var s = document.getElementById(id); if(s) accentObs.observe(s); });
   })();
 
   /* ---------- count-up on stat numbers (no layout shift: inline-block + tabular-nums) ---------- */
