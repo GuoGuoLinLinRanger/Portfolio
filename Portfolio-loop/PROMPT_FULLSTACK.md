@@ -54,6 +54,26 @@ Atmospheric, cinematic, dark — inspired by the energy of immersive sites like 
 
 ---
 
+## Design intelligence — apply the ui-ux-pro-max skill's guidance
+
+This project uses the ui-ux-pro-max design skill. Apply its design-system intelligence (it confirms the immersive/interactive direction) and run its pre-delivery checklist on every output.
+
+**Design system (skill output, reconciled with the chosen direction):**
+- **Pattern:** Immersive / Interactive Experience — full-screen interactive hero (the reactive particle field), content revealed on scroll, a clear CTA after the user engages, with a reduced-motion/skip fallback and a solid mobile fallback.
+- **Style:** refined dark mode — deep near-black base, high contrast, OLED-friendly.
+- **Color:** keep the cool section-to-section color flow (violet → blue → cyan → teal) as the evolving accent; drive it through **semantic color tokens** (`--color-primary/accent/background/foreground/muted/border`), never raw hex in components. Keep one green "live/success" accent for status (e.g. Osmia "live"). Maintain 4.5:1 text contrast in every state.
+- **Typography:** Inter (or a comparably precise technical sans) with a clear scale (12/14/16/18/24/32) and weight hierarchy (700 headings, 400 body, 500 labels).
+- **Effects:** restrained — minimal glow (`text-shadow: 0 0 10px`), smooth dark transitions; no decorative-only motion.
+
+**Quality rules (must pass, in priority order):**
+1. **Accessibility:** contrast ≥4.5:1, visible focus rings, alt text, aria-labels on icon-only buttons, keyboard nav matches visual order, `prefers-reduced-motion` fully respected.
+2. **Interaction:** real hover/press states (150–300ms, transform/opacity only — never animate width/height/top/left), `cursor: pointer` on clickables.
+3. **Performance:** no layout shift (reserve space, declare image dimensions), particle field capped + paused when tab hidden, `font-display: swap`.
+4. **Style discipline:** one icon family (inline SVG — Lucide/Heroicons, NEVER emoji as icons), consistent shadow/elevation scale, one primary CTA per screen.
+5. **Typography & color:** semantic tokens, ≥16px body, line-height 1.5–1.75, 60–75 char line length.
+
+**Anti-patterns to avoid:** light-mode-default, janky performance, emoji icons, raw hex in components, gray-on-gray text, color-only meaning, hover-only interactions, animating layout properties.
+
 ## Copy & tone — make it sound HUMAN, not AI (the recruiter must like it)
 
 This is a priority. Rewrite weak copy every pass.
