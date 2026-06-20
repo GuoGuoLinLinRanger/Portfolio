@@ -1,0 +1,267 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ------------------------------------------------------------------ *
+ *  Theme mapping (Tailwind v4 @theme inline -> CSS variables)
+ * ------------------------------------------------------------------ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* signature color-flow accent (evolves on scroll) */
+  --color-flow: var(--flow);
+  --color-flow-2: var(--flow-2);
+  --color-flow-soft: var(--flow-soft);
+  --color-live: var(--live);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Tokens — the dynamic --flow-hue drives the whole accent system.
+ *  JS updates --flow-hue from ~272 (violet) -> 152 (green) on scroll.
+ * ------------------------------------------------------------------ */
+:root {
+  --radius: 0.85rem;
+  --flow-hue: 272;
+  --flow-sat: 80%;
+
+  /* Light theme */
+  --background: hsl(240 20% 99%);
+  --foreground: hsl(240 24% 8%);
+  --card: hsl(240 30% 100%);
+  --card-foreground: hsl(240 24% 8%);
+  --popover: hsl(240 30% 100%);
+  --popover-foreground: hsl(240 24% 8%);
+  --primary: hsl(var(--flow-hue) var(--flow-sat) 42%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(240 16% 94%);
+  --secondary-foreground: hsl(240 24% 12%);
+  --muted: hsl(240 16% 95%);
+  --muted-foreground: hsl(240 8% 40%);
+  --accent: hsl(240 16% 94%);
+  --accent-foreground: hsl(240 24% 12%);
+  --destructive: hsl(0 72% 50%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(240 14% 88%);
+  --input: hsl(240 14% 86%);
+  --ring: hsl(var(--flow-hue) var(--flow-sat) 50%);
+
+  --flow: hsl(var(--flow-hue) var(--flow-sat) 46%);
+  --flow-2: hsl(calc(var(--flow-hue) - 26) var(--flow-sat) 52%);
+  --flow-soft: hsl(var(--flow-hue) var(--flow-sat) 50% / 0.12);
+  --live: hsl(152 70% 38%);
+}
+
+.dark {
+  /* Deep near-black, slightly cool base */
+  --background: hsl(240 28% 4%);
+  --foreground: hsl(240 18% 96%);
+  --card: hsl(240 24% 7%);
+  --card-foreground: hsl(240 18% 96%);
+  --popover: hsl(240 26% 6%);
+  --popover-foreground: hsl(240 18% 96%);
+  --primary: hsl(var(--flow-hue) var(--flow-sat) 68%);
+  --primary-foreground: hsl(240 40% 6%);
+  --secondary: hsl(240 18% 13%);
+  --secondary-foreground: hsl(240 18% 92%);
+  --muted: hsl(240 16% 12%);
+  --muted-foreground: hsl(240 12% 64%);
+  --accent: hsl(240 18% 14%);
+  --accent-foreground: hsl(240 18% 94%);
+  --destructive: hsl(0 72% 58%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(240 16% 16%);
+  --input: hsl(240 16% 18%);
+  --ring: hsl(var(--flow-hue) var(--flow-sat) 64%);
+
+  --flow: hsl(var(--flow-hue) var(--flow-sat) 70%);
+  --flow-2: hsl(calc(var(--flow-hue) - 30) var(--flow-sat) 66%);
+  --flow-soft: hsl(var(--flow-hue) var(--flow-sat) 62% / 0.16);
+  --live: hsl(152 68% 55%);
+}
+
+/* ------------------------------------------------------------------ *
+ *  Base
+ * ------------------------------------------------------------------ */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    /* smooth accent transition as the flow hue changes */
+    transition: background-color 0.6s ease;
+  }
+
+  /* The hue itself is animated for a buttery flow */
+  :root,
+  .dark {
+    transition: --flow-hue 0.8s ease;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: var(--flow-soft);
+    color: var(--foreground);
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@property --flow-hue {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 272;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Atmospheric helpers — never a flat color block.
+ * ------------------------------------------------------------------ */
+@layer utilities {
+  /* Soft aurora glow that follows the flow hue */
+  .flow-glow {
+    background:
+      radial-gradient(
+        60% 60% at 50% 0%,
+        hsl(var(--flow-hue) var(--flow-sat) 60% / 0.18),
+        transparent 70%
+      );
+  }
+
+  .text-flow {
+    color: var(--flow);
+  }
+
+  .bg-flow {
+    background-color: var(--flow);
+  }
+
+  /* Animated gradient text for the hero name */
+  .text-gradient-flow {
+    background: linear-gradient(
+      100deg,
+      var(--foreground) 0%,
+      var(--flow) 45%,
+      var(--flow-2) 70%,
+      var(--foreground) 100%
+    );
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 8s linear infinite;
+  }
+
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+
+  .glass {
+    background: color-mix(in oklab, var(--card) 70%, transparent);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+  }
+
+  .hairline {
+    border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
+  }
+
+  .card-ring {
+    box-shadow:
+      0 1px 0 0 color-mix(in oklab, var(--foreground) 6%, transparent) inset,
+      0 0 0 1px color-mix(in oklab, var(--foreground) 8%, transparent);
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 220% center;
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pulse-live {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* thin custom scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--foreground) 14%, transparent);
+  border-radius: 999px;
+  border: 2px solid var(--background);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklab, var(--foreground) 24%, transparent);
+}
