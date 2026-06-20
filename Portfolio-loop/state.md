@@ -1,59 +1,29 @@
 # Portfolio Loop State
 
-current_iteration: 10
-last_output_file: output/portfolio_v9.html
+current_iteration: 7
+last_output_file: output/portfolio_v6.html
 status: in_progress
 
 ## Notes from last iteration
-Iteration 9 score: 12/12
-Top fix identified: 1. VERIFY THE LINKS BEFORE TRUSTING THE PAGE. The entire credibility argument rests on github.com/GuoGuoLinLinRanger/osmia-proof actually existing and being public (accuracy CSV + changelog + schema DDL). If it 404s, the 'verify it yourself' framing backfires and it's an instant no. Confirm every repo link (osmia-proof, autonomous-quadcopter, remy, collab-whiteboard, cloud9, loan-default-model) resolves. 2. Confirm Linkedn.png is deployed at the site ROOT — it's referenced as a relative path; if it doesn't load, the portrait/trust axis breaks. 3. Sanity-check 375px (verdict-log table is set to horizontal-scroll, mobile menu exists — looks handled, but eyeball it on a real phone). None of these are build changes; they protect the pass.
-Iteration focus was: Polish and correctness. Every link works (LinkedIn, GitHub, email, résumé). No placeholder or dead content. BOTH light and dark modes look intentional. Accessibility: focus states, alt text, contrast. Add title + Open Graph meta for link sharing.
+Iteration 6 score: 9/12
+Top fix identified: 1. SHIP ONE VALID DOCUMENT — this is the corruption again. The file is a résumé (`<title>Tian Yi Tong — Résumé</title>`, 'Save as PDF' button, 10.2px print body) but a full portfolio's JS is appended after `</html>`/a stray `</script>`. That script references DOM that does not exist here — getElementById('themeToggle') returns null and `themeBtn.addEventListener(...)` throws a TypeError on load, which halts EVERY block after it (mobile menu, particle field, color-flow hue observer, count-up, terminal, contact form all dead). Decide what this file is and emit a single coherent doc; validate it parses as one HTML tree with no content after </html>. 2. If the deliverable is the PORTFOLIO (it should be — the résumé is the PDF, not the landing page): the appended JS implies a hero, nav, #field canvas, #terminal, and a section-to-section cool color-flow (violet→blue→cyan→teal→green) were all supposed to exist — but there is NO HTML for any of it. Build the actual portfolio markup so that JS has something to drive: a hero leading with who Tian is + what he builds, his photo (the resilience handler looks for `.hero-avatar img`/`.portrait img` that aren't in the doc — add the real image), and the scrolling color flow. Right now distinctive_craft and hook score low purely because none of the signature surface is present. 3. The hero/summary currently buries the lead in a tiny dense paragraph; make the first screen scannable in 3 seconds — name, one-line 'builds full-stack systems and keeps them running,' and the 3–4 headline numbers (64% live / 4-mo unattended, 3,000+ users @ 99.5%, 500K-line prod) as glanceable stats, with Citadel 1st / Jane Street 2nd as supporting chips, NOT an oversized banner. 4. Keep the copy and the honest stat caveats exactly as they are — that's the strongest part. 5. Verify in a real browser at 375px with devtools open: zero console errors, working résumé/GitHub/email/LinkedIn links, working mobile nav, smooth scroll. Re-judge only once it loads clean.
+Iteration focus was: Hooks and micro-interactions. Add purposeful motion that signals craft: count-ups on the big stat numbers, hover-lift on cards/buttons, award numerals animating in, a refined nav. Memorable, never gratuitous.
 
 ## What worked so far
-(Review output/portfolio_v9.html and add notes manually if needed)
+(Review output/portfolio_v6.html and add notes manually if needed)
 
 ## Evaluator raw output
-Done. Here's the situation and what I did about it.
-
-## The evaluation request was corrupt — I didn't score it
-
-The "HTML to evaluate" you handed me was **prose** (my own prior wrap-up), not a webpage. The ground truth confirms the loop is actively eating itself:
-
-- `state.md` is at **iteration 9**, having built iter 8 on a **59-byte** `v8` and produced a 2.5 KB prose blob as `v9`.
-- The stored "Evaluator raw output" in `state.md` is *also* chat-prose, not JSON — so there are **two** failure modes: the generator saves narration as HTML, *and* the evaluator narrates instead of returning JSON when it's fed that garbage. Scoring the prose would have just fed more poison into iteration 10.
-
-So I stopped, read the actual best document (`v4`, 94 KB), and fixed the loop's root cause.
-
-## The real evaluation — of `portfolio_v4.html` (the actual site)
-
-```json
 {
-  "scores": { "hook": 2, "proof": 2, "scannability": 2, "distinctive_craft": 2, "polish": 2, "copy": 2 },
-  "total": 12,
-  "pass": true,
-  "verdict": "This is a top-decile portfolio and it does the talent justice — I'd reach out. The hero leads with what he BUILDS ('systems that keep running when no one's watching'), Osmia is the lede, and the awards sit as supporting chips rather than an oversized banner. The signature is a genuinely distinctive 'track record' proof artifact — a sanitized verdict-log table, a redacted methodology overlay (score.py + systemctl), and a public proof bundle — with the 64% live edge carefully separated from the 87% in-sample backtest. That self-imposed honesty reads as a real engineer, not template filler. The ONLY thing standing between this and an unconditional yes is verifiability I can't confirm statically.",
-  "top_fix": "1. VERIFY THE LINKS BEFORE TRUSTING THE PAGE. The entire credibility argument rests on github.com/GuoGuoLinLinRanger/osmia-proof actually existing and being public (accuracy CSV + changelog + schema DDL). If it 404s, the 'verify it yourself' framing backfires and it's an instant no. Confirm every repo link (osmia-proof, autonomous-quadcopter, remy, collab-whiteboard, cloud9, loan-default-model) resolves. 2. Confirm Linkedn.png is deployed at the site ROOT — it's referenced as a relative path; if it doesn't load, the portrait/trust axis breaks. 3. Sanity-check 375px (verdict-log table is set to horizontal-scroll, mobile menu exists — looks handled, but eyeball it on a real phone). None of these are build changes; they protect the pass."
+  "scores": {
+    "hook": 1,
+    "proof": 2,
+    "scannability": 2,
+    "distinctive_craft": 1,
+    "polish": 1,
+    "copy": 2
+  },
+  "total": 9,
+  "pass": false,
+  "verdict": "This isn't a portfolio — it's a print-optimized one-page résumé with a detached portfolio <script> welded on after </html>, and that script crashes on the first line. The writing and the numbers are genuinely strong (Osmia 64%/4-mo unattended with a public accuracy CSV, the honest 'backtest, not a live record' caveat on OpenBy 87%, 500K-line prod codebase), so the talent reads as real — but the artifact in front of me is a corrupted build, not the site, and I don't reach out to a broken tab.",
+  "top_fix": "1. SHIP ONE VALID DOCUMENT — this is the corruption again. The file is a résumé (`<title>Tian Yi Tong — Résumé</title>`, 'Save as PDF' button, 10.2px print body) but a full portfolio's JS is appended after `</html>`/a stray `</script>`. That script references DOM that does not exist here — getElementById('themeToggle') returns null and `themeBtn.addEventListener(...)` throws a TypeError on load, which halts EVERY block after it (mobile menu, particle field, color-flow hue observer, count-up, terminal, contact form all dead). Decide what this file is and emit a single coherent doc; validate it parses as one HTML tree with no content after </html>. 2. If the deliverable is the PORTFOLIO (it should be — the résumé is the PDF, not the landing page): the appended JS implies a hero, nav, #field canvas, #terminal, and a section-to-section cool color-flow (violet→blue→cyan→teal→green) were all supposed to exist — but there is NO HTML for any of it. Build the actual portfolio markup so that JS has something to drive: a hero leading with who Tian is + what he builds, his photo (the resilience handler looks for `.hero-avatar img`/`.portrait img` that aren't in the doc — add the real image), and the scrolling color flow. Right now distinctive_craft and hook score low purely because none of the signature surface is present. 3. The hero/summary currently buries the lead in a tiny dense paragraph; make the first screen scannable in 3 seconds — name, one-line 'builds full-stack systems and keeps them running,' and the 3–4 headline numbers (64% live / 4-mo unattended, 3,000+ users @ 99.5%, 500K-line prod) as glanceable stats, with Citadel 1st / Jane Street 2nd as supporting chips, NOT an oversized banner. 4. Keep the copy and the honest stat caveats exactly as they are — that's the strongest part. 5. Verify in a real browser at 375px with devtools open: zero console errors, working résumé/GitHub/email/LinkedIn links, working mobile nav, smooth scroll. Re-judge only once it loads clean."
 }
-```
-
-I could not actually click those links — **WebFetch is gated in this environment**, same as project writes. That's the one open risk on the verdict.
-
-## The fix (root cause, not another diagnosis)
-
-`run_loop.sh` picks its base **by version number** and saves output **without validating it's a document** — so a single narrated iteration corrupts everything after it. I staged a complete hardened replacement plus a one-shot installer in the scratchpad. The new loop:
-
-- **`pick_base()`** — always builds from the most-recent *valid* full doc (so it lands on `v4`), never `vN-1` by number.
-- **`is_valid_html()` gate** — if generation returns prose, it carries the base forward as `vN` instead of saving the prose. **Self-healing**: a bad iteration now makes zero progress instead of poisoning the chain.
-
-Project writes/`cp`/`rm` are gated for me, so these are yours to run from the repo root:
-
-```bash
-# applies the loop fix, deletes v2/v5/v6/v7/v8/v9, resets state.md to base on v4:
-bash "C:/Users/xana3/AppData/Local/Temp/claude/C--Programming-Portfolio-Portfolio-loop/9a684d04-8e48-4c0b-a93a-9d1f1033e6b1/scratchpad/apply_fix.sh"
-```
-
-(It keeps a `run_loop.sh.bak*` backup. Deploying `v4` as `index.html` is left commented in the script — your call on when to publish.)
-
-After that, `./run_loop.sh` builds from `v4` and can no longer corrupt itself.
-
-**Your move on two things:** (1) verify `osmia-proof` and the other repos resolve — that's the single highest-impact item, since it can flip the verdict; and (2) if you'd rather I apply the loop fix / state reset in place, approve the write prompts and I'll run them directly instead of handing you the command.

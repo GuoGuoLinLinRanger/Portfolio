@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tian Yi Tong — Full-Stack Engineer</title>
-<meta name="description" content="Tian Yi Tong — Waterloo CS. Full-stack engineer: I build the whole thing — React front ends, FastAPI / ASP.NET back ends, and the Linux infra it runs on. OpenBy, Osmia (autonomous trading, 4+ months unattended), a 500K-line production codebase. 1st of ~120 at the Citadel Trading Challenge.">
+<meta name="description" content="Tian Yi Tong — Waterloo CS. Full-stack engineer: I build the whole thing — React front ends, FastAPI / ASP.NET back ends, and the Linux infra it runs on. OpenBy, Osmia, a 500K-line production codebase. 1st of ~120 at the Citadel Trading Challenge.">
 <link rel="canonical" href="https://tian-yi-tong.vercel.app/">
 <meta property="og:title" content="Tian Yi Tong — Full-Stack Engineer">
-<meta property="og:description" content="I build the whole thing — frontend, backend, and the box it runs on. OpenBy (React · FastAPI · Supabase · Docker), Osmia (autonomous trading, unattended 4+ months). 1st / ~120 at Citadel.">
+<meta property="og:description" content="I build the whole thing — frontend, backend, and the box it runs on. OpenBy (React · FastAPI · Supabase · Docker), Osmia (7 services, unattended 4+ months), a 500K-line production codebase. 1st / ~120 at Citadel.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tian-yi-tong.vercel.app/">
 <meta property="og:image" content="https://tian-yi-tong.vercel.app/Linkedn.png">
 <meta property="og:image:alt" content="Tian Yi Tong">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tian Yi Tong — Full-Stack Engineer">
-<meta name="twitter:description" content="Full-stack engineer who ships end to end — UI, API, and the infra it runs on. Built Osmia, an autonomous trading system. 1st / ~120 at the Citadel Trading Challenge.">
+<meta name="twitter:description" content="Full-stack engineer who ships end to end — UI, API, and the infra it runs on. 1st / ~120 at the Citadel Trading Challenge.">
 <meta name="theme-color" content="#0a0a0d">
 <script>
 (function(){try{var t=localStorage.getItem('tyt-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();
@@ -56,7 +56,7 @@ nav.solid{background:var(--nav-solid);border-bottom:1px solid var(--line-soft)}
 .nav-links a:hover{color:var(--ink)}.nav-links a.active{color:var(--amber)}
 .nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:1.5px;background:var(--amber);border-radius:2px}
 .nav-right{display:flex;align-items:center;gap:14px}
-.nav-resume{display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber-glow);border-radius:999px;padding:9px 15px;transition:border-color .25s,background .25s,transform .25s;cursor:pointer}
+.nav-resume{display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber-glow);border-radius:999px;padding:9px 15px;transition:border-color .25s,background .25s,transform .25s}
 .nav-resume:hover{border-color:var(--amber);background:var(--amber-glow);transform:translateY(-1px)}
 .icon-btn{width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer;transition:border-color .25s,color .25s,transform .25s}
 .icon-btn:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-1px)}
@@ -76,15 +76,12 @@ body.menu-open #mobileMenu{opacity:1;visibility:visible;transform:none}
 #mobileMenu a.m-link{font-family:var(--fd);font-weight:700;font-size:clamp(2rem,9vw,3rem);letter-spacing:-.03em;color:var(--ink);padding:12px 0;border-bottom:1px solid var(--line-soft);display:flex;align-items:baseline;gap:14px}
 #mobileMenu a.m-link span{font-family:var(--fm);font-size:.8rem;color:var(--ink-faint)}
 #mobileMenu .m-foot{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap;font-family:var(--fm);font-size:.82rem}
-#mobileMenu .m-foot a{border:1px solid var(--line);border-radius:999px;padding:13px 18px;color:var(--ink-dim);cursor:pointer}
+#mobileMenu .m-foot a{border:1px solid var(--line);border-radius:999px;padding:13px 18px;color:var(--ink-dim)}
 #mobileMenu .m-foot a.m-resume{background:var(--amber);color:var(--on-amber);border-color:var(--amber);font-weight:500}
 #hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
 #hero .wrap{padding-top:120px;padding-bottom:64px}
-.hero-id{margin-bottom:26px;display:flex;align-items:center;gap:13px;flex-wrap:wrap}
-.hero-id .sep{width:34px;height:1px;background:var(--line)}
-.hero-avatar{flex:0 0 auto;width:60px;height:60px;border-radius:14px;overflow:hidden;border:1px solid var(--line);position:relative;box-shadow:0 12px 30px -18px rgba(0,0,0,.8)}
-.hero-avatar img{width:100%;height:100%;object-fit:cover;filter:grayscale(.12) contrast(1.02)}
-.hero-avatar::after{content:"";position:absolute;inset:0;border-radius:14px;box-shadow:inset 0 0 0 1px var(--amber-glow);pointer-events:none}
+.hero-eyebrow{margin-bottom:28px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.hero-eyebrow .sep{width:34px;height:1px;background:var(--line)}
 h1.hero-title{font-size:clamp(2.5rem,7.2vw,5.6rem);font-weight:700;max-width:17ch;letter-spacing:-.04em}
 h1.hero-title .hl{color:var(--amber);white-space:nowrap}
 .hero-sub{margin-top:30px;max-width:62ch;font-size:clamp(1.02rem,1.4vw,1.28rem);color:var(--ink-dim);line-height:1.55}
@@ -104,7 +101,8 @@ h1.hero-title .hl{color:var(--amber);white-space:nowrap}
 .tape .cell:last-child{border-right:none}
 .tape .fig{font-family:var(--fd);font-weight:700;font-size:clamp(2rem,4.2vw,3.1rem);letter-spacing:-.045em;line-height:.9;font-variant-numeric:tabular-nums;display:inline-block;color:var(--ink)}
 .tape .fig.amber{color:var(--amber)}
-.tape .cap{margin-top:14px;font-family:var(--fm);font-size:.68rem;line-height:1.6;color:var(--ink-dim);max-width:24ch}
+.tape .cap{margin-top:14px;font-family:var(--fm);font-size:.66rem;line-height:1.55;color:var(--ink-faint)}
+.tape .cap b{display:block;color:var(--amber);font-weight:500;letter-spacing:.09em;text-transform:uppercase;font-size:.62rem;margin-bottom:4px}
 .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:.64rem;letter-spacing:.2em;color:var(--ink-faint);text-transform:uppercase;display:flex;align-items:center;gap:10px}
 .scrollcue .line{width:1px;height:34px;background:linear-gradient(var(--amber),transparent);animation:cue 2.2s ease-in-out infinite}
 @keyframes cue{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
@@ -268,7 +266,8 @@ footer{border-top:1px solid var(--line-soft);padding:30px 0;margin-top:clamp(56p
     <a href="#contact">Contact</a>
   </div>
   <div class="nav-right">
-    <a class="nav-resume" data-resume href="#resume" rel="noopener">Résumé <span aria-hidden="true">↗</span></a>
+    <!-- TODO: deploy Tian_Yi_Tong_Resume.pdf alongside this file (same folder as Linkedn.png) -->
+    <a class="nav-resume" href="Tian_Yi_Tong_Resume.pdf" target="_blank" rel="noopener">Résumé <span aria-hidden="true">↗</span></a>
     <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme">
       <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -286,7 +285,7 @@ footer{border-top:1px solid var(--line-soft);padding:30px 0;margin-top:clamp(56p
   <a class="m-link" href="#now"><span>04</span>Now</a>
   <a class="m-link" href="#contact"><span>05</span>Contact</a>
   <div class="m-foot">
-    <a class="m-resume" data-resume href="#resume" rel="noopener">Résumé ↗</a>
+    <a class="m-resume" href="Tian_Yi_Tong_Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
     <a href="mailto:tyttong@uwaterloo.ca">✉ Email</a>
     <a href="https://www.linkedin.com/in/tian-yi-tong/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://github.com/GuoGuoLinLinRanger" target="_blank" rel="noopener">GitHub</a>
@@ -295,14 +294,13 @@ footer{border-top:1px solid var(--line-soft);padding:30px 0;margin-top:clamp(56p
 
 <section id="hero">
   <div class="wrap">
-    <div class="hero-id">
-      <span class="hero-avatar"><img src="Linkedn.png" alt="Tian Yi Tong"></span>
+    <div class="hero-eyebrow">
       <span class="eyebrow">Tian Yi Tong</span>
       <span class="sep"></span>
-      <span class="eyebrow" style="color:var(--ink-faint)">Full-Stack &amp; Autonomous Systems · Waterloo CS</span>
+      <span class="eyebrow" style="color:var(--ink-faint)">Full-Stack Engineer · Waterloo CS</span>
     </div>
     <h1 class="hero-title">I build the <span class="hl">whole thing</span> — and keep it running.</h1>
-    <p class="hero-sub"><strong>OpenBy</strong> is mine end to end — React, FastAPI, Supabase, Docker, three LLMs in one pipeline. <strong>Osmia</strong>, my autonomous trading system, has researched and traded on its own for <strong>four-plus months, zero stalls.</strong> I'm as at home in a <span class="edge">React component as a SQL query plan, a systemd unit — or a trading model.</span></p>
+    <p class="hero-sub"><strong>OpenBy</strong> is mine end to end — React, FastAPI, Supabase, Docker, three LLMs in one pipeline. <strong>Osmia</strong> has held seven services on a home Linux box <strong>four-plus months unattended</strong>, zero stalls. I'm as comfortable in a <span class="edge">React component as a SQL query plan or a systemd unit file.</span></p>
     <div class="cred">
       <span class="chip award" aria-label="First place overall at the Citadel Trading Challenge, about 120 teams, top risk-adjusted P and L">
         <span class="medal" aria-hidden="true">1<sup>st</sup></span>
@@ -312,10 +310,10 @@ footer{border-top:1px solid var(--line-soft);padding:30px 0;margin-top:clamp(56p
       <span class="chip"><b>Top 10%</b> · Putnam <span class="ctx">~500 / 4,000</span></span>
     </div>
     <div class="tape">
-      <div class="cell"><div class="fig amber">3,000+</div><div class="cap">students on the platform I keep online at ~99.5%</div></div>
-      <div class="cell"><div class="fig">500K</div><div class="cap">lines of C++/C# I ship to, in production</div></div>
-      <div class="cell"><div class="fig">4+ mo</div><div class="cap">Osmia trading autonomously · unattended · 0 stalls</div></div>
-      <div class="cell"><div class="fig">10k+</div><div class="cap">Monte Carlo paths per OpenBy forecast</div></div>
+      <div class="cell"><div class="fig amber">3,000+</div><div class="cap"><b>Front end</b>students on the platform I ship &amp; keep online</div></div>
+      <div class="cell"><div class="fig">500K</div><div class="cap"><b>Back end</b>line C++/C# codebase, in production</div></div>
+      <div class="cell"><div class="fig">4+ mo</div><div class="cap"><b>Infra</b>7 services · unattended · 0 stalls</div></div>
+      <div class="cell"><div class="fig">10k+</div><div class="cap"><b>Data &amp; ML</b>Monte Carlo paths per OpenBy forecast</div></div>
     </div>
   </div>
   <div class="scrollcue"><span>Scroll</span><span class="line"></span></div>
@@ -569,8 +567,9 @@ footer{border-top:1px solid var(--line-soft);padding:30px 0;margin-top:clamp(56p
     <div class="contact-grid">
       <div class="contact-main">
         <h2 class="contact-h reveal" data-d="1">Building something that has to <span class="amber">actually ship?</span></h2>
-        <p class="contact-sub reveal" data-d="1">I'm after full-stack, platform, and autonomous-systems roles where the bar is high and the feedback is honest. Tell me what you're building — I read everything that lands here.</p>
-        <form id="contactForm" class="cform reveal" data-d="2" novalidate>
+        <p class="contact-sub reveal" data-d="1">I'm after full-stack, product, and platform roles where the bar is high and the feedback is honest. Tell me what you're building — I read everything that lands here.</p>
+        <form id="contactForm" class="cform reveal" data-d="2" action="https://formspree.io/f/REPLACE_WITH_FORM_ID" method="POST" novalidate>
+          <!-- TODO: replace REPLACE_WITH_FORM_ID with the real Formspree form id -->
           <div class="fl"><label for="cf-name">Name</label><input id="cf-name" name="name" type="text" required autocomplete="name" placeholder="Your name"></div>
           <div class="fl"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" required autocomplete="email" placeholder="you@company.com"></div>
           <div class="fl"><label for="cf-msg">Message</label><textarea id="cf-msg" name="message" required rows="4" placeholder="What are you building, and what's the role?"></textarea></div>
@@ -582,7 +581,7 @@ footer{border-top:1px solid var(--line-soft);padding:30px 0;margin-top:clamp(56p
         <div class="portrait"><img src="Linkedn.png" alt="Tian Yi Tong"><div class="cap">Tian Yi Tong · Waterloo, ON</div></div>
         <div class="direct">
           <span class="ds">Grab the one-pager</span>
-          <a class="clink resume" data-resume href="#resume" rel="noopener">↓ Résumé — view &amp; save PDF</a>
+          <a class="clink resume" href="Tian_Yi_Tong_Resume.pdf" target="_blank" rel="noopener">↓ Résumé — PDF</a>
           <span class="ds" style="margin-top:6px">Or reach me directly</span>
           <a class="clink primary" href="mailto:tyttong@uwaterloo.ca">✉ tyttong@uwaterloo.ca</a>
           <a class="clink" href="https://www.linkedin.com/in/tian-yi-tong/" target="_blank" rel="noopener">in · LinkedIn</a>
@@ -596,147 +595,6 @@ footer{border-top:1px solid var(--line-soft);padding:30px 0;margin-top:clamp(56p
     </footer>
   </div>
 </section>
-
-<script type="text/template" id="resumeDoc"><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tian Yi Tong — Résumé</title>
-<meta name="description" content="Tian Yi Tong — Full-stack engineer. University of Waterloo CS. React/Next front ends, FastAPI/ASP.NET back ends, Linux infra. Citadel Trading Challenge 1st place.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{--ink:#16140f;--ink-2:#3e3a32;--ink-3:#6f6a5e;--line:#e2ddd2;--line-soft:#eee9df;--accent:#1f6f6a;--accent-deep:#155350;--paper:#ffffff;--tint:#f5f8f7;--fd:"Bricolage Grotesque",system-ui,sans-serif;--fb:"Inter",system-ui,sans-serif;--fm:"JetBrains Mono",ui-monospace,monospace}
-*{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
-body{background:#d9d6cd;color:var(--ink);font-family:var(--fb);line-height:1.4;font-size:10.2px;-webkit-font-smoothing:antialiased;padding:24px 14px}
-.bar{max-width:760px;margin:0 auto 14px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center}
-.bar .hint{font-family:var(--fm);font-size:10px;color:#6f6a5e}
-.btn{font-family:var(--fm);font-size:10.5px;letter-spacing:.04em;border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:999px;padding:9px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
-.btn:hover{background:var(--accent-deep)}
-.page{max-width:760px;margin:0 auto;background:var(--paper);color:var(--ink);padding:40px 44px;border-radius:4px;box-shadow:0 24px 60px -34px rgba(0,0,0,.45)}
-h1{font-family:var(--fd);font-weight:800;font-size:25px;letter-spacing:-.025em;line-height:1}
-.role{font-family:var(--fd);font-weight:600;font-size:12px;color:var(--accent);margin-top:5px}
-.head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:13px}
-.contact{font-family:var(--fm);font-size:9.6px;color:var(--ink-2);text-align:right;line-height:1.7}
-.contact a{color:var(--ink-2);text-decoration:none}
-.summary{font-size:10.4px;color:var(--ink-2);margin-bottom:14px;line-height:1.5}
-.summary b{color:var(--ink);font-weight:600}
-h2{font-family:var(--fm);font-size:9.4px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--line);padding-bottom:4px;margin:14px 0 9px}
-.awards{display:flex;flex-wrap:wrap;gap:7px}
-.award{font-family:var(--fm);font-size:9.4px;border:1px solid var(--line);border-radius:6px;padding:6px 10px;background:var(--tint)}
-.award b{font-family:var(--fd);color:var(--accent-deep);font-weight:700}
-.job{margin-bottom:11px}
-.job:last-child{margin-bottom:0}
-.job-top{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
-.job-top .t{font-family:var(--fd);font-weight:700;font-size:12px}
-.job-top .t span{color:var(--accent);font-weight:600}
-.job-top .d{font-family:var(--fm);font-size:9px;color:var(--ink-3);white-space:nowrap}
-.stack{font-family:var(--fm);font-size:8.8px;color:var(--ink-3);margin:2px 0 5px}
-ul{list-style:none}
-li{position:relative;padding-left:12px;color:var(--ink-2);margin:2.5px 0;line-height:1.42}
-li::before{content:"";position:absolute;left:0;top:6px;width:4px;height:4px;border-radius:50%;background:var(--accent)}
-li b{color:var(--ink);font-weight:600}
-.n{font-family:var(--fd);color:var(--accent-deep);font-weight:700}
-.proj{margin-bottom:8px}
-.proj .pt{font-family:var(--fd);font-weight:700;font-size:11px}
-.proj .pt span{font-family:var(--fm);font-weight:400;font-size:8.6px;color:var(--ink-3)}
-.proj p{color:var(--ink-2);margin-top:1px;line-height:1.42}
-.proj p b{color:var(--ink);font-weight:600}
-.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:4px 22px}
-.srow{font-size:9.6px;line-height:1.5}
-.srow b{font-family:var(--fm);font-size:8.8px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);font-weight:500;display:inline-block;min-width:72px}
-.foot{margin-top:14px;padding-top:9px;border-top:1px solid var(--line-soft);font-family:var(--fm);font-size:8.6px;color:var(--ink-3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-@media print{@page{size:Letter;margin:0}body{background:#fff;padding:0;font-size:9.7px}.bar{display:none}.page{box-shadow:none;border-radius:0;max-width:none;margin:0;padding:0.42in 0.55in}a{color:inherit}}
-@media(max-width:560px){.page{padding:28px 22px}.head{flex-direction:column}.contact{text-align:left}.skills{grid-template-columns:1fr}}
-</style>
-</head>
-<body>
-<div class="bar">
-  <span class="hint">One-page résumé · use &ldquo;Save as PDF&rdquo; for a clean copy</span>
-  <button class="btn" type="button" onclick="window.print()">&#8595; Save as PDF</button>
-</div>
-<main class="page">
-  <header class="head">
-    <div>
-      <h1>Tian Yi Tong</h1>
-      <div class="role">Full-Stack Engineer &middot; Autonomous Systems</div>
-    </div>
-    <div class="contact">
-      <a href="mailto:tyttong@uwaterloo.ca">tyttong@uwaterloo.ca</a><br>
-      <a href="https://www.linkedin.com/in/tian-yi-tong/">linkedin.com/in/tian-yi-tong</a><br>
-      <a href="https://github.com/GuoGuoLinLinRanger">github.com/GuoGuoLinLinRanger</a><br>
-      Waterloo, ON
-    </div>
-  </header>
-  <p class="summary">I build systems end to end and keep them running &mdash; <b>React/Next</b> front ends, <b>FastAPI/ASP.NET</b> back ends, and the <b>Linux</b> infra underneath. Shipped to a 500K-line production codebase and a platform with 3,000+ users; built <b>Osmia</b>, an autonomous trading system that has run unattended 4+ months. 1st of ~120 at the Citadel Trading Challenge.</p>
-  <section>
-    <h2>Awards</h2>
-    <div class="awards">
-      <span class="award"><b>1st</b> &middot; Citadel Trading Challenge &mdash; overall, ~120 teams</span>
-      <span class="award"><b>2nd</b> &middot; Jane Street Trading Competition &mdash; ~80 teams</span>
-      <span class="award"><b>Top 10%</b> &middot; Putnam Mathematical Competition &mdash; ~500 / 4,000</span>
-    </div>
-  </section>
-  <section>
-    <h2>Experience</h2>
-    <div class="job">
-      <div class="job-top"><div class="t">Software Engineer Intern &middot; <span>BusPlanner</span></div><div class="d">May 2024 &ndash; Aug 2025</div></div>
-      <div class="stack">C++ &middot; C# &middot; ASP.NET &middot; SQL Server &middot; PowerShell &middot; GitHub Actions</div>
-      <ul>
-        <li>Owned enrollment &amp; eligibility end to end across ASP.NET, C# business logic, legacy C++/MFC and SQL Server &mdash; <span class="n">15,000</span> student records across <b>100+ districts</b> daily.</li>
-        <li>Closed <span class="n">~40</span> production defects in a <b>500,000-line</b> codebase; rewrote 3 hot queries to cut enrollment page loads <span class="n">~35%</span>.</li>
-        <li>Led 8 engineers off Azure DevOps to GitHub + Jira (CI/CD, branching, traceability); built a PowerShell provisioner that cut onboarding from ~1 day to under 2 hours.</li>
-      </ul>
-    </div>
-    <div class="job">
-      <div class="job-top"><div class="t">Platform Engineer &middot; <span>UWaterloo CS Club</span></div><div class="d">Sept 2025 &ndash; Present</div></div>
-      <div class="stack">React &middot; Next.js &middot; TypeScript &middot; GCP &middot; GitHub Actions</div>
-      <ul>
-        <li>Maintain the production platform for <span class="n">3,000+</span> active CS students at <b>~99.5% uptime</b> &mdash; deployed to GCP via GitHub Actions with automated rollback.</li>
-        <li>Shipped <span class="n">10+</span> dynamic modules requirements-to-prod on 1&ndash;2 week turnarounds; cut render overhead <span class="n">~20%</span> across 25+ reviewed PRs.</li>
-      </ul>
-    </div>
-    <div class="job">
-      <div class="job-top"><div class="t">Firmware Test Engineer &middot; <span>Midnight Sun Solar Car</span></div><div class="d">Sept 2025 &ndash; Present</div></div>
-      <div class="stack">C &middot; GDB &middot; Unity Testing Framework &middot; Embedded Systems</div>
-      <ul>
-        <li>Took firmware test coverage from <span class="n">0 &rarr; ~70%</span> across 12 safety-critical modules; root-caused 6 defects at the register level with GDB on a car built to race 3,000 km.</li>
-        <li>Built a simulated test environment for <span class="n">4&times;</span> faster iteration than testing on hardware.</li>
-      </ul>
-    </div>
-  </section>
-  <section>
-    <h2>Projects</h2>
-    <div class="proj"><div class="pt">OpenBy &mdash; Market-Forecasting Platform <span>&middot; Python &middot; FastAPI &middot; React &middot; Supabase &middot; Docker &middot; GPT/Claude/Gemini</span></div>
-      <p>Built solo, end to end. Fuses CPI, volatility, sentiment &amp; Trends, runs <b>Monte Carlo over 10,000+ paths</b>, orchestrates three LLMs. <b>87%</b> directional on 1,000+ in-sample backtests; ~200 forecasts/day at peak; response time 1.8s &rarr; 1.1s.</p></div>
-    <div class="proj"><div class="pt">Osmia &mdash; Autonomous LLM Trading System <span>&middot; Python &middot; DuckDB &middot; self-hosted Qwen &middot; systemd &middot; ccxt &middot; Linux</span></div>
-      <p>7 systemd services, 24/7 on a home Linux box &mdash; <b>4+ months unattended, zero stalls</b>. <b>64%</b> directional across 380+ scored verdicts via a closed learning loop; self-built 4-cohort Fear &amp; Greed index drives adaptive risk. Grew 423 &rarr; ~5,000 lines across 13 versions; accuracy CSV public.</p></div>
-    <div class="proj"><div class="pt">Real-Time Collaborative Whiteboard <span>&middot; TypeScript &middot; WebSockets &middot; PostgreSQL &middot; JWT</span></div>
-      <p><b>Sub-100ms</b> sync across 20+ concurrent users, 1,000+ events/session; 0 state-divergence bugs over 200+ sessions.</p></div>
-    <div class="proj"><div class="pt">Autonomous Quadcopter &middot; Cloud9 (MariHacks 2nd) <span>&middot; ArduPilot &middot; MAVLink &middot; OpenCV &middot; SITL &middot; Three.js/WebGL</span></div>
-      <p>Drone built from scratch with ~30 cm precision landing (PID + OpenCV), identical stack in SITL and hardware. Cloud9: a from-scratch 3D render pipeline at 60 FPS.</p></div>
-  </section>
-  <section>
-    <h2>Education &amp; Skills</h2>
-    <div class="skills">
-      <div class="srow"><b>Education</b> University of Waterloo &mdash; Honours CS, <span class="n">3.93/4.00</span> (2025&ndash;2029)</div>
-      <div class="srow"><b>Languages</b> Python &middot; C++ &middot; C# &middot; C &middot; TypeScript &middot; JS &middot; SQL &middot; PowerShell</div>
-      <div class="srow"><b>Frontend</b> React &middot; Next.js &middot; TypeScript &middot; WebSockets &middot; Three.js</div>
-      <div class="srow"><b>Backend</b> FastAPI &middot; ASP.NET &middot; REST &middot; JWT &middot; LLM orchestration</div>
-      <div class="srow"><b>Infra</b> Linux &middot; systemd &middot; Docker &middot; GitHub Actions &middot; GCP &middot; CI/CD</div>
-      <div class="srow"><b>Data/ML</b> PostgreSQL &middot; DuckDB &middot; SQL Server &middot; Monte Carlo &middot; scikit-learn</div>
-    </div>
-  </section>
-  <div class="foot">
-    <span>tyttong@uwaterloo.ca &middot; linkedin.com/in/tian-yi-tong &middot; github.com/GuoGuoLinLinRanger</span>
-    <span>Full portfolio: tian-yi-tong.vercel.app</span>
-  </div>
-</main>
-</body>
-</html></script>
 
 <script>
 (function(){
@@ -770,28 +628,6 @@ li b{color:var(--ink);font-weight:600}
   menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
   window.addEventListener('resize', function(){ if(window.innerWidth>900) setMenu(false); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') setMenu(false); });
-
-  /* résumé: self-contained, opened from an inert template via a Blob URL — no external file, so it can never 404 */
-  (function(){
-    var tpl = document.getElementById('resumeDoc'); if(!tpl) return;
-    var url = null;
-    function ensure(){
-      if(url) return url;
-      try{ url = URL.createObjectURL(new Blob([tpl.textContent], {type:'text/html'})); }catch(e){ url = null; }
-      return url;
-    }
-    var u = ensure();
-    var links = document.querySelectorAll('[data-resume]');
-    links.forEach(function(a){
-      if(u){ a.setAttribute('href', u); a.setAttribute('target','_blank'); a.setAttribute('rel','noopener'); }
-      a.addEventListener('click', function(e){
-        var x = ensure();
-        if(!x) return; /* let default happen if blob unsupported */
-        if(a.getAttribute('href') !== x) a.setAttribute('href', x);
-      });
-    });
-    window.__openResume = function(){ var x = ensure(); if(x){ window.open(x, '_blank', 'noopener'); return true; } return false; };
-  })();
 
   /* palette (theme + flow aware) for the particle field */
   var currentHue = 250;
@@ -942,7 +778,7 @@ li b{color:var(--ink);font-weight:600}
       skills:"frontend: React/Next/TS · backend: FastAPI/ASP.NET/C++ · infra: Linux/Docker/GCP · data: Postgres/DuckDB",
       experience:"BusPlanner — 500K-line C++/C# in prod · UW CS Club — 3,000+ users · Midnight Sun — firmware",
       awards:"Citadel 1st/120 · Jane Street 2nd/80 · Putnam top 10%",
-      resume:"opening a one-page résumé in a new tab — also top-right or in Contact (hit Save as PDF there).",
+      resume:"one-page PDF: Tian_Yi_Tong_Resume.pdf — grab it top-right or in the contact section.",
       now:"solar-car firmware + an autonomous quadcopter, this term.",
       contact:"tyttong@uwaterloo.ca · linkedin.com/in/tian-yi-tong · github.com/GuoGuoLinLinRanger",
       whoami:"tian-yi-tong",
@@ -955,33 +791,39 @@ li b{color:var(--ink);font-weight:600}
       line('$ '+raw, 'echo');
       if(!cmd) return;
       if(cmd==='clear'){ out.innerHTML=''; return; }
-      if(Object.prototype.hasOwnProperty.call(R,cmd)){
-        line(R[cmd]);
-        if(cmd==='resume' && window.__openResume) window.__openResume();
-      }
+      if(Object.prototype.hasOwnProperty.call(R,cmd)) line(R[cmd]);
       else line("command not found: "+cmd+" — try 'help'", 'err');
     }
     input.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); run(input.value); input.value=''; } });
     if(box) box.addEventListener('click', function(e){ if(e.target!==input) input.focus(); });
   })();
 
-  /* contact form: validate, then open a pre-filled email so a message is NEVER silently lost */
+  /* contact form: validate, then either POST to a live Formspree endpoint or fall back to a pre-filled email so a message is NEVER silently lost */
   (function(){
     var form = document.getElementById('contactForm'); if(!form) return;
     var status = document.getElementById('cformStatus');
+    var action = form.getAttribute('action') || '';
+    var placeholder = action.indexOf('REPLACE_WITH_FORM_ID') !== -1;
     function val(name){ var el = form.elements[name]; return el && el.value ? el.value.trim() : ''; }
     form.addEventListener('submit', function(e){
-      e.preventDefault();
       if(!form.checkValidity()){
+        e.preventDefault();
         if(status){ status.innerHTML='Add your name, a valid email, and a message — then resend.'; status.className='cform-status err'; }
         form.reportValidity();
         return;
       }
-      var nm = val('name'), em = val('email'), msg = val('message');
-      var subject = 'Portfolio — ' + (nm || 'new message');
-      var body = msg + '\n\n— ' + nm + (em ? ' <' + em + '>' : '');
-      if(status){ status.innerHTML='Opening your email app, pre-filled… if nothing happens, write me at <a href="mailto:tyttong@uwaterloo.ca" style="color:var(--amber)">tyttong@uwaterloo.ca</a>.'; status.className='cform-status ok'; }
-      window.location.href = 'mailto:tyttong@uwaterloo.ca?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      if(placeholder){
+        /* No live form endpoint configured yet — open the visitor's email client pre-filled instead of pretending to send. */
+        e.preventDefault();
+        var nm = val('name'), em = val('email'), msg = val('message');
+        var subject = 'Portfolio — ' + (nm || 'new message');
+        var body = msg + '\n\n— ' + nm + (em ? ' <' + em + '>' : '');
+        if(status){ status.innerHTML='Opening your email app, pre-filled… if nothing happens, write me at <a href="mailto:tyttong@uwaterloo.ca" style="color:var(--amber)">tyttong@uwaterloo.ca</a>.'; status.className='cform-status ok'; }
+        window.location.href = 'mailto:tyttong@uwaterloo.ca?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        return;
+      }
+      /* live endpoint configured — let the native POST through */
+      if(status){ status.textContent='Sending…'; status.className='cform-status ok'; }
     });
   })();
 

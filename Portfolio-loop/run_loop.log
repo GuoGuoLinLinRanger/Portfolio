@@ -1,12 +1,13 @@
+Using generation prompt: PROMPT_FULLSTACK.md
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   ITERATION 1 / 10
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Sending to Claude Code (generation)...
-Saved to output/portfolio_v1.html
+Saved to output/portfolio_v1.html (valid document — base advanced).
 Running evaluator...
-Score: 10/12 — Pass: False
-Top fix: 1. REWRITE THE HERO H1 TO LEAD WITH WHAT HE BUILDS, NOT THE AWARD. Right now the biggest text on the page is 'I placed 1st of 120 at Citadel, 2nd of 80 at Jane Street' — that makes the trophy the headline. Flip it: make Osmia / the autonomous-systems identity the H1 (e.g. 'I build autonomous systems that keep running when no one's watching' or a sharp Osmia-led line), and demote Citadel/Jane Street to the supporting eyebrow or the stat-tape as credibility, not the headline. The sub and tape already do this well — the H1 just needs to match. This is the #1 lever on my decision; it's the difference between 'award-chaser' and 'builder.' 2. IMPLEMENT THE SECTION-TO-SECTION COLOR FLOW. The whole site is one static solar-amber accent. There's no evolving palette as I scroll — it reads as a single-accent dark template, which is exactly the forgettable category. Introduce a cohesive flow that shifts hue section-by-section (e.g. cool indigo/teal through Record→Experience warming toward amber at Projects→Contact), driven by the scroll, executed subtly so it never hurts contrast or readability. This is what would make the craft memorable instead of merely competent. 3. FIX THE GITHUB PROJECT LINKS. Every project 'GitHub ↗' points at a search query (?tab=repositories&q=quadcopter), not the actual repo. A reviewer clicking through lands on a search page — that reads as 'no real link.' Point each at the direct repo URL. If a repo genuinely doesn't exist or is private, drop the link rather than faking it with a search. 4. GUARANTEE THE PORTRAIT SHIPS. The contact photo is a relative 'Linkedn.png' (also a misspelled filename) and the og:image depends on it too — if it 404s, the trust-building section and the social card both break. Verify it deploys alongside the HTML and consider correcting the filename. 5. AFTER #1, RE-BALANCE THE STAT TAPE. Once the H1 leads with the build, make sure the tape's Osmia cells stay first and the Putnam/awards cell reads as supporting, so the entire first screen reinforces 'builder first, credentials second.'
+Score: 11/12 — Pass: False
+Top fix: 1. SHIP-BLOCKER — the contact form is broken. action="https://formspree.io/f/REPLACE_WITH_FORM_ID" is a placeholder with a TODO comment; submissions go nowhere and the JS still shows 'Sending…' as if it worked. Either wire in the real Formspree form ID, or delete the form entirely and make the direct mailto/LinkedIn buttons the CTA. A form that silently eats messages is worse than no form. This is the single biggest thing standing between you and a callback. 2. ADD A RÉSUMÉ LINK. A hiring manager's first instinct is to grab the one-page PDF — there is email, LinkedIn, and GitHub but no résumé/CV anywhere. Add a prominent 'Résumé ↗' link in the nav (and again in Contact and the mobile menu), pointing to a hosted PDF. Highest-leverage 10-minute change for recruiter efficiency. 3. VERIFY EVERY OUTBOUND LINK RESOLVES before shipping: the GitHub profile (GuoGuoLinLinRanger) and each repo (osmia-proof, collab-whiteboard, autonomous-quadcopter, cloud9, remy, loan-default-model). One 404 on the 'See the proof bundle' button — which is the entire credibility play for the 64% claim — instantly turns a strength into a red flag. 4. CONFIRM THE PORTRAIT LOADS. src="Linkedn.png" (note the misspelling) is a relative path also used as the og:image; if the file isn't deployed under that exact name, the one trust-building photo is a broken-image icon. While you're there, consider surfacing the photo higher than the very bottom of the page. 5. POLISH-ONLY, do AFTER 1–4: the page is long — consider tightening the gap between the two flagship features so a skimmer hits both OpenBy and Osmia faster, and double-check the 375px layout of the architecture diagrams and verdict-log table don't overflow.
 state.md updated.
 Waiting 3 seconds before next iteration...
 
@@ -14,10 +15,10 @@ Waiting 3 seconds before next iteration...
   ITERATION 2 / 10
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Sending to Claude Code (generation)...
-Saved to output/portfolio_v2.html
+Saved to output/portfolio_v2.html (valid document — base advanced).
 Running evaluator...
-Score: 0/12 — Pass: False
-Top fix: See evaluator output
+Score: 11/12 — Pass: False
+Top fix: 1. DEPLOY THE RÉSUMÉ (blocker, decides hire/no-hire). The nav, mobile menu, and contact section all link to `Tian_Yi_Tong_Resume.pdf`, and the HTML carries a TODO saying it isn't deployed yet. Ship the real one-page PDF to the same folder as the page (and Linkedn.png), then DELETE the TODO comment. If the file can't be confirmed live, do not ship — a 404 here is fatal. 2. WIRE OR REMOVE THE CONTACT FORM PLACEHOLDER. `action="https://formspree.io/f/REPLACE_WITH_FORM_ID"` is a literal placeholder; the JS mailto fallback saves it, but replace it with a real Formspree ID (or strip the dead action and lean fully on the working mailto flow). Remove the REPLACE_WITH_FORM_ID TODO. 3. CONFIRM Linkedn.png LOADS and move the portrait up. The only photo is buried at the very bottom in Contact — a face near the hook builds trust faster. Surface a small portrait in or near the hero, and double-check the image isn't a broken ref. 4. SHARPEN POSITIONING FOR THE AUDIENCE. For Citadel/Jane Street/HRT specifically, the 'Full-Stack Engineer' framing slightly undersells the quant/systems story (Osmia autonomous trading, Citadel 1st, Putnam). Keep full-stack, but make the hero sub-line explicitly name the autonomous-systems/quant angle so a trading-firm reader sees themselves in the first screen. 5. MINOR POLISH. The hero tape's forced category labels ('Front end / Back end / Infra / Data & ML' stamped onto raw metrics like '3,000+' and '500K') read slightly contrived — let the numbers and one-line captions stand without the taxonomy. Verify the GitHub repo links (collab-whiteboard, autonomous-quadcopter, cloud9, remy, loan-default-model, osmia-proof) all resolve to real public repos; any 404 there undoes the verifiability the copy promises.
 state.md updated.
 Waiting 3 seconds before next iteration...
 
@@ -25,10 +26,10 @@ Waiting 3 seconds before next iteration...
   ITERATION 3 / 10
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Sending to Claude Code (generation)...
-Saved to output/portfolio_v3.html
+Saved to output/portfolio_v3.html (valid document — base advanced).
 Running evaluator...
 Score: 11/12 — Pass: True
-Top fix: 1. Close the verifiability gap — the only thing keeping this from a clean sweep. Expose ONE independently checkable Osmia artifact: a public read-only repo or gist with the REAL exported accuracy CSV + the 13-version changelog + the 15-table schema DDL (strategy redacted), linked directly from the card and methodology overlay. Right now both the verdict-log table and the accuracy curve are self-labeled synthetic, so a skeptic literally cannot confirm the 64%. One real, downloadable proof point converts faith into evidence and would push proof to a 2. 2. Wire the project cards to their ACTUAL repos. All six cards (Quadcopter, Remy, Whiteboard, Cloud9, Loan Model, plus the 'Code & proof' tile) point to the generic github.com/GuoGuoLinLinRanger?tab=repositories — link each to its specific repo so I can click straight into the public code instead of hunting through a profile. 3. Minor polish: the Citadel 1st / Jane Street 2nd chips are the single strongest signal for a quant desk — keep them as chips (do NOT oversize), but add a half-line of context (e.g., format/what was optimized) so the result lands with weight rather than reading as a bare number a reader can't situate.
+Top fix: 1. VERIFY THE PROOF RESOLVES — the entire credibility play hinges on the Osmia proof bundle (accuracy CSV, 13-version changelog, 15-table schema), all six GitHub repos (osmia-proof, collab-whiteboard, autonomous-quadcopter, cloud9, remy, loan-default-model), and Linkedn.png actually loading and being substantive. A 404 or an empty repo on 'See the proof bundle' instantly collapses the 64% claim and the honesty narrative. Confirm each link, and if osmia-proof is thin, add a README that walks the scoring methodology so a skeptic can reconstruct the 64% in 60 seconds. 2. DON'T LET THE IN-SAMPLE 87% LEAD OPENBY — to a quant reviewer an in-sample backtest is near-worthless and leading the stat block with it (even caveated) reads as not-yet-rigorous. Reorder OpenBy's f-stats so the system metrics (200 forecasts/day, 1.8s→1.1s, 10k paths) lead and 87% sits clearly secondary under its caveat; make Osmia's live-scored 64% the unmistakable headline trading number. 3. MAKE THE COLOR FLOW A REAL SIGNATURE — the hue steps (250→215→192→172→158) are clustered too tightly in the cool band to perceive while scrolling, so the distinctive feature reads as a static accent. Widen the steps and/or commit to one unmistakable signature moment (a section transition, a hero treatment) so the site is remembered, not just tasteful. 4. CUT THE FILLER CARDS — Remy ('45% faster') and Loan Default Model ('82% AUC-ROC') read as generic coursework next to the two flagships and dilute them; drop them or compress into a single 'other builds' line. 5. TIGHTEN THE HERO — the sub is two dense sentences; cut to one punchy line, and replace the weak '10k+ Monte Carlo paths' vanity tape stat with higher-signal proof (380+ scored verdicts or the 64%). 6. Dial the Citadel award chip's visual weight down to match the other two chips so awards read purely as supporting credibility, fully consistent with leading on built work.
 state.md updated.
 Waiting 3 seconds before next iteration...
 
@@ -36,10 +37,10 @@ Waiting 3 seconds before next iteration...
   ITERATION 4 / 10
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Sending to Claude Code (generation)...
-Saved to output/portfolio_v4.html
+Saved to output/portfolio_v4.html (valid document — base advanced).
 Running evaluator...
-Score: 12/12 — Pass: True
-Top fix: 1. Replace the 'representative reconstruction' accuracy curve and the 'representative sanitized sample' verdict table with the REAL exported data — plot the actual 380 verdicts and show 11 real rows. The page's whole thesis is 'shown, not claimed,' and it's quietly undercut by every on-page chart being synthetic-but-disclaimed. To a quant, a real plot of real verdicts beats a pretty illustrative curve with a caveat every time. Biggest single credibility upgrade. 2. Fix the hero stat-tape cell 'Shipped · 500K-line C++ codebase' — as juxtaposed it reads like he shipped 500K lines. Relabel to 'Contributed' or '~40 defects closed · 500K-line codebase' to match the (accurate) experience bullet. Strict readers hunt for overclaims in the hero first. 3. Guarantee every external link resolves to real, populated content — above all github.com/GuoGuoLinLinRanger/osmia-proof. The entire 'verifiable, not on faith' pitch dies if that repo 404s or is empty; confirm the CSV, changelog, and schema DDL are actually there. 4. The OpenBy 87% sits in the hero tape beside live figures; in-sample backtest accuracy is near-meaningless to a quant. Pull it out of the hero or label it so it reads clearly secondary to Osmia's 64% live. 5. Minor: confirm Linkedn.png is a real professional photo (not a placeholder) and rename the typo'd file so it never silently 404s on a case-sensitive host.
+Score: 11/12 — Pass: False
+Top fix: 1. VERIFY EVERY EXTERNAL LINK RESOLVES AND ISN'T A STUB — this is the whole ballgame. Confirm github.com/GuoGuoLinLinRanger/osmia-proof actually exists AND contains what the copy promises (exported accuracy CSV, 13-version changelog, 15-table schema DDL); if it's missing/empty, the 64% 'checkable against the exported CSV' claim collapses and the site goes from impressive to suspect. Also confirm collab-whiteboard, autonomous-quadcopter, cloud9 repos load (not empty), the LinkedIn/GitHub profile links resolve, and Linkedn.png actually renders (the avatar AND portrait both depend on it — a broken image on first screen is an instant close-tab). 2. FIX THE TIMELINE READ: 'Software Engineer Intern · May 2024 – Aug 2025' (16 months) ending the same month Education says Waterloo begins ('2025–2029') makes a skeptical reader stall — a 16-month role labeled 'Intern' that predates enrollment looks like an error or padding. Relabel or add a one-word clarifier (pre-university / sequential co-op terms) so it reads as deliberate, not sloppy. 3. CONTACT FORM IS MAILTO-ONLY: it opens the visitor's mail client, which silently fails for anyone on webmail or a locked-down work machine — exactly the recruiters you want. Wire a real endpoint (Formspree/serverless) and keep the mailto as the stated fallback, so 'nothing gets lost' is actually true. 4. SHARPEN THE HERO SUBLINE FOR THIS AUDIENCE (do NOT enlarge the award chips — keep them as supporting credibility): 'I build the whole thing' is a strong but generalist frame; the single most differentiating asset for a Citadel/Jane Street reader is a live, 4-month, publicly-verified autonomous trading system. Tighten the subline so that edge lands in the first 3 seconds rather than mostly living in the chips/tape. 5. MINOR: the 'Now' terminal easter-egg is a nice personality touch but a time-poor HM won't touch it — keep it strictly optional and off the critical scan path (it currently is; don't let a future iteration make it load-bearing).
 state.md updated.
 Waiting 3 seconds before next iteration...
 
@@ -47,10 +48,10 @@ Waiting 3 seconds before next iteration...
   ITERATION 5 / 10
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Sending to Claude Code (generation)...
-Saved to output/portfolio_v5.html
+Saved to output/portfolio_v5.html (valid document — base advanced).
 Running evaluator...
-Score: 10/12 — Pass: False
-Top fix: 1. Rewrite the hero H1 to lead with what Tian BUILDS, not the awards. Right now it's an award banner ('I placed 1st of 120 at Citadel, 2nd of 80 at Jane Street'). Make the H1 about the builder/Osmia ('I build autonomous systems that keep running when no one's watching' — the line you already use in the résumé and meta description), and demote Citadel-1st / Jane-Street-2nd to supporting chips in the stat tape. Biggest single lever on hook. 2. Add the section-to-section color flow. The rubric and the brief both require a cohesive palette that EVOLVES as you scroll (a cool flow), not one static amber accent (the CSS comment literally says 'a single solar amber'). Shift the accent hue per section — e.g. amber→teal→violet→cool-blue — driven by CSS variables you already have, kept tasteful and contrast-safe in both themes. This is currently a hard 1. 3. Replace the synthetic proof artifacts with REAL data. The verdict-log table ('representative sanitized sample') and the #verdictCanvas curve ('representative reconstruction', mulberry32 RNG → fake 380-point series) directly contradict the 'verifiable, shown not claimed' pitch. Plot the actual logged verdicts and show real rows — or, if the real export can't be published, cut the fake curve entirely rather than ship fabricated-but-disclaimed data to a quant. 4. Fix the hero stat-tape overclaim: 'Shipped · 500K-line C++ · 3,000 km firmware' reads like he shipped 500K lines. Relabel to match the accurate experience bullet ('Contributed' / '~40 defects in a 500K-line codebase'). Strict readers hunt the hero for exactly this. 5. Fix the photo filename typo. The only image is <img src="Linkedn.png"> and the OG tag points at /Linkedn.png; on a case-sensitive host this 404s silently. Rename the file and both references to 'linkedin.png' (or guarantee the asset ships with that exact spelling).
+Score: 11/12 — Pass: False
+Top fix: 1. KILL THE PLACEHOLDER FORM (gating my decision). Replace REPLACE_WITH_FORM_ID with a real Formspree (or equivalent) endpoint and delete the '<!-- TODO -->' comment, OR cut the form entirely and keep only the direct email/LinkedIn/résumé CTAs. Either way, fix the contradictory default status line 'Sends straight to my inbox — no mail client needed' — the current unconfigured path opens a mail client, so the copy lies. Shipping a visible REPLACE_WITH_* token is the single thing that makes this read as unfinished. 2. MAKE OPENBY VERIFIABLE. Right now my flagship full-stack proof is entirely 'Private — request a demo,' so a skeptic can verify nothing about it. Add ONE concrete artifact: a redacted public repo (mirror the Osmia 'strategy redacted' approach), a short architecture/decision write-up, or a 30-second demo clip/link. Otherwise stop letting the unverifiable 87% sit next to verifiable numbers — lean even harder on Osmia. 3. CUT DUPLICATION so a 30-second skim isn't seeing the same work three times. The autonomous quadcopter and solar-car firmware appear in Experience, again as Project cards, AND again in 'Now' — collapse 'Now' into a one-line status strip or fold it into Experience; repetition makes the page feel padded, not deep. 4. SHARPEN THE OSMIA PROOF CTA. The verdict-log table is correctly labeled 'sample' — good — but make the link to the actual exported accuracy CSV unmistakable and one click from the card (the 'See the proof bundle — no email' button is the right instinct; make sure it lands directly on the CSV/methodology, not a repo root I have to dig through). 5. POLISH PASS, lower priority: the base is still a familiar dark-template aesthetic rescued by good content and the cool violet→teal color flow; if you want me to REMEMBER it, commit one signature visual moment (the architecture diagrams or verdict log) harder rather than relying on the particle field + terminal easter-egg, both of which I've seen on a hundred dev portfolios.
 state.md updated.
 Waiting 3 seconds before next iteration...
 
@@ -58,10 +59,10 @@ Waiting 3 seconds before next iteration...
   ITERATION 6 / 10
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Sending to Claude Code (generation)...
-Saved to output/portfolio_v6.html
+Saved to output/portfolio_v6.html (valid document — base advanced).
 Running evaluator...
-Score: 0/12 — Pass: False
-Top fix: See evaluator output
+Score: 9/12 — Pass: False
+Top fix: 1. SHIP ONE VALID DOCUMENT — this is the corruption again. The file is a résumé (`<title>Tian Yi Tong — Résumé</title>`, 'Save as PDF' button, 10.2px print body) but a full portfolio's JS is appended after `</html>`/a stray `</script>`. That script references DOM that does not exist here — getElementById('themeToggle') returns null and `themeBtn.addEventListener(...)` throws a TypeError on load, which halts EVERY block after it (mobile menu, particle field, color-flow hue observer, count-up, terminal, contact form all dead). Decide what this file is and emit a single coherent doc; validate it parses as one HTML tree with no content after </html>. 2. If the deliverable is the PORTFOLIO (it should be — the résumé is the PDF, not the landing page): the appended JS implies a hero, nav, #field canvas, #terminal, and a section-to-section cool color-flow (violet→blue→cyan→teal→green) were all supposed to exist — but there is NO HTML for any of it. Build the actual portfolio markup so that JS has something to drive: a hero leading with who Tian is + what he builds, his photo (the resilience handler looks for `.hero-avatar img`/`.portrait img` that aren't in the doc — add the real image), and the scrolling color flow. Right now distinctive_craft and hook score low purely because none of the signature surface is present. 3. The hero/summary currently buries the lead in a tiny dense paragraph; make the first screen scannable in 3 seconds — name, one-line 'builds full-stack systems and keeps them running,' and the 3–4 headline numbers (64% live / 4-mo unattended, 3,000+ users @ 99.5%, 500K-line prod) as glanceable stats, with Citadel 1st / Jane Street 2nd as supporting chips, NOT an oversized banner. 4. Keep the copy and the honest stat caveats exactly as they are — that's the strongest part. 5. Verify in a real browser at 375px with devtools open: zero console errors, working résumé/GitHub/email/LinkedIn links, working mobile nav, smooth scroll. Re-judge only once it loads clean.
 state.md updated.
 Waiting 3 seconds before next iteration...
 
@@ -69,37 +70,4 @@ Waiting 3 seconds before next iteration...
   ITERATION 7 / 10
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Sending to Claude Code (generation)...
-Saved to output/portfolio_v7.html
-Running evaluator...
-Score: 0/12 — Pass: False
-Top fix: See evaluator output
-state.md updated.
-Waiting 3 seconds before next iteration...
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ITERATION 8 / 10
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Sending to Claude Code (generation)...
-Saved to output/portfolio_v8.html
-Running evaluator...
-Score: 0/12 — Pass: False
-Top fix: See evaluator output
-state.md updated.
-Waiting 3 seconds before next iteration...
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ITERATION 9 / 10
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Sending to Claude Code (generation)...
-Saved to output/portfolio_v9.html
-Running evaluator...
-Score: 12/12 — Pass: True
-Top fix: 1. VERIFY THE LINKS BEFORE TRUSTING THE PAGE. The entire credibility argument rests on github.com/GuoGuoLinLinRanger/osmia-proof actually existing and being public (accuracy CSV + changelog + schema DDL). If it 404s, the 'verify it yourself' framing backfires and it's an instant no. Confirm every repo link (osmia-proof, autonomous-quadcopter, remy, collab-whiteboard, cloud9, loan-default-model) resolves. 2. Confirm Linkedn.png is deployed at the site ROOT — it's referenced as a relative path; if it doesn't load, the portrait/trust axis breaks. 3. Sanity-check 375px (verdict-log table is set to horizontal-scroll, mobile menu exists — looks handled, but eyeball it on a real phone). None of these are build changes; they protect the pass.
-state.md updated.
-
-✓ Evaluator passed on iteration 9 with score 12/12. Stopping early.
-Final output: output/portfolio_v9.html
-
-Loop complete. Final file: output/portfolio_v9.html
-Deploy to Vercel: copy that file into your project root as index.html
-EXIT_CODE=0
+EXIT_CODE=1

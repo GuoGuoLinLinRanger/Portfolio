@@ -18,6 +18,15 @@ if [ -z "$PY" ]; then
   exit 1
 fi
 
+# Which generation prompt to use. Default is the original; the full-stack edition is
+# selected with:  PROMPT_FILE=PROMPT_FULLSTACK.md ./run_loop.sh
+PROMPT_FILE="${PROMPT_FILE:-PROMPT_TEMPLATE.md}"
+if [ ! -f "$PROMPT_FILE" ]; then
+  echo "ERROR: prompt file '$PROMPT_FILE' not found." >&2
+  exit 1
+fi
+echo "Using generation prompt: $PROMPT_FILE"
+
 TMPDIR_LOCAL="$(mktemp -d 2>/dev/null || echo /tmp)"
 GEN_PROMPT="$TMPDIR_LOCAL/current_prompt.txt"
 EVAL_PROMPT="$TMPDIR_LOCAL/eval_prompt.txt"
@@ -68,7 +77,7 @@ for i in $(seq 1 "$MAX_ITERS"); do
   PREV_HTML_FILE="output/_base.html"
 
   # Build the generation prompt from the template + placeholders.
-  PROMPT=$(cat PROMPT_TEMPLATE.md)
+  PROMPT=$(cat "$PROMPT_FILE")
   PROMPT="${PROMPT//\{\{ITERATION\}\}/$i}"
   PROMPT="${PROMPT//\{\{ITERATION_FOCUS\}\}/$FOCUS}"
   PROMPT="${PROMPT//\{\{PREVIOUS_NOTES\}\}/$PREV_NOTES}"
