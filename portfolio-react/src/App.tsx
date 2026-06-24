@@ -1,5 +1,7 @@
+import { Achievements } from "@/components/Achievements"
 import { Backdrop } from "@/components/Backdrop"
 import { Contact } from "@/components/Contact"
+import { CustomCursor } from "@/components/CustomCursor"
 import { Experience } from "@/components/Experience"
 import { Footer } from "@/components/Footer"
 import { Hero } from "@/components/Hero"
@@ -34,12 +36,14 @@ export default function App() {
         <Hero />
         <Experience />
         <Projects />
+        <Achievements />
         <SkillsMatrix />
         <Contact />
       </main>
 
       <Footer />
       <Toaster position="bottom-right" />
+      <CustomCursor />
     </>
   )
 }

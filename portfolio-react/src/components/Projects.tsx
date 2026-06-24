@@ -161,9 +161,9 @@ function Metrics({ project }: { project: Project }) {
   return (
     <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border/50 bg-border/30 sm:grid-cols-4">
       {project.metrics.map((m) => (
-        <div key={m.label} className="bg-card/50 p-3">
-          <CountUp value={m.value} className="font-display text-lg font-bold text-flow" />
-          <div className="mt-0.5 text-[0.7rem] leading-tight text-muted-foreground">{m.label}</div>
+        <div key={m.label} className="bg-card/50 p-3.5">
+          <CountUp value={m.value} className="font-display text-xl font-bold text-flow" />
+          <div className="mt-0.5 text-xs leading-tight text-muted-foreground">{m.label}</div>
         </div>
       ))}
     </div>
@@ -209,8 +209,8 @@ function Highlights({ items }: { items: string[] }) {
       </div>
       <ul className="space-y-2">
         {items.map((h, i) => (
-          <li key={i} className="flex gap-2.5 text-sm leading-relaxed text-muted-foreground">
-            <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-flow/70" />
+          <li key={i} className="flex gap-2.5 text-base leading-relaxed text-muted-foreground">
+            <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-flow/70" />
             <span>{h}</span>
           </li>
         ))}
@@ -343,7 +343,7 @@ function CaseStudy({ project }: { project: Project }) {
 
         {links.length > 0 && <LinksRow links={links} />}
 
-        <div className="space-y-3 text-sm leading-relaxed">
+        <div className="space-y-3 text-base leading-relaxed">
           <PAR label="Problem" text={project.problem} />
           <PAR label="Approach" text={project.approach} />
           <PAR label="Result" text={project.result} highlight />
@@ -419,45 +419,38 @@ function FlagshipCard({ project, flip }: { project: Project; flip: boolean }) {
               "radial-gradient(80% 60% at 100% 0%, var(--flow-soft), transparent 60%)",
           }}
         />
-        <div className="relative grid gap-6 lg:grid-cols-2 lg:gap-10">
+        <div className="relative grid gap-6 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:gap-10">
           <div className={flip ? "lg:order-2" : ""}>
-            <div className="mb-3 flex items-center gap-3">
+            <div className="mb-4 flex items-center gap-3">
               <Badge variant="outline" className="border-flow/40 font-mono text-flow">
                 Flagship
               </Badge>
               <StatusDot status={project.status} />
               <span className="font-mono text-xs text-muted-foreground">{project.year}</span>
             </div>
-            <h3 className="font-display text-2xl font-bold sm:text-3xl">{project.name}</h3>
-            <p className="mt-2 text-pretty text-sm text-muted-foreground sm:text-base">
+            <h3 className="font-display text-3xl font-bold sm:text-4xl">{project.name}</h3>
+            <p className="mt-3 max-w-md text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
               {project.tagline}
             </p>
-
-            <div className="mt-5 space-y-3 text-sm leading-relaxed">
-              <PAR label="Problem" text={project.problem} />
-              <PAR label="Approach" text={project.approach} />
-              <PAR label="Result" text={project.result} highlight />
-            </div>
 
             <div className="mt-5 flex flex-wrap gap-1.5">
               {project.stack.map((s) => (
                 <span
                   key={s}
-                  className="rounded-md bg-secondary px-2 py-0.5 font-mono text-[0.7rem] text-secondary-foreground"
+                  className="rounded-md bg-secondary px-2 py-0.5 font-mono text-xs text-secondary-foreground"
                 >
                   {s}
                 </span>
               ))}
             </div>
 
-            <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-flow">
+            <div className="mt-6 inline-flex items-center gap-2 text-base font-medium text-flow">
               {ctaLabel(project)}
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </div>
           </div>
 
-          <div className={`flex flex-col justify-center gap-4 ${flip ? "lg:order-1" : ""}`}>
-            {project.architecture && <Architecture {...project.architecture} />}
+          <div className={flip ? "lg:order-1" : ""}>
             <Metrics project={project} />
           </div>
         </div>
@@ -531,21 +524,21 @@ function CompactCard({ project }: { project: Project }) {
             <StatusDot status={project.status} />
             <span className="font-mono text-xs text-muted-foreground">{project.year}</span>
           </div>
-          <h3 className="font-display text-lg font-semibold">{project.name}</h3>
-          <p className="mt-1.5 flex-1 text-sm text-muted-foreground">{project.tagline}</p>
+          <h3 className="font-display text-xl font-semibold">{project.name}</h3>
+          <p className="mt-2 flex-1 text-base leading-relaxed text-muted-foreground">{project.tagline}</p>
 
           <div className="mt-4 flex flex-wrap gap-1.5">
             {project.stack.slice(0, 4).map((s) => (
               <span
                 key={s}
-                className="rounded-md bg-secondary px-2 py-0.5 font-mono text-[0.68rem] text-secondary-foreground"
+                className="rounded-md bg-secondary px-2 py-0.5 font-mono text-xs text-secondary-foreground"
               >
                 {s}
               </span>
             ))}
           </div>
 
-          <span className="mt-4 inline-flex w-fit items-center gap-1 text-sm font-medium text-flow">
+          <span className="mt-4 inline-flex w-fit items-center gap-1.5 text-base font-medium text-flow">
             {ctaLabel(project)}
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
           </span>

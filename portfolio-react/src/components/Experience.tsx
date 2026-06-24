@@ -71,10 +71,10 @@ function JobRow({ job, defaultOpen, index }: { job: Job; defaultOpen: boolean; i
         >
           <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--flow)" }} />
         </span>
-        <h3 className="min-w-0 flex-1 font-display text-base font-semibold sm:text-lg">
+        <h3 className="min-w-0 flex-1 font-display text-lg font-semibold sm:text-xl">
           {job.role} <span className="text-flow">· {job.company}</span>
         </h3>
-        <span className="hidden shrink-0 font-mono text-xs text-muted-foreground sm:block">
+        <span className="hidden shrink-0 font-mono text-sm text-muted-foreground sm:block">
           {job.period}
         </span>
         <ChevronDown
@@ -96,23 +96,23 @@ function JobRow({ job, defaultOpen, index }: { job: Job; defaultOpen: boolean; i
             className="overflow-hidden"
           >
             <div className="pb-5 pl-7">
-              <div className="mb-3 font-mono text-xs text-muted-foreground sm:hidden">
+              <div className="mb-3 font-mono text-sm text-muted-foreground sm:hidden">
                 {job.period}
               </div>
               <div className="mb-3 flex flex-wrap gap-1.5">
                 {job.stack.map((s) => (
                   <span
                     key={s}
-                    className="rounded-md bg-secondary px-2 py-0.5 font-mono text-[0.68rem] text-secondary-foreground"
+                    className="rounded-md bg-secondary px-2 py-0.5 font-mono text-xs text-secondary-foreground"
                   >
                     {s}
                   </span>
                 ))}
               </div>
-              <ul className="space-y-1.5">
+              <ul className="space-y-2">
                 {job.bullets.map((b, bi) => (
-                  <li key={bi} className="flex gap-2.5 text-sm leading-relaxed text-muted-foreground">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-flow/70" />
+                  <li key={bi} className="flex gap-2.5 text-base leading-relaxed text-muted-foreground">
+                    <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-flow/70" />
                     <span>{b}</span>
                   </li>
                 ))}

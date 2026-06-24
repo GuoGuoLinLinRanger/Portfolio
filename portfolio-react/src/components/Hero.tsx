@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { CountUp } from "@/components/CountUp"
 import { GithubIcon, LinkedinIcon } from "@/components/icons"
 import { asset } from "@/lib/asset"
-import { awards, headlineStats, profile } from "@/data/portfolio"
+import { headlineStats, profile } from "@/data/portfolio"
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -73,7 +73,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease, delay: 0.12 }}
-            className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
+            className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl"
           >
             {profile.blurb}
           </motion.p>
@@ -99,24 +99,6 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* award chips — supporting credibility, not the headline */}
-          <motion.ul
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.32 }}
-            className="mt-8 flex flex-wrap gap-2"
-          >
-            {awards.map((a) => (
-              <li
-                key={a.title}
-                className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/40 px-3 py-1.5 text-xs backdrop-blur"
-              >
-                <span className="font-mono font-semibold text-flow">{a.place}</span>
-                <span className="text-foreground/90">{a.title}</span>
-                <span className="text-muted-foreground">· {a.detail}</span>
-              </li>
-            ))}
-          </motion.ul>
         </div>
 
         {/* ---- Right: portrait that fades into the backdrop ---- */}

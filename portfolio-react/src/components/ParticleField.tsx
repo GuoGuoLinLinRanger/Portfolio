@@ -42,6 +42,7 @@ export function ParticleField() {
       size: number
       par: number
       alpha: number
+      tw: number // twinkle phase
       rx: number
       ry: number
     }
@@ -65,6 +66,7 @@ export function ParticleField() {
           size: 0.7 + z * 1.8,
           par: 6 + z * 22,
           alpha: 0.18 + z * 0.5,
+          tw: Math.random() * Math.PI * 2,
           rx: 0,
           ry: 0,
         }
@@ -96,6 +98,11 @@ export function ParticleField() {
       const aBoost = isDark ? 0 : 0.08
       const lineMul = isDark ? 1 : 0.85
 
+      // scroll-travel: the whole field glides as you scroll, so moving down the
+      // page reads as moving *along* one continuous constellation. Nearer points
+      // travel faster (parallax). Wrapped so the field never runs out.
+      const scroll = window.scrollY || document.documentElement.scrollTop || 0
+      const span = h + 40
       for (const p of particles) {
         p.x += p.vx
         p.y += p.vy
@@ -104,7 +111,9 @@ export function ParticleField() {
         if (p.y < -20) p.y = h + 20
         else if (p.y > h + 20) p.y = -20
         p.rx = p.x + ox * p.par
-        p.ry = p.y + oy * p.par
+        let ry = p.y + oy * p.par - scroll * (0.015 + p.z * 0.05)
+        ry = (((ry + 20) % span) + span) % span - 20
+        p.ry = ry
       }
 
       for (let i = 0; i < particles.length; i++) {
@@ -128,7 +137,8 @@ export function ParticleField() {
       }
 
       for (const p of particles) {
-        let a = p.alpha + aBoost
+        // subtle twinkle keeps the field alive without drawing attention
+        let a = (p.alpha + aBoost) * (0.8 + 0.2 * Math.sin(frame * 0.035 + p.tw))
         let s = p.size
         if (mouse.inside) {
           const dx = p.rx - mouse.x

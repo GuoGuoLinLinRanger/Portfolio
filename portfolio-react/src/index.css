@@ -257,6 +257,59 @@
   }
 }
 
+/* ------------------------------------------------------------------ *
+ *  Themed cursor (the "constellation node"). Only active when the
+ *  CustomCursor component adds .custom-cursor (fine pointer, motion ok).
+ * ------------------------------------------------------------------ */
+.custom-cursor,
+.custom-cursor * {
+  cursor: none !important;
+}
+.custom-cursor input,
+.custom-cursor textarea {
+  cursor: text !important;
+}
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform;
+}
+.cursor-dot {
+  height: 7px;
+  width: 7px;
+  border-radius: 999px;
+  background: var(--flow);
+  box-shadow: 0 0 12px 2px color-mix(in oklab, var(--flow) 70%, transparent);
+  transition: opacity 0.2s ease;
+}
+.cursor-ring {
+  height: 34px;
+  width: 34px;
+  border-radius: 999px;
+  border: 1.5px solid color-mix(in oklab, var(--flow) 55%, transparent);
+  transition:
+    width 0.18s ease,
+    height 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease,
+    opacity 0.25s ease;
+}
+.cursor-ring.cursor-hover {
+  height: 54px;
+  width: 54px;
+  background: color-mix(in oklab, var(--flow) 12%, transparent);
+  border-color: color-mix(in oklab, var(--flow) 80%, transparent);
+}
+.cursor-ring.cursor-down {
+  height: 24px;
+  width: 24px;
+}
+
 /* thin custom scrollbar */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }

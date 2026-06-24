@@ -50,18 +50,18 @@ export function Section({
           className="mb-12 max-w-2xl"
         >
           {eyebrow && (
-            <div className="mb-3 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-flow">
+            <div className="mb-3 flex items-center gap-2 font-mono text-[0.8rem] uppercase tracking-[0.2em] text-flow">
               <span className="h-px w-8 bg-flow/60" />
               {eyebrow}
             </div>
           )}
           {title && (
-            <h2 className="text-balance text-3xl font-semibold leading-tight sm:text-4xl md:text-[2.75rem]">
+            <h2 className="text-balance text-[2.1rem] font-semibold leading-tight sm:text-[2.6rem] md:text-[3rem]">
               {title}
             </h2>
           )}
           {intro && (
-            <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="mt-4 text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl">
               {intro}
             </p>
           )}

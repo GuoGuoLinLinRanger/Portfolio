@@ -54,6 +54,21 @@ changelog:
 verified (contrast audit, both themes, across the hue flow): all eyebrow/body/heading text ≥ 4.5:1
 (AA). 0 console errors. Screenshots confirm immersion + legibility in light AND dark.
 
+## Iteration 4 (2026-06-24) — bigger type, slimmer projects, achievements section, constellation/cursor
+changelog:
+- Type scaled up overall (Section titles/intros, hero blurb) and notably on Projects (cards +
+  modal) and Experience/Skills.
+- Flagship project cards slimmed to a quick description (name + tagline + stack + metrics + CTA);
+  full Problem/Approach/Result + architecture now live only in the click-through modal.
+- Achievements moved out of the hero into their own section AFTER Projects (id #awards, hue 210,
+  trophy/medal/award cards) + added to nav. Order: hero > experience > work > awards > skills > contact.
+- Constellation made livelier (per-point twinkle) and given scroll-parallax so scrolling reads as
+  moving along one continuous constellation (nearer points travel faster, wrapped).
+- Added a theme-matched custom cursor (glowing node + eased ring that expands over interactive
+  elements); disabled on touch / reduced-motion (native cursor kept).
+verified: build green, new code lint-clean, 0 console errors; section order + cursor + slim cards +
+achievements confirmed by screenshot.
+
 ## Migration note (2026-06-20)
 The portfolio was rewritten from the single-file HTML loop into a real React app at
 `portfolio-react/`. The old `run_loop.sh` (single-file HTML generator) no longer matches the

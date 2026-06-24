@@ -39,7 +39,7 @@ export function SkillsMatrix() {
               {group.skills.map((s) => (
                 <li key={s.name}>
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-sm font-medium text-foreground/90">{s.name}</span>
+                    <span className="text-base font-medium text-foreground/90">{s.name}</span>
                     <span className="flex gap-1" aria-label={`Proficiency ${s.level} of 5`}>
                       {Array.from({ length: 5 }).map((_, i) => (
                         <span
