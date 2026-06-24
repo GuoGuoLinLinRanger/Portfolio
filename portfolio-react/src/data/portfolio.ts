@@ -114,6 +114,10 @@ export type Project = {
   metrics: { value: string; label: string }[]
   // optional simple architecture diagram (rendered as CSS/SVG nodes)
   architecture?: { nodes: string[]; caption: string }
+  // screenshots shown in the case-study modal gallery
+  gallery?: { src: string; caption: string }[]
+  // deeper "under the hood" bullets — the in-depth layer behind the card
+  highlights?: string[]
 }
 
 export const projects: Project[] = [
@@ -141,6 +145,14 @@ export const projects: Project[] = [
       nodes: ["10 data sources", "Ingest ×7 systemd", "DuckDB (15 tables)", "Qwen LLM analysis", "Risk + scoring loop"],
       caption: "Graceful-degradation ingest → DuckDB → self-hosted LLM → closed scoring loop",
     },
+    highlights: [
+      "Seven systemd services run ingest, analysis, scoring and risk management 24/7 on a home Linux box — no babysitting.",
+      "A 4-cohort synthetic Fear & Greed index built from scratch: retail, institutional, on-chain, and trader sentiment.",
+      "Layered risk management — F&G-adaptive stop-losses, order-book depth analysis, and macro-aware position sizing.",
+      "A closed learning loop scores its own past verdicts: ~64% directional accuracy across 380+ scored calls.",
+      "10 external data sources with graceful degradation held pipeline availability at ~99% over 4+ months.",
+      "Grew from a 423-line prototype to ~5,000 lines across 13 documented versions on a 15-table DuckDB schema.",
+    ],
   },
   {
     id: "openby",
@@ -166,6 +178,14 @@ export const projects: Project[] = [
       nodes: ["Signal sources", "FastAPI fusion", "Monte Carlo engine", "Multi-LLM orchestration", "React dashboard"],
       caption: "Signal fusion → Monte Carlo → multi-provider LLM → React",
     },
+    highlights: [
+      "Sole engineer across the whole stack: React frontend, FastAPI backend, Supabase, Docker.",
+      "Multi-source signal fusion — CPI, volatility, sentiment, Google Trends, and social virality.",
+      "A Monte Carlo engine over 10,000+ paths produces probability-weighted forecasts you can interrogate.",
+      "Multi-provider LLM orchestration (GPT, Claude, Gemini) so no single model is a point of failure — ~200 requests/day at peak.",
+      "Cut recomputation overhead 40% and API response from ~1.8s to ~1.1s.",
+      "87% directional accuracy across 1,000+ backtested samples — a backtest, stated honestly, not a live record.",
+    ],
   },
   {
     id: "uwcs",
@@ -188,6 +208,17 @@ export const projects: Project[] = [
       { value: "−20%", label: "render overhead" },
       { value: "25+", label: "PRs reviewed" },
     ],
+    highlights: [
+      "Maintain a production platform 3,000+ active CS students rely on, at ~99.5% uptime.",
+      "Shipped 10+ dynamic content modules from requirements to production on 1–2 week turnarounds.",
+      "Reviewed 25+ PRs and cut page rendering overhead ~20% by eliminating unnecessary re-renders.",
+      "Deploy to GCP via GitHub Actions with rollback procedures.",
+    ],
+    gallery: [
+      { src: "/img/home_UWCS.png", caption: "Home — the front door for 3,000+ students" },
+      { src: "/img/Screenshot 2026-01-13 150641.png", caption: "Events listing built from dynamic content modules" },
+      { src: "/img/Screenshot 2026-01-13 150631.png", caption: "CSC merch storefront" },
+    ],
   },
   {
     id: "whiteboard",
@@ -207,6 +238,15 @@ export const projects: Project[] = [
       { value: "20+", label: "concurrent users" },
       { value: "0", label: "divergence bugs" },
       { value: "200+", label: "sessions" },
+    ],
+    highlights: [
+      "Socket.io over WebSockets with room-based JWT auth keeps every session isolated and secure.",
+      "Node/Express/PostgreSQL with Prisma persists every stroke, so sessions survive reconnects.",
+      "Sub-100ms sync across 20+ concurrent users and 1,000+ drawing events per session.",
+      "0 state-divergence bugs across 200+ collaborative sessions.",
+    ],
+    gallery: [
+      { src: "/img/Socket.png", caption: "Real-time multiplayer canvas over WebSockets" },
     ],
   },
   {
@@ -228,6 +268,12 @@ export const projects: Project[] = [
       { value: "~$300", label: "full build" },
       { value: "~850g", label: "airframe" },
     ],
+    highlights: [
+      "A 3D-printed ~850g airframe on ArduPilot + Raspberry Pi — the full robotics loop for ~$300.",
+      "A hardware-abstracted simulator runs the exact same control stack in SITL and on the real drone.",
+      "Closed-loop PID + OpenCV marker detection lands the drone within ~30cm.",
+      "Validated across 100+ SITL runs with a green pytest suite over 30+ commits from 3 contributors.",
+    ],
   },
   {
     id: "cloud9",
@@ -248,6 +294,16 @@ export const projects: Project[] = [
       { value: "15K", label: "triangles/scene" },
       { value: "200+", label: "people demoed" },
       { value: "2nd", label: "MariHacks" },
+    ],
+    highlights: [
+      "A 3D rendering pipeline written from the ground up — coordinate transforms, mesh triangulation, matrix projections.",
+      "A Flask backend normalizes real CSV datasets for in-browser exploration.",
+      "60 FPS on 5,000–15,000-triangle scenes, demoed to 200+ hackathon participants.",
+      "Took 2nd place at MariHacks.",
+    ],
+    gallery: [
+      { src: "/img/MNIST.png", caption: "MNIST dataset rendered for visualization" },
+      { src: "/img/FunctionNN.png", caption: "Neural-network structure visualized in the browser" },
     ],
   },
 ]

@@ -6,7 +6,7 @@ export function Experience() {
   return (
     <Section
       id="experience"
-      hue={192}
+      hue={246}
       eyebrow="Where I've done it"
       title="Experience"
       intro="Production engineering, not coursework — a 500K-line C++/C# codebase, a platform thousands of students depend on, and safety-critical firmware."

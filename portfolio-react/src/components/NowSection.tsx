@@ -6,7 +6,7 @@ export function NowSection() {
   return (
     <Section
       id="now"
-      hue={170}
+      hue={176}
       eyebrow="Currently"
       title="What I'm building right now"
       intro="Active threads, not a résumé archive. This is where my evenings go."

@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 const LINKS = [
+  { href: "#experience", label: "Experience" },
   { href: "#work", label: "Work" },
   { href: "#skills", label: "Skills" },
-  { href: "#experience", label: "Experience" },
   { href: "#now", label: "Now" },
   { href: "#contact", label: "Contact" },
 ]

@@ -20,7 +20,7 @@ export default function App() {
   return (
     <>
       <a
-        href="#work"
+        href="#experience"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-flow focus:px-4 focus:py-2 focus:text-primary-foreground"
       >
         Skip to content
@@ -33,9 +33,9 @@ export default function App() {
 
       <main className="relative">
         <Hero />
+        <Experience />
         <Projects />
         <SkillsMatrix />
-        <Experience />
         <NowSection />
         <Contact />
       </main>

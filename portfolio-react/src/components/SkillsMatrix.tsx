@@ -6,7 +6,7 @@ export function SkillsMatrix() {
   return (
     <Section
       id="skills"
-      hue={210}
+      hue={200}
       eyebrow="What I work in"
       title="Full-stack, end to end"
       intro="Not a badge cloud — the things I actually reach for, grouped by where they live in the stack. Filled dots are where I'm strongest."
