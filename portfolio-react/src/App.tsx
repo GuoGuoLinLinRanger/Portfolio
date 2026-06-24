@@ -1,5 +1,6 @@
 import { Achievements } from "@/components/Achievements"
 import { Backdrop } from "@/components/Backdrop"
+import { ConstellationNav } from "@/components/ConstellationNav"
 import { Contact } from "@/components/Contact"
 import { CustomCursor } from "@/components/CustomCursor"
 import { Experience } from "@/components/Experience"
@@ -30,6 +31,7 @@ export default function App() {
       <Backdrop />
       <ParticleField />
       <ScrollProgress />
+      <ConstellationNav />
       <Nav theme={theme} onToggleTheme={toggle} />
 
       <main className="relative">
