@@ -40,6 +40,20 @@ perf_a11y 8  → confidence ~88
 verified: build green, new code lint-clean, 0 console errors in headless Chrome (1440px + 375px);
 full-width nav, slim hero, accordion expand/collapse, filter, galleries + placeholders confirmed.
 
+## Iteration 3 (2026-06-24) — immersion + legibility (esp. light mode) · verdict: PASS
+changelog:
+- Root cause of "not immersive / text hard to read": user was in LIGHT mode, where the
+  dark-tuned constellation was invisible and the accent text was low-contrast on white.
+- Made the constellation theme-aware (bright points on dark, darker accent points on light so
+  the network stays visible on white) + more immersive (denser, stronger cursor parallax,
+  bigger near-cursor brighten, canvas opacity 0.65→0.80).
+- Added a light-mode atmosphere layer to Backdrop (soft violet/teal/blue color washes) so light
+  mode reads as atmospheric, not blank; dark blooms kept restrained.
+- Contrast: light accent (--flow) darkened to L28% so even the green end of the flow clears
+  WCAG AA on white (light @contact accent 3.11 → 4.81); dark muted text lightened (64→72%).
+verified (contrast audit, both themes, across the hue flow): all eyebrow/body/heading text ≥ 4.5:1
+(AA). 0 console errors. Screenshots confirm immersion + legibility in light AND dark.
+
 ## Migration note (2026-06-20)
 The portfolio was rewritten from the single-file HTML loop into a real React app at
 `portfolio-react/`. The old `run_loop.sh` (single-file HTML generator) no longer matches the

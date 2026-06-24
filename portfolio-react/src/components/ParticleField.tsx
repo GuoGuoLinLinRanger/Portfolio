@@ -2,13 +2,13 @@ import { useEffect, useRef } from "react"
 
 /**
  * Reactive particle constellation on a 2D canvas — no external libraries.
- * Points live across three depth tiers: nearer points are larger, brighter
- * and parallax further; far points are small, dim and nearly still. The
- * whole field shifts gently opposite the cursor, so moving the mouse reads
- * as looking *into* a field with real depth rather than a flat sheet of
- * dots. Lines link nearby points softly; points brighten near the cursor.
- * Color tracks the live `--flow-hue`. DPR-aware, capped count, paused when
- * hidden, single static frame under prefers-reduced-motion.
+ * Points live across depth tiers: nearer points are larger, brighter and
+ * parallax further; far points are small, dim and nearly still. The whole
+ * field eases opposite the cursor, so moving the mouse reads as looking
+ * *into* a field with real depth. Theme-aware: bright points on the dark
+ * theme, darker accent points on light so the network stays visible on
+ * white. Color tracks the live `--flow-hue`. DPR-aware, capped count,
+ * paused when hidden, single static frame under prefers-reduced-motion.
  */
 export function ParticleField() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -24,23 +24,23 @@ export function ParticleField() {
     let w = 0
     let h = 0
     let hue = 272
+    let isDark = true
     let frame = 0
     let raf = 0
 
     const mouse = { x: -9999, y: -9999, inside: false }
-    // eased parallax offset in normalized [-1, 1] space
     let ox = 0
     let oy = 0
-    const maxDist = 118
+    const maxDist = 122
 
     type P = {
       x: number
       y: number
       vx: number
       vy: number
-      z: number // 0 far → 1 near
+      z: number
       size: number
-      par: number // parallax amplitude (px)
+      par: number
       alpha: number
       rx: number
       ry: number
@@ -53,19 +53,18 @@ export function ParticleField() {
       canvas.width = Math.floor(w * dpr)
       canvas.height = Math.floor(h * dpr)
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      // calmer density than before
-      const target = Math.min(66, Math.floor((w * h) / 23000))
+      const target = Math.min(82, Math.floor((w * h) / 18000))
       particles = Array.from({ length: target }, () => {
         const z = Math.random()
         return {
           x: Math.random() * w,
           y: Math.random() * h,
-          vx: (Math.random() - 0.5) * (0.12 + z * 0.22),
-          vy: (Math.random() - 0.5) * (0.12 + z * 0.22),
+          vx: (Math.random() - 0.5) * (0.12 + z * 0.24),
+          vy: (Math.random() - 0.5) * (0.12 + z * 0.24),
           z,
-          size: 0.6 + z * 1.7,
-          par: 5 + z * 17,
-          alpha: 0.16 + z * 0.5,
+          size: 0.7 + z * 1.8,
+          par: 6 + z * 22,
+          alpha: 0.18 + z * 0.5,
           rx: 0,
           ry: 0,
         }
@@ -78,10 +77,10 @@ export function ParticleField() {
           getComputedStyle(document.documentElement).getPropertyValue("--flow-hue"),
         )
         if (!Number.isNaN(v)) hue = v
+        isDark = document.documentElement.classList.contains("dark")
       }
       frame++
 
-      // ease parallax offset toward the cursor's position relative to center
       const tx = mouse.inside ? -((mouse.x - w / 2) / (w / 2)) : 0
       const ty = mouse.inside ? -((mouse.y - h / 2) / (h / 2)) : 0
       ox += (tx - ox) * 0.045
@@ -89,7 +88,14 @@ export function ParticleField() {
 
       ctx.clearRect(0, 0, w, h)
 
-      // advance + compute rendered (parallaxed) positions
+      // theme-aware palette
+      const dotL = isDark ? 72 : 42
+      const dotS = isDark ? 80 : 72
+      const lineL = isDark ? 66 : 52
+      const lineS = isDark ? 72 : 60
+      const aBoost = isDark ? 0 : 0.08
+      const lineMul = isDark ? 1 : 0.85
+
       for (const p of particles) {
         p.x += p.vx
         p.y += p.vy
@@ -101,7 +107,6 @@ export function ParticleField() {
         p.ry = p.y + oy * p.par
       }
 
-      // links — soft, depth-weighted
       for (let i = 0; i < particles.length; i++) {
         const a = particles[i]
         for (let j = i + 1; j < particles.length; j++) {
@@ -111,8 +116,8 @@ export function ParticleField() {
           const dist = Math.sqrt(dx * dx + dy * dy)
           if (dist < maxDist) {
             const depth = (a.z + b.z) / 2
-            const o = (1 - dist / maxDist) * (0.06 + depth * 0.2)
-            ctx.strokeStyle = `hsla(${hue}, 72%, 66%, ${o})`
+            const o = (1 - dist / maxDist) * (0.06 + depth * 0.2) * lineMul
+            ctx.strokeStyle = `hsla(${hue}, ${lineS}%, ${lineL}%, ${o})`
             ctx.lineWidth = 0.6 + depth * 0.6
             ctx.beginPath()
             ctx.moveTo(a.rx, a.ry)
@@ -122,22 +127,21 @@ export function ParticleField() {
         }
       }
 
-      // points — brighten + swell slightly near the cursor
       for (const p of particles) {
-        let a = p.alpha
+        let a = p.alpha + aBoost
         let s = p.size
         if (mouse.inside) {
           const dx = p.rx - mouse.x
           const dy = p.ry - mouse.y
           const d2 = dx * dx + dy * dy
-          const R = 150
+          const R = 175
           if (d2 < R * R) {
             const t = 1 - Math.sqrt(d2) / R
-            a = Math.min(1, a + t * 0.4)
-            s += t * 0.9
+            a = Math.min(1, a + t * 0.55)
+            s += t * 1.1
           }
         }
-        ctx.fillStyle = `hsla(${hue}, 78%, 72%, ${a})`
+        ctx.fillStyle = `hsla(${hue}, ${dotS}%, ${dotL}%, ${a})`
         ctx.beginPath()
         ctx.arc(p.rx, p.ry, s, 0, Math.PI * 2)
         ctx.fill()
@@ -176,7 +180,7 @@ export function ParticleField() {
     document.addEventListener("visibilitychange", onVisibility)
 
     if (reduce) {
-      draw() // single static frame
+      draw()
     } else {
       loop()
     }
@@ -194,7 +198,7 @@ export function ParticleField() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 -z-10 h-full w-full opacity-65"
+      className="pointer-events-none fixed inset-0 -z-10 h-full w-full opacity-80"
     />
   )
 }
