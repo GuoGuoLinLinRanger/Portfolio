@@ -1,8 +1,16 @@
 #!/bin/bash
 # Portfolio build loop — runs 10 iterations of Claude Code
 # Usage: chmod +x run_loop.sh && ./run_loop.sh
+#
+# ⚠️ DEPRECATED (2026-06-24). This is the single-file HTML generator from the
+# original loop. The portfolio is now a real React app at ../portfolio-react/
+# (the canonical deliverable, deployed to Pages via .github/workflows/static.yml).
+# This script no longer matches the deliverable and is kept only for history.
+# See state.md for the closed-out loop record. Do not run it against the React app.
 
 set -e
+echo "DEPRECATED: superseded by the React app in ../portfolio-react/. See state.md." >&2
+exit 0
 
 # --- preflight: required tooling -------------------------------------------
 if ! command -v claude >/dev/null 2>&1; then

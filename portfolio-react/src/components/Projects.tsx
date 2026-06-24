@@ -1,6 +1,7 @@
-import { motion } from "motion/react"
+import { motion, useReducedMotion, useSpring } from "motion/react"
 import { ArrowUpRight, ChevronRight } from "lucide-react"
 import { Section } from "@/components/Section"
+import { CountUp } from "@/components/CountUp"
 import { Badge } from "@/components/ui/badge"
 import {
   Dialog,
@@ -74,7 +75,7 @@ function Metrics({ project }: { project: Project }) {
     <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border/50 bg-border/30 sm:grid-cols-4">
       {project.metrics.map((m) => (
         <div key={m.label} className="bg-card/50 p-3">
-          <div className="font-display text-lg font-bold text-flow">{m.value}</div>
+          <CountUp value={m.value} className="font-display text-lg font-bold text-flow" />
           <div className="mt-0.5 text-[0.7rem] leading-tight text-muted-foreground">{m.label}</div>
         </div>
       ))}
@@ -103,13 +104,35 @@ function Architecture({ nodes, caption }: { nodes: string[]; caption: string }) 
 }
 
 function FlagshipCard({ project, flip }: { project: Project; flip: boolean }) {
+  const reduce = useReducedMotion()
+  // cursor-driven 3D tilt — springy, subtle, and disabled for reduced motion
+  const rotateX = useSpring(0, { stiffness: 140, damping: 18 })
+  const rotateY = useSpring(0, { stiffness: 140, damping: 18 })
+
+  const handleMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (reduce) return
+    const r = e.currentTarget.getBoundingClientRect()
+    const px = (e.clientX - r.left) / r.width - 0.5
+    const py = (e.clientY - r.top) / r.height - 0.5
+    rotateY.set(px * 6)
+    rotateX.set(-py * 6)
+  }
+  const handleLeave = () => {
+    rotateX.set(0)
+    rotateY.set(0)
+  }
+
   return (
     <motion.article
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
+      whileHover={reduce ? undefined : { y: -4 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.6, ease }}
-      className="card-ring group relative overflow-hidden rounded-3xl bg-card/40 p-6 backdrop-blur transition-transform duration-300 hover:-translate-y-1 sm:p-8"
+      style={{ rotateX, rotateY, transformPerspective: 1200 }}
+      className="card-ring group relative overflow-hidden rounded-3xl bg-card/40 p-6 backdrop-blur sm:p-8"
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-50"

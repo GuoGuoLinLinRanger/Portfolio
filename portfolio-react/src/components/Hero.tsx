@@ -1,6 +1,7 @@
 import { motion } from "motion/react"
 import { ArrowDown, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { CountUp } from "@/components/CountUp"
 import { GithubIcon, LinkedinIcon } from "@/components/icons"
 import { asset } from "@/lib/asset"
 import { awards, headlineStats, profile } from "@/data/portfolio"
@@ -167,7 +168,7 @@ export function Hero() {
       >
         {headlineStats.map((s) => (
           <div key={s.label} className="bg-card/40 p-5 backdrop-blur transition-colors hover:bg-card/70">
-            <div className="font-display text-2xl font-bold text-flow sm:text-3xl">{s.value}</div>
+            <CountUp value={s.value} className="font-display text-2xl font-bold text-flow sm:text-3xl" />
             <div className="mt-1 text-sm font-medium text-foreground/90">{s.label}</div>
             <div className="mt-1 text-xs text-muted-foreground">{s.sub}</div>
           </div>

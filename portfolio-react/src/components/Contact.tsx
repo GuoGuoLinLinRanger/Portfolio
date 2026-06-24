@@ -11,11 +11,13 @@ import { Textarea } from "@/components/ui/textarea"
 import { Terminal } from "@/components/Terminal"
 import { profile } from "@/data/portfolio"
 
-// TODO: replace REPLACE_WITH_FORM_ID with the real Formspree form id.
-// Until then, the form degrades gracefully to a prefilled email (see below),
-// so it always does something useful instead of failing silently.
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/REPLACE_WITH_FORM_ID"
-const FORMSPREE_CONFIGURED = !FORMSPREE_ENDPOINT.includes("REPLACE_WITH_FORM_ID")
+// Real submissions post to Formspree when VITE_FORMSPREE_ID is set (see
+// .env.example — it's a one-line config). Without it the form degrades to a
+// prefilled email, so it always does something useful and the copy never
+// claims more than it actually does.
+const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID as string | undefined
+const FORMSPREE_ENDPOINT = FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : undefined
+const FORMSPREE_CONFIGURED = Boolean(FORMSPREE_ENDPOINT)
 
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle")
@@ -34,11 +36,11 @@ export function Contact() {
     }
 
     // No Formspree id wired yet → open the user's mail client, prefilled.
-    if (!FORMSPREE_CONFIGURED) {
+    if (!FORMSPREE_CONFIGURED || !FORMSPREE_ENDPOINT) {
       const subject = encodeURIComponent(`Portfolio — ${name}`)
       const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`)
       window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`
-      toast.success("Opening your email client…")
+      toast.success("Opening your email app…")
       return
     }
 
@@ -72,7 +74,7 @@ export function Contact() {
         <motion.form
           onSubmit={onSubmit}
           action={FORMSPREE_ENDPOINT}
-          method="POST"
+          method={FORMSPREE_CONFIGURED ? "POST" : undefined}
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
@@ -106,15 +108,22 @@ export function Contact() {
               rows={5}
             />
           </div>
-          <Button
-            type="submit"
-            disabled={status === "sending"}
-            className="w-full cursor-pointer sm:w-auto"
-            style={{ background: "var(--flow)", color: "var(--primary-foreground)" }}
-          >
-            <Send className="size-4" />
-            {status === "sending" ? "Sending…" : status === "sent" ? "Sent ✓" : "Send message"}
-          </Button>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <Button
+              type="submit"
+              disabled={status === "sending"}
+              className="w-full cursor-pointer sm:w-auto"
+              style={{ background: "var(--flow)", color: "var(--primary-foreground)" }}
+            >
+              <Send className="size-4" />
+              {status === "sending" ? "Sending…" : status === "sent" ? "Sent ✓" : "Send message"}
+            </Button>
+            <p className="text-xs text-muted-foreground">
+              {FORMSPREE_CONFIGURED
+                ? "Goes straight to my inbox — no mail app needed."
+                : "Opens your email app with everything prefilled."}
+            </p>
+          </div>
         </motion.form>
 
         <div className="flex flex-col gap-4">
