@@ -1,5 +1,5 @@
 import { motion } from "motion/react"
-import { ArrowDown, Mail } from "lucide-react"
+import { Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { CountUp } from "@/components/CountUp"
 import { GithubIcon, LinkedinIcon } from "@/components/icons"
@@ -13,7 +13,7 @@ export function Hero() {
     <section
       id="top"
       data-hue={272}
-      className="relative mx-auto flex min-h-[100svh] w-full max-w-6xl flex-col justify-center px-5 pb-16 pt-28 sm:px-8"
+      className="relative mx-auto flex min-h-[86svh] w-full max-w-6xl flex-col justify-center px-5 pb-14 pt-28 sm:px-8"
     >
       <div className="grid items-center gap-10 lg:grid-cols-[1.35fr_1fr]">
         {/* ---- Left: the pitch ---- */}
@@ -159,36 +159,20 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* ---- Headline stats: scannable proof in 3 seconds ---- */}
+      {/* ---- Proof, kept quiet: the work is the headline, these just back it up ---- */}
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.4 }}
-        className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border/60 bg-border/40 lg:grid-cols-4"
+        className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-border/50 pt-6"
       >
         {headlineStats.map((s) => (
-          <div key={s.label} className="bg-card/40 p-5 backdrop-blur transition-colors hover:bg-card/70">
-            <CountUp value={s.value} className="font-display text-2xl font-bold text-flow sm:text-3xl" />
-            <div className="mt-1 text-sm font-medium text-foreground/90">{s.label}</div>
-            <div className="mt-1 text-xs text-muted-foreground">{s.sub}</div>
+          <div key={s.label} className="flex items-baseline gap-2">
+            <CountUp value={s.value} className="font-mono text-sm font-semibold text-flow" />
+            <span className="text-xs text-muted-foreground">{s.label}</span>
           </div>
         ))}
       </motion.div>
-
-      <motion.a
-        href="#work"
-        aria-label="Scroll to work"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.6 }}
-        onClick={(e) => {
-          e.preventDefault()
-          document.querySelector("#work")?.scrollIntoView({ behavior: "smooth" })
-        }}
-        className="mx-auto mt-12 hidden cursor-pointer text-muted-foreground transition-colors hover:text-foreground md:block"
-      >
-        <ArrowDown className="size-5 animate-bounce" />
-      </motion.a>
     </section>
   )
 }

@@ -8,7 +8,6 @@ const LINKS = [
   { href: "#experience", label: "Experience" },
   { href: "#work", label: "Work" },
   { href: "#skills", label: "Skills" },
-  { href: "#now", label: "Now" },
   { href: "#contact", label: "Contact" },
 ]
 
@@ -36,18 +35,14 @@ export function Nav({ theme, onToggleTheme }: NavProps) {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled ? "py-2" : "py-4",
+        "fixed inset-x-0 top-0 z-50 border-b transition-all duration-300",
+        scrolled
+          ? "glass border-border/60 shadow-sm shadow-black/10"
+          : "border-transparent",
       )}
     >
       <nav
-        className={cn(
-          "mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-2xl px-4 py-2.5 transition-all duration-300 sm:px-5",
-          scrolled
-            ? "glass hairline shadow-lg shadow-black/20"
-            : "border border-transparent",
-        )}
-        style={{ marginInline: "1rem" }}
+        className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-8"
         aria-label="Primary"
       >
         <a
@@ -121,17 +116,19 @@ export function Nav({ theme, onToggleTheme }: NavProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="glass hairline mx-4 mt-2 flex flex-col gap-1 rounded-2xl p-2 md:hidden"
+            className="glass border-b border-border/60 md:hidden"
           >
-            {LINKS.map((l) => (
-              <button
-                key={l.href}
-                onClick={() => go(l.href)}
-                className="cursor-pointer rounded-xl px-4 py-3 text-left text-sm font-medium text-foreground transition-colors hover:bg-accent"
-              >
-                {l.label}
-              </button>
-            ))}
+            <div className="mx-auto flex max-w-6xl flex-col gap-1 px-3 py-3">
+              {LINKS.map((l) => (
+                <button
+                  key={l.href}
+                  onClick={() => go(l.href)}
+                  className="cursor-pointer rounded-xl px-4 py-3 text-left text-sm font-medium text-foreground transition-colors hover:bg-accent"
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

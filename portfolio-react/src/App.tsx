@@ -4,7 +4,6 @@ import { Experience } from "@/components/Experience"
 import { Footer } from "@/components/Footer"
 import { Hero } from "@/components/Hero"
 import { Nav } from "@/components/Nav"
-import { NowSection } from "@/components/NowSection"
 import { ParticleField } from "@/components/ParticleField"
 import { Projects } from "@/components/Projects"
 import { ScrollProgress } from "@/components/ScrollProgress"
@@ -36,7 +35,6 @@ export default function App() {
         <Experience />
         <Projects />
         <SkillsMatrix />
-        <NowSection />
         <Contact />
       </main>
 
