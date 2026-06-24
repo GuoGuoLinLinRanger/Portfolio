@@ -33,20 +33,24 @@ export function ConstellationNav() {
 
   useEffect(() => {
     const computeTarget = () => {
-      const tops = NODES.map((n) => {
+      // anchor each node to its section's CENTER (not top) and compare against
+      // the viewport center, so at the top of the page the traveler sits on the
+      // first node instead of already drifting toward the second.
+      const anchors = NODES.map((n) => {
         const el = document.getElementById(n.id)
-        return el ? el.getBoundingClientRect().top + window.scrollY : 0
+        if (!el) return 0
+        const r = el.getBoundingClientRect()
+        return r.top + window.scrollY + r.height / 2
       })
-      const vh = window.innerHeight
-      const refY = window.scrollY + vh * 0.45
-      const last = tops.length - 1
+      const refY = window.scrollY + window.innerHeight / 2
+      const last = anchors.length - 1
       let tt = 0
-      if (refY <= tops[0]) tt = 0
-      else if (refY >= tops[last]) tt = last
+      if (refY <= anchors[0]) tt = 0
+      else if (refY >= anchors[last]) tt = last
       else {
         for (let i = 0; i < last; i++) {
-          if (refY >= tops[i] && refY < tops[i + 1]) {
-            tt = i + (refY - tops[i]) / ((tops[i + 1] - tops[i]) || 1)
+          if (refY >= anchors[i] && refY < anchors[i + 1]) {
+            tt = i + (refY - anchors[i]) / ((anchors[i + 1] - anchors[i]) || 1)
             break
           }
         }

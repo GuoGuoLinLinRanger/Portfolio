@@ -269,45 +269,45 @@
 .custom-cursor textarea {
   cursor: text !important;
 }
-.cursor-dot,
-.cursor-ring {
+/* draw-the-constellation: a fading line of star-nodes trails the pointer */
+.cursor-draw-svg {
   position: fixed;
   left: 0;
   top: 0;
   z-index: 200;
   pointer-events: none;
-  opacity: 0;
-  will-change: transform;
+  fill: var(--flow);
+  stroke: var(--flow);
+}
+.cursor-draw-svg polyline {
+  fill: none;
+  stroke: var(--flow);
+  stroke-width: 1.2;
+  stroke-opacity: 0.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.cursor-draw-svg circle {
+  fill: var(--flow);
 }
 .cursor-dot {
-  height: 7px;
-  width: 7px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 201;
+  pointer-events: none;
+  opacity: 0;
+  height: 8px;
+  width: 8px;
   border-radius: 999px;
   background: var(--flow);
-  box-shadow: 0 0 12px 2px color-mix(in oklab, var(--flow) 70%, transparent);
-  transition: opacity 0.2s ease;
+  box-shadow: 0 0 12px 2px color-mix(in oklab, var(--flow) 75%, transparent);
+  will-change: transform;
+  transition: opacity 0.2s ease, height 0.15s ease, width 0.15s ease;
 }
-.cursor-ring {
-  height: 34px;
-  width: 34px;
-  border-radius: 999px;
-  border: 1.5px solid color-mix(in oklab, var(--flow) 55%, transparent);
-  transition:
-    width 0.18s ease,
-    height 0.18s ease,
-    background 0.18s ease,
-    border-color 0.18s ease,
-    opacity 0.25s ease;
-}
-.cursor-ring.cursor-hover {
-  height: 54px;
-  width: 54px;
-  background: color-mix(in oklab, var(--flow) 12%, transparent);
-  border-color: color-mix(in oklab, var(--flow) 80%, transparent);
-}
-.cursor-ring.cursor-down {
-  height: 24px;
-  width: 24px;
+.cursor-dot.cursor-active {
+  height: 13px;
+  width: 13px;
 }
 
 /* thin custom scrollbar */

@@ -1,15 +1,22 @@
 import { useEffect, useRef } from "react"
 
 /**
- * A theme-matched cursor: a small glowing node (the "star" you carry through
- * the constellation) plus a softer ring that eases behind it and expands over
- * interactive elements. Pure transform/opacity, pointer-events: none. Disabled
- * on touch devices and under prefers-reduced-motion, where the native cursor
- * is kept. Color tracks the flow accent via CSS, so it shifts with the page.
+ * "Draw the constellation" cursor: a bright node sits at the pointer, and a
+ * fading line of star-nodes trails behind it — so moving the mouse draws a
+ * little constellation that erases itself from the tail. Pure transform/SVG,
+ * pointer-events: none, color tracks the flow accent. Disabled on touch and
+ * under prefers-reduced-motion (native cursor kept). The rAF loop only runs
+ * while nodes are still alive, then stops.
  */
+
+const MAX = 16 // most nodes kept in the trail
+const LIFE = 650 // ms a node lives before it fully fades
+
 export function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null)
-  const ringRef = useRef<HTMLDivElement>(null)
+  const svgRef = useRef<SVGSVGElement>(null)
+  const lineRef = useRef<SVGPolylineElement>(null)
+  const circlesRef = useRef<SVGCircleElement[]>([])
 
   useEffect(() => {
     const fine = window.matchMedia("(pointer: fine)").matches
@@ -17,55 +24,103 @@ export function CustomCursor() {
     if (!fine || reduce) return // touch / reduced-motion → keep native cursor
 
     const dot = dotRef.current
-    const ring = ringRef.current
-    if (!dot || !ring) return
+    const svg = svgRef.current
+    const line = lineRef.current
+    if (!dot || !svg || !line) return
+    const circles = circlesRef.current
     const root = document.documentElement
     root.classList.add("custom-cursor")
 
-    let visible = false
-
-    const show = () => {
-      if (visible) return
-      visible = true
-      dot.style.opacity = "1"
-      ring.style.opacity = "1"
+    const size = () => {
+      svg.setAttribute("width", String(window.innerWidth))
+      svg.setAttribute("height", String(window.innerHeight))
+      svg.setAttribute("viewBox", `0 0 ${window.innerWidth} ${window.innerHeight}`)
     }
+    size()
+
+    type Pt = { x: number; y: number; born: number }
+    let pts: Pt[] = []
+    let raf = 0
+    let visible = false
+    let lastX = -100
+    let lastY = -100
+
+    const render = () => {
+      const t = performance.now()
+      pts = pts.filter((p) => t - p.born < LIFE) // drop fully-faded tail nodes
+      line.setAttribute("points", pts.map((p) => `${p.x},${p.y}`).join(" "))
+      circles.forEach((c, i) => {
+        const p = pts[i]
+        if (!p) {
+          c.setAttribute("r", "0")
+          return
+        }
+        const op = Math.max(0, 1 - (t - p.born) / LIFE)
+        c.setAttribute("cx", String(p.x))
+        c.setAttribute("cy", String(p.y))
+        c.setAttribute("r", String(Math.max(0.4, (2.6 - i * 0.12) * op)))
+        c.setAttribute("opacity", String(op))
+      })
+      raf = pts.length ? requestAnimationFrame(render) : 0
+    }
+    const ensure = () => {
+      if (!raf) raf = requestAnimationFrame(render)
+    }
+
     const onMove = (e: MouseEvent) => {
-      show()
-      // dot and ring both track the pointer exactly — no trailing lag
-      const tf = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`
-      dot.style.transform = tf
-      ring.style.transform = tf
+      if (!visible) {
+        visible = true
+        dot.style.opacity = "1"
+      }
+      const x = e.clientX
+      const y = e.clientY
+      dot.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`
+      // add a node only every few px so fast + slow moves both draw evenly
+      const dx = x - lastX
+      const dy = y - lastY
+      if (dx * dx + dy * dy > 16) {
+        pts.unshift({ x, y, born: performance.now() })
+        if (pts.length > MAX) pts.pop()
+        lastX = x
+        lastY = y
+      }
       const interactive = (e.target as Element)?.closest?.(
         "a, button, [role='button'], input, textarea, label, summary",
       )
-      ring.classList.toggle("cursor-hover", !!interactive)
+      dot.classList.toggle("cursor-active", !!interactive)
+      ensure()
     }
     const onLeave = () => {
       visible = false
       dot.style.opacity = "0"
-      ring.style.opacity = "0"
     }
-    const onDown = () => ring.classList.add("cursor-down")
-    const onUp = () => ring.classList.remove("cursor-down")
 
     window.addEventListener("mousemove", onMove)
     document.addEventListener("mouseleave", onLeave)
-    window.addEventListener("mousedown", onDown)
-    window.addEventListener("mouseup", onUp)
-
+    window.addEventListener("resize", size)
     return () => {
+      if (raf) cancelAnimationFrame(raf)
       window.removeEventListener("mousemove", onMove)
       document.removeEventListener("mouseleave", onLeave)
-      window.removeEventListener("mousedown", onDown)
-      window.removeEventListener("mouseup", onUp)
+      window.removeEventListener("resize", size)
       root.classList.remove("custom-cursor")
     }
   }, [])
 
   return (
     <>
-      <div ref={ringRef} aria-hidden="true" className="cursor-ring" />
+      <svg ref={svgRef} className="cursor-draw-svg" aria-hidden="true">
+        <polyline ref={lineRef} points="" />
+        {Array.from({ length: MAX }).map((_, i) => (
+          <circle
+            key={i}
+            ref={(el) => {
+              if (el) circlesRef.current[i] = el
+            }}
+            r="0"
+          />
+        ))}
+      </svg>
       <div ref={dotRef} aria-hidden="true" className="cursor-dot" />
     </>
   )
