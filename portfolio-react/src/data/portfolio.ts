@@ -108,6 +108,8 @@ export type Project = {
   status?: "live" | "active"
   image?: string
   link?: { label: string; href: string }
+  // structured links shown as a row in the case-study modal
+  links?: { kind: "github" | "live" | "demo" | "devpost" | "docs"; label: string; href: string }[]
   problem: string
   approach: string
   result: string
@@ -195,7 +197,7 @@ export const projects: Project[] = [
     stack: ["React", "Next.js", "TypeScript", "GCP", "Figma"],
     status: "live",
     image: "/img/home_UWCS.png",
-    link: { label: "csclub.uwaterloo.ca", href: "https://csclub.uwaterloo.ca/" },
+    links: [{ kind: "live", label: "csclub.uwaterloo.ca", href: "https://csclub.uwaterloo.ca/" }],
     problem:
       "The club's site is the front door for 3,000+ CS students, but publishing updates was manual and slow, and the page carried unnecessary render cost.",
     approach:
@@ -281,7 +283,7 @@ export const projects: Project[] = [
     tagline: "Custom WebGL render pipeline, built at a hackathon (2nd place)",
     year: "2024",
     stack: ["Python", "Flask", "Three.js", "WebGL"],
-    link: { label: "View on Devpost", href: "https://devpost.com/software/cloud9" },
+    links: [{ kind: "devpost", label: "View on Devpost", href: "https://devpost.com/software/cloud9" }],
     image: "/img/MNIST.png",
     problem:
       "Point-cloud and surface data is hard to reason about as numbers. We wanted to make it explorable in the browser in real time.",

@@ -1,12 +1,14 @@
 import { useEffect, useRef } from "react"
 
 /**
- * Reactive particle network on a 2D canvas — no external libraries.
- * Points drift, link with thin lines when close, and gently scatter
- * away from the cursor. Line/dot color tracks the live `--flow-hue`,
- * so the field shifts color with the rest of the page. DPR-aware,
- * capped particle count, paused when the tab is hidden, and reduced
- * to a single static frame under prefers-reduced-motion.
+ * Reactive particle constellation on a 2D canvas — no external libraries.
+ * Points live across three depth tiers: nearer points are larger, brighter
+ * and parallax further; far points are small, dim and nearly still. The
+ * whole field shifts gently opposite the cursor, so moving the mouse reads
+ * as looking *into* a field with real depth rather than a flat sheet of
+ * dots. Lines link nearby points softly; points brighten near the cursor.
+ * Color tracks the live `--flow-hue`. DPR-aware, capped count, paused when
+ * hidden, single static frame under prefers-reduced-motion.
  */
 export function ParticleField() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -24,10 +26,25 @@ export function ParticleField() {
     let hue = 272
     let frame = 0
     let raf = 0
-    const mouse = { x: -9999, y: -9999 }
-    const maxDist = 132
 
-    type P = { x: number; y: number; vx: number; vy: number }
+    const mouse = { x: -9999, y: -9999, inside: false }
+    // eased parallax offset in normalized [-1, 1] space
+    let ox = 0
+    let oy = 0
+    const maxDist = 118
+
+    type P = {
+      x: number
+      y: number
+      vx: number
+      vy: number
+      z: number // 0 far → 1 near
+      size: number
+      par: number // parallax amplitude (px)
+      alpha: number
+      rx: number
+      ry: number
+    }
     let particles: P[] = []
 
     const resize = () => {
@@ -36,17 +53,26 @@ export function ParticleField() {
       canvas.width = Math.floor(w * dpr)
       canvas.height = Math.floor(h * dpr)
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      const target = Math.min(96, Math.floor((w * h) / 15000))
-      particles = Array.from({ length: target }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.28,
-        vy: (Math.random() - 0.5) * 0.28,
-      }))
+      // calmer density than before
+      const target = Math.min(66, Math.floor((w * h) / 23000))
+      particles = Array.from({ length: target }, () => {
+        const z = Math.random()
+        return {
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * (0.12 + z * 0.22),
+          vy: (Math.random() - 0.5) * (0.12 + z * 0.22),
+          z,
+          size: 0.6 + z * 1.7,
+          par: 5 + z * 17,
+          alpha: 0.16 + z * 0.5,
+          rx: 0,
+          ry: 0,
+        }
+      })
     }
 
     const draw = () => {
-      // sample the live flow hue every ~12 frames (cheap, avoids thrash)
       if (frame % 12 === 0) {
         const v = parseFloat(
           getComputedStyle(document.documentElement).getPropertyValue("--flow-hue"),
@@ -55,45 +81,65 @@ export function ParticleField() {
       }
       frame++
 
+      // ease parallax offset toward the cursor's position relative to center
+      const tx = mouse.inside ? -((mouse.x - w / 2) / (w / 2)) : 0
+      const ty = mouse.inside ? -((mouse.y - h / 2) / (h / 2)) : 0
+      ox += (tx - ox) * 0.045
+      oy += (ty - oy) * 0.045
+
       ctx.clearRect(0, 0, w, h)
 
+      // advance + compute rendered (parallaxed) positions
       for (const p of particles) {
         p.x += p.vx
         p.y += p.vy
-        if (p.x < 0 || p.x > w) p.vx *= -1
-        if (p.y < 0 || p.y > h) p.vy *= -1
-
-        const dx = p.x - mouse.x
-        const dy = p.y - mouse.y
-        const d2 = dx * dx + dy * dy
-        if (d2 < 130 * 130) {
-          const d = Math.sqrt(d2) || 1
-          const f = ((130 - d) / 130) * 0.9
-          p.x += (dx / d) * f
-          p.y += (dy / d) * f
-        }
+        if (p.x < -20) p.x = w + 20
+        else if (p.x > w + 20) p.x = -20
+        if (p.y < -20) p.y = h + 20
+        else if (p.y > h + 20) p.y = -20
+        p.rx = p.x + ox * p.par
+        p.ry = p.y + oy * p.par
       }
 
+      // links — soft, depth-weighted
       for (let i = 0; i < particles.length; i++) {
         const a = particles[i]
         for (let j = i + 1; j < particles.length; j++) {
           const b = particles[j]
-          const dx = a.x - b.x
-          const dy = a.y - b.y
+          const dx = a.rx - b.rx
+          const dy = a.ry - b.ry
           const dist = Math.sqrt(dx * dx + dy * dy)
           if (dist < maxDist) {
-            const o = (1 - dist / maxDist) * 0.45
-            ctx.strokeStyle = `hsla(${hue}, 82%, 66%, ${o})`
-            ctx.lineWidth = 1
+            const depth = (a.z + b.z) / 2
+            const o = (1 - dist / maxDist) * (0.06 + depth * 0.2)
+            ctx.strokeStyle = `hsla(${hue}, 72%, 66%, ${o})`
+            ctx.lineWidth = 0.6 + depth * 0.6
             ctx.beginPath()
-            ctx.moveTo(a.x, a.y)
-            ctx.lineTo(b.x, b.y)
+            ctx.moveTo(a.rx, a.ry)
+            ctx.lineTo(b.rx, b.ry)
             ctx.stroke()
           }
         }
-        ctx.fillStyle = `hsla(${hue}, 82%, 72%, 0.75)`
+      }
+
+      // points — brighten + swell slightly near the cursor
+      for (const p of particles) {
+        let a = p.alpha
+        let s = p.size
+        if (mouse.inside) {
+          const dx = p.rx - mouse.x
+          const dy = p.ry - mouse.y
+          const d2 = dx * dx + dy * dy
+          const R = 150
+          if (d2 < R * R) {
+            const t = 1 - Math.sqrt(d2) / R
+            a = Math.min(1, a + t * 0.4)
+            s += t * 0.9
+          }
+        }
+        ctx.fillStyle = `hsla(${hue}, 78%, 72%, ${a})`
         ctx.beginPath()
-        ctx.arc(a.x, a.y, 1.4, 0, Math.PI * 2)
+        ctx.arc(p.rx, p.ry, s, 0, Math.PI * 2)
         ctx.fill()
       }
     }
@@ -107,8 +153,10 @@ export function ParticleField() {
       const r = canvas.getBoundingClientRect()
       mouse.x = e.clientX - r.left
       mouse.y = e.clientY - r.top
+      mouse.inside = true
     }
     const onLeave = () => {
+      mouse.inside = false
       mouse.x = -9999
       mouse.y = -9999
     }
@@ -146,7 +194,7 @@ export function ParticleField() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 -z-10 h-full w-full opacity-70"
+      className="pointer-events-none fixed inset-0 -z-10 h-full w-full opacity-65"
     />
   )
 }

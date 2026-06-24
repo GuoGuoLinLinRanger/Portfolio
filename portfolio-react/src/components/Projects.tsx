@@ -1,8 +1,18 @@
-import { useState } from "react"
-import { motion, useReducedMotion, useSpring } from "motion/react"
-import { ArrowRight, ArrowUpRight, ChevronRight, Images } from "lucide-react"
+import { useMemo, useState } from "react"
+import { AnimatePresence, motion, useReducedMotion, useSpring } from "motion/react"
+import {
+  ArrowRight,
+  ArrowUpRight,
+  ChevronRight,
+  FileText,
+  Globe,
+  Image as ImageIcon,
+  Images,
+  Trophy,
+} from "lucide-react"
 import { Section } from "@/components/Section"
 import { CountUp } from "@/components/CountUp"
+import { GithubIcon } from "@/components/icons"
 import { Badge } from "@/components/ui/badge"
 import {
   Dialog,
@@ -20,9 +30,26 @@ const ease = [0.22, 1, 0.36, 1] as const
 const ctaLabel = (p: Project) =>
   p.gallery?.length ? "View gallery & case study" : "Open case study"
 
+// Curated tech filters — every chip maps to at least one real project.
+const FILTERS: { label: string; test: (stack: string[]) => boolean }[] = [
+  { label: "All", test: () => true },
+  { label: "Python", test: (s) => s.some((x) => /python|flask|fastapi|pytest/i.test(x)) },
+  { label: "React", test: (s) => s.some((x) => /react|next/i.test(x)) },
+  { label: "TypeScript", test: (s) => s.some((x) => /typescript/i.test(x)) },
+  { label: "AI / LLM", test: (s) => s.some((x) => /llm|gpt|claude|gemini|qwen/i.test(x)) },
+  { label: "Robotics", test: (s) => s.some((x) => /ardupilot|mavlink|opencv|raspberry|sitl/i.test(x)) },
+  { label: "Graphics", test: (s) => s.some((x) => /webgl|three/i.test(x)) },
+]
+
 export function Projects() {
-  const flagships = projects.filter((p) => p.flagship)
-  const rest = projects.filter((p) => !p.flagship)
+  const [filter, setFilter] = useState("All")
+
+  const test = useMemo(
+    () => FILTERS.find((f) => f.label === filter)?.test ?? (() => true),
+    [filter],
+  )
+  const flagships = projects.filter((p) => p.flagship && test(p.stack))
+  const rest = projects.filter((p) => !p.flagship && test(p.stack))
 
   return (
     <Section
@@ -30,30 +57,86 @@ export function Projects() {
       hue={222}
       eyebrow="Selected work"
       title="Things I built and shipped"
-      intro="The work does the talking. Each one is a real system with real numbers — where it's a backtest and not a live record, I say so. Open any project for the full case study and screenshots."
+      intro="The work does the talking. Each one is a real system with real numbers — where it's a backtest and not a live record, I say so. Open any project for the full case study, gallery, and links."
     >
+      <TechFilter value={filter} onChange={setFilter} />
+
       {/* Flagship case studies */}
-      <div className="space-y-6">
-        {flagships.map((p, i) => (
-          <FlagshipCard key={p.id} project={p} flip={i % 2 === 1} />
-        ))}
-      </div>
+      {flagships.length > 0 && (
+        <div className="space-y-6">
+          <AnimatePresence mode="popLayout" initial={false}>
+            {flagships.map((p, i) => (
+              <motion.div
+                key={p.id}
+                layout
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.35, ease }}
+              >
+                <FlagshipCard project={p} flip={i % 2 === 1} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+      )}
 
       {/* The rest */}
-      <div className="mt-6 grid gap-4 md:grid-cols-2">
-        {rest.map((p, i) => (
-          <motion.div
-            key={p.id}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5, delay: i * 0.06, ease }}
-          >
-            <CompactCard project={p} />
-          </motion.div>
-        ))}
-      </div>
+      <motion.div layout className="mt-6 grid gap-4 md:grid-cols-2">
+        <AnimatePresence mode="popLayout" initial={false}>
+          {rest.map((p) => (
+            <motion.div
+              key={p.id}
+              layout
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.35, ease }}
+            >
+              <CompactCard project={p} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </Section>
+  )
+}
+
+function TechFilter({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  return (
+    <div
+      role="tablist"
+      aria-label="Filter projects by tech"
+      className="mb-8 flex flex-wrap gap-2"
+    >
+      {FILTERS.map((f) => {
+        const on = value === f.label
+        return (
+          <button
+            key={f.label}
+            role="tab"
+            aria-selected={on}
+            onClick={() => onChange(f.label)}
+            className={cn(
+              "relative cursor-pointer rounded-full px-3.5 py-1.5 font-mono text-xs transition-colors",
+              on
+                ? "text-foreground"
+                : "border border-border/60 text-muted-foreground hover:border-border hover:text-foreground",
+            )}
+          >
+            {on && (
+              <motion.span
+                layoutId="filter-pill"
+                className="absolute inset-0 -z-10 rounded-full"
+                style={{ background: "var(--flow-soft)", border: "1px solid var(--flow)" }}
+                transition={{ type: "spring", stiffness: 420, damping: 34 }}
+              />
+            )}
+            {f.label}
+          </button>
+        )
+      })}
+    </div>
   )
 }
 
@@ -136,6 +219,43 @@ function Highlights({ items }: { items: string[] }) {
   )
 }
 
+const LINK_ICON = {
+  github: GithubIcon,
+  live: Globe,
+  demo: ArrowUpRight,
+  devpost: Trophy,
+  docs: FileText,
+} as const
+
+function LinksRow({ links }: { links: NonNullable<Project["links"]> }) {
+  return (
+    <div className="flex flex-wrap gap-2.5">
+      {links.map((l, i) => {
+        const Icon = LINK_ICON[l.kind]
+        const primary = i === 0
+        return (
+          <a
+            key={l.href}
+            href={l.href}
+            target="_blank"
+            rel="noreferrer"
+            className={cn(
+              "inline-flex cursor-pointer items-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition-colors",
+              primary
+                ? "text-primary-foreground"
+                : "border border-border/70 text-foreground/90 hover:bg-accent",
+            )}
+            style={primary ? { background: "var(--flow)" } : undefined}
+          >
+            <Icon className="size-4" />
+            {l.label}
+          </a>
+        )
+      })}
+    </div>
+  )
+}
+
 /** Image gallery with a large active frame + clickable thumbnails. */
 function Gallery({ images }: { images: NonNullable<Project["gallery"]> }) {
   const [i, setI] = useState(0)
@@ -149,7 +269,6 @@ function Gallery({ images }: { images: NonNullable<Project["gallery"]> }) {
           alt={active.caption}
           className="h-full w-full animate-in fade-in-0 object-cover duration-300"
         />
-        {/* top scrim keeps the close button legible over bright shots */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/55 to-transparent" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-3">
           <p className="text-xs text-white/90">{active.caption}</p>
@@ -180,18 +299,30 @@ function Gallery({ images }: { images: NonNullable<Project["gallery"]> }) {
   )
 }
 
+/** Reserved 16:9 gallery space shown when a project has no screenshots yet. */
+function GalleryPlaceholder({ name }: { name: string }) {
+  return (
+    <div
+      className="relative flex aspect-[16/9] w-full flex-col items-center justify-center gap-2 border-b border-border/50"
+      style={{
+        background:
+          "radial-gradient(120% 120% at 50% 0%, var(--flow-soft), transparent 55%), repeating-linear-gradient(45deg, color-mix(in oklab, var(--foreground) 4%, transparent) 0 12px, transparent 12px 24px)",
+      }}
+    >
+      <ImageIcon className="size-9 text-flow/70" />
+      <div className="font-mono text-xs text-foreground/80">Screenshots coming soon</div>
+      <div className="text-xs text-muted-foreground">{name} — reserved gallery space</div>
+    </div>
+  )
+}
+
 /** The shared deep-dive modal opened by every project card. */
 function CaseStudy({ project }: { project: Project }) {
   const hasGallery = !!project.gallery?.length
+  const links = project.links ?? (project.link ? [{ kind: "live" as const, ...project.link }] : [])
   return (
     <DialogContent className="max-h-[90vh] gap-0 overflow-y-auto p-0 sm:max-w-3xl">
-      {hasGallery ? (
-        <Gallery images={project.gallery!} />
-      ) : project.architecture ? (
-        <div className="border-b border-border/50 bg-background/40 p-5">
-          <Architecture {...project.architecture} />
-        </div>
-      ) : null}
+      {hasGallery ? <Gallery images={project.gallery!} /> : <GalleryPlaceholder name={project.name} />}
 
       <div className="space-y-5 p-6">
         <DialogHeader className="space-y-2">
@@ -210,6 +341,8 @@ function CaseStudy({ project }: { project: Project }) {
 
         <Metrics project={project} />
 
+        {links.length > 0 && <LinksRow links={links} />}
+
         <div className="space-y-3 text-sm leading-relaxed">
           <PAR label="Problem" text={project.problem} />
           <PAR label="Approach" text={project.approach} />
@@ -218,8 +351,7 @@ function CaseStudy({ project }: { project: Project }) {
 
         {project.highlights && <Highlights items={project.highlights} />}
 
-        {/* show architecture in the body if a gallery already took the visual slot */}
-        {hasGallery && project.architecture && <Architecture {...project.architecture} />}
+        {project.architecture && <Architecture {...project.architecture} />}
 
         <div className="flex flex-wrap gap-1.5">
           {project.stack.map((s) => (
@@ -231,18 +363,6 @@ function CaseStudy({ project }: { project: Project }) {
             </span>
           ))}
         </div>
-
-        {project.link && (
-          <a
-            href={project.link.href}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex w-fit cursor-pointer items-center gap-1 text-sm font-medium text-flow hover:underline"
-          >
-            {project.link.label}
-            <ArrowUpRight className="size-4" />
-          </a>
-        )}
       </div>
     </DialogContent>
   )
@@ -367,29 +487,45 @@ function CompactCard({ project }: { project: Project }) {
         aria-label={`Open ${project.name} case study`}
         className="card-ring group flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl bg-card/40 backdrop-blur outline-none transition-transform duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-flow"
       >
-        {project.image && (
-          <div className="relative h-40 overflow-hidden">
-            <img
-              src={asset(project.image)}
-              alt={`${project.name} preview`}
-              loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
+        <div className="relative h-40 overflow-hidden">
+          {project.image ? (
+            <>
+              <img
+                src={asset(project.image)}
+                alt={`${project.name} preview`}
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(180deg, transparent 30%, color-mix(in oklab, var(--card) 92%, transparent) 100%)",
+                }}
+              />
+            </>
+          ) : (
+            // reserved gallery space — branded placeholder, no broken frame
             <div
-              className="absolute inset-0"
+              className="flex h-full w-full flex-col items-center justify-center gap-1.5"
               style={{
                 background:
-                  "linear-gradient(180deg, transparent 30%, color-mix(in oklab, var(--card) 92%, transparent) 100%)",
+                  "radial-gradient(120% 120% at 50% 0%, var(--flow-soft), transparent 55%), repeating-linear-gradient(45deg, color-mix(in oklab, var(--foreground) 4%, transparent) 0 11px, transparent 11px 22px)",
               }}
-            />
-            {hasGallery && project.gallery!.length > 1 && (
-              <span className="absolute right-2.5 top-2.5 inline-flex items-center gap-1 rounded-full bg-black/55 px-2 py-1 font-mono text-[0.65rem] text-white/90 backdrop-blur">
-                <Images className="size-3" />
-                {project.gallery!.length}
+            >
+              <ImageIcon className="size-6 text-flow/70" />
+              <span className="font-mono text-[0.65rem] uppercase tracking-wide text-muted-foreground">
+                Screenshots coming
               </span>
-            )}
-          </div>
-        )}
+            </div>
+          )}
+          {hasGallery && project.gallery!.length > 1 && (
+            <span className="absolute right-2.5 top-2.5 inline-flex items-center gap-1 rounded-full bg-black/55 px-2 py-1 font-mono text-[0.65rem] text-white/90 backdrop-blur">
+              <Images className="size-3" />
+              {project.gallery!.length}
+            </span>
+          )}
+        </div>
         <div className="flex flex-1 flex-col p-5">
           <div className="mb-2 flex items-center gap-3">
             <StatusDot status={project.status} />
