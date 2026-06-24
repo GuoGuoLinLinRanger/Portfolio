@@ -22,12 +22,7 @@ export function CustomCursor() {
     const root = document.documentElement
     root.classList.add("custom-cursor")
 
-    let mx = -100
-    let my = -100
-    let rx = -100
-    let ry = -100
     let visible = false
-    let raf = 0
 
     const show = () => {
       if (visible) return
@@ -36,10 +31,11 @@ export function CustomCursor() {
       ring.style.opacity = "1"
     }
     const onMove = (e: MouseEvent) => {
-      mx = e.clientX
-      my = e.clientY
       show()
-      dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`
+      // dot and ring both track the pointer exactly — no trailing lag
+      const tf = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`
+      dot.style.transform = tf
+      ring.style.transform = tf
       const interactive = (e.target as Element)?.closest?.(
         "a, button, [role='button'], input, textarea, label, summary",
       )
@@ -53,21 +49,12 @@ export function CustomCursor() {
     const onDown = () => ring.classList.add("cursor-down")
     const onUp = () => ring.classList.remove("cursor-down")
 
-    const loop = () => {
-      raf = requestAnimationFrame(loop)
-      rx += (mx - rx) * 0.18
-      ry += (my - ry) * 0.18
-      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`
-    }
-
     window.addEventListener("mousemove", onMove)
     document.addEventListener("mouseleave", onLeave)
     window.addEventListener("mousedown", onDown)
     window.addEventListener("mouseup", onUp)
-    loop()
 
     return () => {
-      cancelAnimationFrame(raf)
       window.removeEventListener("mousemove", onMove)
       document.removeEventListener("mouseleave", onLeave)
       window.removeEventListener("mousedown", onDown)

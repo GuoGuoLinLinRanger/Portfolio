@@ -64,9 +64,9 @@ export function Hero() {
             transition={{ duration: 0.7, ease, delay: 0.05 }}
             className="text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl"
           >
-            I build full-stack systems
-            <br className="hidden sm:block" /> and{" "}
-            <span className="text-gradient-flow">keep them running.</span>
+            I build software that
+            <br className="hidden sm:block" />{" "}
+            <span className="text-gradient-flow">runs while I sleep.</span>
           </motion.h1>
 
           <motion.p

@@ -52,7 +52,7 @@ export function Nav({ theme, onToggleTheme }: NavProps) {
             e.preventDefault()
             window.scrollTo({ top: 0, behavior: "smooth" })
           }}
-          className="group flex items-center gap-2.5 font-display text-sm font-semibold"
+          className="group flex items-center gap-2.5 font-display text-base font-semibold"
         >
           <span
             className="grid h-7 w-7 place-items-center rounded-lg text-[0.8rem] font-bold text-primary-foreground transition-transform duration-300 group-hover:scale-110"
@@ -68,7 +68,7 @@ export function Nav({ theme, onToggleTheme }: NavProps) {
             <button
               key={l.href}
               onClick={() => go(l.href)}
-              className="cursor-pointer rounded-lg px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+              className="cursor-pointer rounded-lg px-3 py-1.5 text-[0.95rem] text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
             >
               {l.label}
             </button>

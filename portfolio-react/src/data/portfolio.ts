@@ -6,7 +6,7 @@ export const profile = {
   role: "Full-Stack Engineer",
   tagline: "I build full-stack systems and keep them running.",
   blurb:
-    "University of Waterloo CS. I take things end to end — frontend, backend, infra, data — and I care most about the part everyone skips: keeping it alive in production. Below is the real work, with the real numbers.",
+    "University of Waterloo CS. I've shipped into a 500K-line production codebase, kept a platform live for 3,000+ students, and built an autonomous trading system that's run unattended for 4+ months — and I took 1st at the Citadel Trading Challenge.",
   email: "tyttong@uwaterloo.ca",
   linkedin: "https://www.linkedin.com/in/tian-yi-tong/",
   github: "https://github.com/GuoGuoLinLinRanger",

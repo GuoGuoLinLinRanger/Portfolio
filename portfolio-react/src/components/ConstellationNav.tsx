@@ -1,79 +1,106 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 /**
- * A star-map section nav: each section is a node, wired into one small
- * constellation down the right edge. The connecting line fills and the active
- * node lights up as you scroll, so the page reads as one constellation you
- * travel along. Click a node to jump; labels appear on hover/active. Desktop
- * only (xl+), where there's gutter for it; the top nav covers smaller screens.
+ * A star-map section nav down the LEFT edge: each section is a node, wired into
+ * one constellation. A glowing "traveler" glides smoothly ALONG the line as you
+ * scroll (continuous, not snapping node-to-node), the line fills behind it, and
+ * the nearest node lights up with its label. Click a node to jump. Desktop only
+ * (xl+, where there's gutter); the top nav covers smaller screens.
  */
 
 type Node = { id: string; label: string; x: number; y: number }
 
-// hand-placed for a constellation feel (not a straight line). Coords are px and
-// match the svg/overlay box exactly so labels line up with the dots.
-const W = 46
+// hand-placed asterism (varied x → a real constellation feel, not a zigzag)
 const NODES: Node[] = [
-  { id: "top", label: "Home", x: 30, y: 16 },
-  { id: "experience", label: "Experience", x: 17, y: 56 },
-  { id: "work", label: "Work", x: 33, y: 96 },
-  { id: "awards", label: "Awards", x: 19, y: 136 },
-  { id: "skills", label: "Skills", x: 33, y: 176 },
-  { id: "contact", label: "Contact", x: 21, y: 216 },
+  { id: "top", label: "Home", x: 24, y: 24 },
+  { id: "experience", label: "Experience", x: 54, y: 74 },
+  { id: "work", label: "Work", x: 30, y: 126 },
+  { id: "awards", label: "Awards", x: 58, y: 178 },
+  { id: "skills", label: "Skills", x: 34, y: 230 },
+  { id: "contact", label: "Contact", x: 18, y: 282 },
 ]
-const H = 232
+const W = 76
+const H = 306
+
+const clampIdx = (i: number) => Math.max(0, Math.min(NODES.length - 1, i))
 
 export function ConstellationNav() {
-  const [active, setActive] = useState(0)
+  const [t, setT] = useState(0) // continuous position along the constellation
   const [hover, setHover] = useState<number | null>(null)
+  const targetRef = useRef(0)
+  const tRef = useRef(0)
+  const rafRef = useRef(0)
 
   useEffect(() => {
-    const ids = NODES.map((n) => n.id)
-    let raf = 0
-    const update = () => {
-      raf = 0
-      const line = window.innerHeight * 0.4
-      let best = 0
-      let bestDist = Infinity
-      ids.forEach((id, i) => {
-        const el = document.getElementById(id)
-        if (!el) return
-        const r = el.getBoundingClientRect()
-        const mid = r.top + r.height / 2
-        const dist = Math.abs(mid - line)
-        if (dist < bestDist) {
-          bestDist = dist
-          best = i
-        }
+    const computeTarget = () => {
+      const tops = NODES.map((n) => {
+        const el = document.getElementById(n.id)
+        return el ? el.getBoundingClientRect().top + window.scrollY : 0
       })
-      setActive(best)
+      const vh = window.innerHeight
+      const refY = window.scrollY + vh * 0.45
+      const last = tops.length - 1
+      let tt = 0
+      if (refY <= tops[0]) tt = 0
+      else if (refY >= tops[last]) tt = last
+      else {
+        for (let i = 0; i < last; i++) {
+          if (refY >= tops[i] && refY < tops[i + 1]) {
+            tt = i + (refY - tops[i]) / ((tops[i + 1] - tops[i]) || 1)
+            break
+          }
+        }
+      }
+      targetRef.current = tt
+      startLoop()
     }
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update)
+
+    const loop = () => {
+      const target = targetRef.current
+      const next = tRef.current + (target - tRef.current) * 0.16
+      if (Math.abs(target - next) < 0.002) {
+        tRef.current = target
+        setT(target)
+        rafRef.current = 0
+        return
+      }
+      tRef.current = next
+      setT(next)
+      rafRef.current = requestAnimationFrame(loop)
     }
-    update()
+    const startLoop = () => {
+      if (!rafRef.current) rafRef.current = requestAnimationFrame(loop)
+    }
+
+    const onScroll = () => computeTarget()
+    computeTarget()
     window.addEventListener("scroll", onScroll, { passive: true })
     window.addEventListener("resize", onScroll)
     return () => {
       window.removeEventListener("scroll", onScroll)
       window.removeEventListener("resize", onScroll)
-      if (raf) cancelAnimationFrame(raf)
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
     }
   }, [])
 
-  const go = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
-  }
+  const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+
+  // interpolate the traveler position along the polyline
+  const ti = Math.floor(t)
+  const tf = t - ti
+  const a = NODES[clampIdx(ti)]
+  const b = NODES[clampIdx(ti + 1)]
+  const tx = a.x + (b.x - a.x) * tf
+  const ty = a.y + (b.y - a.y) * tf
+  const activeIdx = Math.round(t)
 
   const basePts = NODES.map((n) => `${n.x},${n.y}`).join(" ")
-  const progPts = NODES.slice(0, active + 1)
-    .map((n) => `${n.x},${n.y}`)
-    .join(" ")
+  const filledPts = [...NODES.slice(0, ti + 1).map((n) => `${n.x},${n.y}`), `${tx},${ty}`].join(" ")
 
   return (
     <nav
       aria-label="Sections"
-      className="pointer-events-none fixed right-3 top-1/2 z-40 hidden -translate-y-1/2 xl:block"
+      className="pointer-events-none fixed left-4 top-1/2 z-40 hidden -translate-y-1/2 xl:block"
       style={{ width: W, height: H }}
     >
       <svg
@@ -86,45 +113,42 @@ export function ConstellationNav() {
       >
         <polyline
           points={basePts}
-          strokeOpacity="0.22"
-          strokeWidth="1"
+          strokeOpacity="0.2"
+          strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"
           style={{ stroke: "var(--flow)" }}
         />
-        {active > 0 && (
-          <polyline
-            points={progPts}
-            strokeOpacity="0.85"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{ stroke: "var(--flow)", transition: "all 0.4s ease" }}
-          />
-        )}
+        <polyline
+          points={filledPts}
+          strokeOpacity="0.9"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{ stroke: "var(--flow)" }}
+        />
         {NODES.map((n, i) => {
-          const isActive = i === active
-          const passed = i <= active
+          const passed = i <= t + 0.05
+          const isActive = i === activeIdx
           return (
-            <g key={n.id}>
-              {isActive && (
-                <circle cx={n.x} cy={n.y} r="8" opacity="0.18" style={{ fill: "var(--flow)" }} />
-              )}
-              <circle
-                cx={n.x}
-                cy={n.y}
-                r={isActive ? 4 : 2.4}
-                opacity={passed ? 1 : 0.4}
-                style={{ fill: "var(--flow)", transition: "r 0.25s ease, opacity 0.25s ease" }}
-              />
-            </g>
+            <circle
+              key={n.id}
+              cx={n.x}
+              cy={n.y}
+              r={isActive ? 4.5 : 3}
+              opacity={passed ? 1 : 0.4}
+              style={{ fill: "var(--flow)", transition: "r 0.2s ease, opacity 0.2s ease" }}
+            />
           )
         })}
+        {/* the smooth traveler */}
+        <circle cx={tx} cy={ty} r="11" opacity="0.18" style={{ fill: "var(--flow)" }} />
+        <circle cx={tx} cy={ty} r="5" style={{ fill: "var(--flow)" }} />
       </svg>
 
       {/* hit areas + labels (real buttons for a11y) */}
       {NODES.map((n, i) => {
-        const show = i === active || i === hover
+        const show = i === activeIdx || i === hover
         return (
           <button
             key={n.id}
@@ -133,17 +157,17 @@ export function ConstellationNav() {
             onMouseEnter={() => setHover(i)}
             onMouseLeave={() => setHover((h) => (h === i ? null : h))}
             aria-label={n.label}
-            aria-current={i === active ? "true" : undefined}
+            aria-current={i === activeIdx ? "true" : undefined}
             className="pointer-events-auto absolute grid -translate-x-1/2 -translate-y-1/2 place-items-center"
-            style={{ left: n.x, top: n.y, width: 26, height: 26 }}
+            style={{ left: n.x, top: n.y, width: 30, height: 30 }}
           >
             <span
-              className="absolute right-full mr-3 whitespace-nowrap rounded-md px-2 py-1 font-mono text-[0.7rem] uppercase tracking-wide transition-all duration-200"
+              className="absolute left-full ml-3 whitespace-nowrap rounded-md px-2.5 py-1 font-mono text-xs uppercase tracking-wide transition-all duration-200"
               style={{
-                background: show ? "color-mix(in oklab, var(--card) 80%, transparent)" : "transparent",
-                color: i === active ? "var(--flow)" : "var(--muted-foreground)",
+                background: show ? "color-mix(in oklab, var(--card) 82%, transparent)" : "transparent",
+                color: i === activeIdx ? "var(--flow)" : "var(--muted-foreground)",
                 opacity: show ? 1 : 0,
-                transform: show ? "translateX(0)" : "translateX(6px)",
+                transform: show ? "translateX(0)" : "translateX(-6px)",
                 boxShadow: show ? "0 0 0 1px color-mix(in oklab, var(--foreground) 8%, transparent)" : "none",
                 backdropFilter: show ? "blur(8px)" : "none",
               }}
