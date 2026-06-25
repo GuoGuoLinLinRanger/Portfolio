@@ -9,8 +9,10 @@ import { useEffect, useRef } from "react"
  * while nodes are still alive, then stops.
  */
 
-const MAX = 16 // most nodes kept in the trail
-const LIFE = 650 // ms a node lives before it fully fades
+const MAX = 24 // most nodes kept in the trail
+const LIFE = 600 // ms a node lives before it fully fades
+const STEP = 10 // px spacing between resampled nodes (keeps fast moves smooth)
+const MAXLEN = 150 // px — hard cap on total trail length, so fast flicks don't stretch it
 
 export function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null)
@@ -75,14 +77,38 @@ export function CustomCursor() {
       const x = e.clientX
       const y = e.clientY
       dot.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`
-      // add a node only every few px so fast + slow moves both draw evenly
-      const dx = x - lastX
-      const dy = y - lastY
-      if (dx * dx + dy * dy > 16) {
-        pts.unshift({ x, y, born: performance.now() })
-        if (pts.length > MAX) pts.pop()
-        lastX = x
-        lastY = y
+      // Resample the path at a fixed spacing so a fast flick lays down evenly
+      // spaced nodes (smooth) instead of a few far-apart ones, then hard-cap the
+      // total trail length so it never stretches across the screen.
+      let dx = x - lastX
+      let dy = y - lastY
+      let dist = Math.hypot(dx, dy)
+      if (dist > 0) {
+        const ux = dx / dist
+        const uy = dy / dist
+        const t = performance.now()
+        let guard = 0
+        while (dist >= STEP && guard < 30) {
+          lastX += ux * STEP
+          lastY += uy * STEP
+          dist -= STEP
+          guard++
+          pts.unshift({ x: lastX, y: lastY, born: t })
+        }
+        if (guard >= 30) {
+          lastX = x
+          lastY = y
+        }
+        // trim oldest nodes once the cumulative length passes the cap
+        let len = 0
+        for (let i = 1; i < pts.length; i++) {
+          len += Math.hypot(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y)
+          if (len > MAXLEN) {
+            pts.length = i
+            break
+          }
+        }
+        if (pts.length > MAX) pts.length = MAX
       }
       const interactive = (e.target as Element)?.closest?.(
         "a, button, [role='button'], input, textarea, label, summary",
