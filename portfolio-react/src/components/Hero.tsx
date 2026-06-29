@@ -46,7 +46,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease, delay: 0.05 }}
-            className="max-w-4xl text-balance text-3xl font-bold leading-[1.12] tracking-tight sm:text-4xl md:text-5xl"
+            className="max-w-2xl text-balance text-xl font-bold leading-snug tracking-tight sm:text-2xl md:text-3xl"
           >
             {profile.blurb}
           </motion.h1>
