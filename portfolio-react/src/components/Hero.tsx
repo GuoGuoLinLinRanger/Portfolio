@@ -42,41 +42,14 @@ export function Hero() {
             />
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease }}
-            className="mb-5 inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/40 px-3 py-1.5 font-mono text-xs text-muted-foreground backdrop-blur"
-          >
-            <span className="relative flex h-2 w-2">
-              <span
-                className="absolute inline-flex h-full w-full rounded-full opacity-75"
-                style={{ background: "var(--live)", animation: "pulse-live 2.4s ease-in-out infinite" }}
-              />
-              <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: "var(--live)" }} />
-            </span>
-            Systems live in production right now
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease, delay: 0.05 }}
-            className="text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl"
-          >
-            I build software that
-            <br className="hidden sm:block" />{" "}
-            <span className="text-gradient-flow">runs while I sleep.</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease, delay: 0.12 }}
-            className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl"
+            className="max-w-4xl text-balance text-3xl font-bold leading-[1.12] tracking-tight sm:text-4xl md:text-5xl"
           >
             {profile.blurb}
-          </motion.p>
+          </motion.h1>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}

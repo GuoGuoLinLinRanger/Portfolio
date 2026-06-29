@@ -6,7 +6,7 @@ export const profile = {
   role: "Full-Stack Engineer",
   tagline: "I build full-stack systems and keep them running.",
   blurb:
-    "University of Waterloo CS. I've shipped into a 500K-line production codebase, kept a platform live for 3,000+ students, and built an autonomous trading system that's run unattended for 4+ months — and I took 1st at the Citadel Trading Challenge.",
+    "CS @ Waterloo. I've been inside a 500K-line production codebase, kept a platform running for 3,000+ students, and had a trading system on my home server running for 4 months without touching it.",
   email: "tyttong@uwaterloo.ca",
   linkedin: "https://www.linkedin.com/in/tian-yi-tong/",
   github: "https://github.com/GuoGuoLinLinRanger",
@@ -29,7 +29,7 @@ export const headlineStats = [
   {
     value: "500K+",
     label: "lines of production code shipped into",
-    sub: "BusPlanner · C++/C#/ASP.NET, 15 months",
+    sub: "BusPlanner · C++/C#/ASP.NET, 4-month co-op",
   },
   {
     value: "<100ms",
@@ -40,8 +40,8 @@ export const headlineStats = [
 
 // Supporting credibility — chips, NOT the headline.
 export const awards = [
-  { place: "1st", title: "Citadel Trading Challenge", detail: "~120 teams" },
-  { place: "2nd", title: "Jane Street Trading Competition", detail: "~80 teams" },
+  { place: "1st", title: "Citadel Trading Challenge", detail: "~120 people" },
+  { place: "2nd", title: "Jane Street Trading Competition", detail: "~100 people" },
   { place: "Top 10%", title: "Putnam Mathematical Competition", detail: "~4,000 entrants" },
 ]
 
@@ -69,7 +69,7 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "Python / FastAPI", level: 5 },
       { name: "Node.js / Express", level: 4 },
-      { name: "C# / ASP.NET", level: 4, note: "15 mo production" },
+      { name: "C# / ASP.NET", level: 4, note: "production co-op" },
       { name: "C / C++", level: 4 },
       { name: "WebSockets", level: 4 },
     ],
@@ -322,7 +322,7 @@ export const experience: Experience[] = [
   {
     company: "BusPlanner",
     role: "Software Engineer Intern",
-    period: "May 2024 – Aug 2025",
+    period: "May 2026 – Aug 2026",
     stack: ["C++", "C#", "ASP.NET", "SQL Server", "PowerShell", "GitHub Actions"],
     bullets: [
       "Owned enrollment/eligibility workflows across ASP.NET, C# business logic, legacy C++/MFC and SQL Server — ~15,000 student records across 100+ districts daily.",
@@ -330,7 +330,7 @@ export const experience: Experience[] = [
       "Rewrote 3 high-frequency queries, cutting enrollment page load ~35%.",
       "Led the full migration from Azure DevOps to GitHub + Jira (CI/CD, branching, traceability) — cut average PR cycle time ~2 days across 8 engineers.",
       "Built a PowerShell provisioning tool that took new-dev onboarding from ~1 day to under 2 hours.",
-      "Closed ~40 production defects in a 500,000+ line codebase over 15 months.",
+      "Closed ~40 production defects in a 500,000+ line codebase over a 4-month term.",
     ],
   },
   {
@@ -340,6 +340,7 @@ export const experience: Experience[] = [
     stack: ["React", "Next.js", "TypeScript", "GCP", "Figma"],
     bullets: [
       "Maintain a production platform serving 3,000+ active CS students at ~99.5% uptime.",
+      "Built the LLM pipeline that turns messy Discord event posts into schema-validated JSON — a validation layer makes bad output fail loudly instead of slipping downstream, and a confidence check just asks the poster to reformat when it's unsure. I also wrote the JSON/Markdown data contract the three subteams built against, so everyone could work in parallel.",
       "Shipped 10+ dynamic content modules from requirements to production within 1–2 week turnarounds.",
       "Reviewed 25+ PRs; cut page rendering overhead ~20% by eliminating unnecessary re-renders.",
       "Deploy to GCP via GitHub Actions with rollback procedures.",
@@ -378,7 +379,6 @@ export const education = {
   school: "University of Waterloo",
   program: "Honours Computer Science",
   period: "Sept 2025 – Apr 2029",
-  gpa: "3.93 / 4.00",
   coursework: [
     "Data Structures & Algorithms",
     "Probability & Statistics",

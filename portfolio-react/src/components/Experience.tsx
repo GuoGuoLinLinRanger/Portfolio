@@ -35,7 +35,7 @@ export function Experience() {
             {education.school} <span className="text-muted-foreground">— {education.program}</span>
           </div>
           <div className="mt-1 text-sm text-muted-foreground">
-            {education.period} · GPA {education.gpa}
+            {education.period}
           </div>
         </div>
         <div className="flex flex-wrap gap-1.5">
