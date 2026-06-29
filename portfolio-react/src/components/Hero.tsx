@@ -46,10 +46,19 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease, delay: 0.05 }}
-            className="max-w-2xl text-balance text-xl font-bold leading-snug tracking-tight sm:text-2xl md:text-3xl"
+            className="text-balance text-3xl font-bold leading-[1.08] tracking-tight sm:text-4xl md:text-5xl"
+          >
+            {profile.headline}
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease, delay: 0.12 }}
+            className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
           >
             {profile.blurb}
-          </motion.h1>
+          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}

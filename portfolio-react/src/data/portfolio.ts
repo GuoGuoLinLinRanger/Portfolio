@@ -5,8 +5,9 @@ export const profile = {
   name: "Tian Yi Tong",
   role: "Full-Stack Engineer",
   tagline: "I build full-stack systems and keep them running.",
+  headline: "Software Engineer @ BusPlanner — CS @ Waterloo.",
   blurb:
-    "CS @ Waterloo. I've been inside a 500K-line production codebase, kept a platform running for 3,000+ students, and had a trading system on my home server running for 4 months without touching it.",
+    "I've been inside a 500K-line production codebase, kept a platform live for 3,000+ students, and had a trading system on my home server running for 4 months without touching it.",
   email: "tyttong@uwaterloo.ca",
   linkedin: "https://www.linkedin.com/in/tian-yi-tong/",
   github: "https://github.com/GuoGuoLinLinRanger",
